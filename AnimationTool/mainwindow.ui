@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="animSampleClipBindposeTab">
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="animationSampleEditorWidget">
+       <attribute name="title">
+        <string>AnimationSample Editor</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="animationClipEditorWidget">
+       <attribute name="title">
+        <string>AnimationClip Editor</string>
+       </attribute>
+      </widget>
+      <widget class="BindPoseAnimSampleGenerator" name="bindPoseGeneratorWidget">
+       <attribute name="title">
+        <string>BindPose Generator</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="1">
+         <widget class="SkeletonHierarchyTreeWidget" name="skeletonHierarchyTree">
+          <property name="maximumSize">
+           <size>
+            <width>800</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <column>
+           <property name="text">
+            <string notr="true">1</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="SpriteListWidget" name="spriteList">
+          <property name="maximumSize">
+           <size>
+            <width>800</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" rowspan="2">
+         <widget class="BindPoseAnimSampleGeneratorGraphicsView" name="bindposeGraphicsView"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAnimationTool">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuAnimationTool"/>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>BindPoseAnimSampleGenerator</class>
+   <extends>QWidget</extends>
+   <header>bindposeanimsamplegenerator.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>BindPoseAnimSampleGeneratorGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>bindposeanimsamplegeneratorgraphicsview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SkeletonHierarchyTreeWidget</class>
+   <extends>QTreeWidget</extends>
+   <header>skeletonhierarchytreewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SpriteListWidget</class>
+   <extends>QListView</extends>
+   <header>spritelistwidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
