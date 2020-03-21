@@ -2,11 +2,13 @@
 #define BINDPOSEANIMSAMPLEGENERATOR_H
 
 #include <QWidget>
+#include <QUndoStack>
 
 class BindPoseAnimSampleGeneratorGraphicsView;
 class QGraphicsScene;
 class SpriteListWidget;
 class SkeletonHierarchyTreeWidget;
+struct Joint;
 
 class BindPoseAnimSampleGenerator : public QWidget
 {
@@ -14,15 +16,20 @@ class BindPoseAnimSampleGenerator : public QWidget
     friend class MainWindow;
 public:
     explicit BindPoseAnimSampleGenerator(QWidget *parent = nullptr);
-    void test(){}
+    void AddJoint(const Joint& joint);
 signals:
 
 public slots:
+
 private:
+    void CreateActions();
+
     BindPoseAnimSampleGeneratorGraphicsView* graphicsView;
-    QGraphicsScene* graphicsScene;
     SpriteListWidget* spriteListWidget;
     SkeletonHierarchyTreeWidget* skeleonHierarchyTreeWidget;
+    QAction* undoAction;
+    QAction* redoAction;
+    QUndoStack* undoStack;
 };
 
 #endif // BINDPOSEANIMSAMPLEGENERATOR_H

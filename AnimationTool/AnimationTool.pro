@@ -28,7 +28,8 @@ INCLUDEPATH += C:\Users\doyoonkim\Documents\AnimationTool\BindPoseGenerator
 
 SOURCES += \
         AnimationSample.cpp \
-        BindPoseGenerator/jointcreateaction.cpp \
+        BindPoseGenerator/addjointcommand.cpp \
+        BindPoseGenerator/jointtreewidgetitem.cpp \
         BindPoseGenerator/skeletonhierarchytreewidget.cpp \
         BindPoseGenerator/spritelistwidget.cpp \
         Joint.cpp \
@@ -43,7 +44,8 @@ SOURCES += \
 HEADERS += \
         AnimationClip.h \
         AnimationSample.h \
-        BindPoseGenerator/jointcreateaction.h \
+        BindPoseGenerator/addjointcommand.h \
+        BindPoseGenerator/jointtreewidgetitem.h \
         BindPoseGenerator/skeletonhierarchytreewidget.h \
         BindPoseGenerator/spritelistwidget.h \
         Joint.h \

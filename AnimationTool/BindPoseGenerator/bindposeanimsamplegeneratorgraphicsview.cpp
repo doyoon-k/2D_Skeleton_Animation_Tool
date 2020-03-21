@@ -4,16 +4,20 @@
 #include <QDebug>
 #include <QContextMenuEvent>
 #include <QApplication>
+#include <bindposeanimsamplegenerator.h>
+#include <QGraphicsEllipseItem>
 
 BindPoseAnimSampleGeneratorGraphicsView::BindPoseAnimSampleGeneratorGraphicsView(QWidget *parent)
-    :QGraphicsView(parent)
+    :QGraphicsView(parent),scene(new QGraphicsScene(this))
 {
-    createJointAction = new QAction(tr("&Create Joint"),this);
-    jointCreateMenu = new QMenu(this);
-    jointCreateMenu->addAction(createJointAction);
-    jointCreateMenu->show();
+    this->parent = static_cast<BindPoseAnimSampleGenerator*>(parent);
+    setScene(scene);
+    scene->setSceneRect(0,0,this->width(),this->height());
+    CreateActionMenu();
+    connect(createJointAction,SIGNAL(triggered()),this,SLOT(AddJointSignalToParent()));
 
-    connect(createJointAction,SIGNAL(triggered()),this,SLOT(Test()));
+    skeletonSpaceOrigin = scene->addEllipse(0,0,20,20,QPen(QColor(255,0,0)));
+    skeletonSpaceOrigin->setPos(0,scene->height());
 }
 
 void BindPoseAnimSampleGeneratorGraphicsView::mousePressEvent(QMouseEvent *event)
@@ -21,15 +25,23 @@ void BindPoseAnimSampleGeneratorGraphicsView::mousePressEvent(QMouseEvent *event
     if(event->button() == Qt::RightButton)
     {
          qDebug()<<"mousePressed";
-         QMenu* menu = new QMenu(this);
-         menu->addAction(createJointAction);
-         menu->popup(mapToGlobal(event->pos()));
+         jointCreateMenu->popup(mapToGlobal(event->pos()));
     }
 }
 
-void BindPoseAnimSampleGeneratorGraphicsView::Test()
+void BindPoseAnimSampleGeneratorGraphicsView::CreateActionMenu()
 {
-    qDebug()<<"action Triggered!";
+    createJointAction = new QAction(tr("&Create Joint"),this);
+    jointCreateMenu = new QMenu(this);
+    jointCreateMenu->addAction(createJointAction);
 }
 
+void BindPoseAnimSampleGeneratorGraphicsView::AddJoint(const Joint& joint)
+{
 
+}
+
+void BindPoseAnimSampleGeneratorGraphicsView::AddJointSignalToParent()
+{
+//    parent->AddJoint(Joint(0,));
+}

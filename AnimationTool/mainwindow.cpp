@@ -7,7 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    ui->bindPoseGeneratorWidget->graphicsView = ui->bindposeGraphicsView;
+    ui->bindPoseGeneratorWidget->spriteListWidget = ui->spriteList;
+    ui->bindPoseGeneratorWidget->skeleonHierarchyTreeWidget;
 }
 
 MainWindow::~MainWindow()
