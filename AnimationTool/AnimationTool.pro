@@ -24,8 +24,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++17
 
-INCLUDEPATH += C:\Users\doyoonkim\Documents\AnimationTool\BindPoseGenerator
-
 SOURCES += \
         AnimationSample.cpp \
         BindPoseGenerator/addjointcommand.cpp \
@@ -38,6 +36,7 @@ SOURCES += \
         Vector3D.cpp \
         BindPoseGenerator/bindposeanimsamplegenerator.cpp \
         BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.cpp \
+        jointgraphicsitem.cpp \
         main.cpp \
         mainwindow.cpp
 
@@ -56,8 +55,10 @@ HEADERS += \
         Vector3D.h \
         BindPoseGenerator/bindposeanimsamplegenerator.h \
         BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.h \
+        jointgraphicsitem.h \
         mainwindow.h \
-        mathLib.h
+        mathLib.h \
+        zorder.h
 
 FORMS += \
     mainwindow.ui

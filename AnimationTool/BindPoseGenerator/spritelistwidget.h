@@ -5,6 +5,7 @@
 
 class SpriteListWidget : public QListWidget
 {
+      Q_OBJECT
 public:
     SpriteListWidget(QWidget* parent = nullptr);
 private:

@@ -1,8 +1,12 @@
-#include "bindposeanimsamplegenerator.h"
+#include "BindPoseGenerator/bindposeanimsamplegenerator.h"
 #include <QTreeWidgetItem>
 #include <QTreeWidget>
 #include <QAction>
-#include "bindposeanimsamplegeneratorgraphicsview.h"
+#include <QSpinBox>
+#include "BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.h"
+#include "BindPoseGenerator/skeletonhierarchytreewidget.h"
+#include "BindPoseGenerator/addjointcommand.h"
+#include "QDebug"
 
 BindPoseAnimSampleGenerator::BindPoseAnimSampleGenerator(QWidget *parent)
     : QWidget(parent),undoStack(new QUndoStack(this))
@@ -14,14 +18,40 @@ BindPoseAnimSampleGenerator::BindPoseAnimSampleGenerator(QWidget *parent)
 
 void BindPoseAnimSampleGenerator::AddJoint(const Joint& joint)
 {
-    graphicsView->AddJoint(joint);
-
+    undoStack->push(new AddJointCommand(this,joint));
 }
+
+void BindPoseAnimSampleGenerator::RemoveJoint(const Joint &joint)
+{
+    graphicsView->RemoveJoint(joint);
+    skeleonHierarchyTreeWidget->RemoveJoint(joint);
+}
+
+void BindPoseAnimSampleGenerator::SetJointName(const Joint& joint,QString name)
+{
+    graphicsView->SetJointName(joint,name);
+}
+
+void BindPoseAnimSampleGenerator::ConnectSpinboxSignals()
+{
+    connect(widthPixelSpinBox,SIGNAL(valueChanged(int)),graphicsView,SLOT(setWidthPixel(int)));
+    connect(heightPixelSpinBox,SIGNAL(valueChanged(int)),graphicsView,SLOT(setHeightPixel(int)));
+}
+
+void BindPoseAnimSampleGenerator::Test()
+{
+    qDebug()<<"Test()";
+}
+
+//Maybe consider AddJoint for redo & RemoveJoint for undo just for AddJoint and same for RemoveJoint to support joint Removal from Skeleton Hierarchy.
 
 void BindPoseAnimSampleGenerator::CreateActions()
 {
     undoAction = new QAction(tr("&Undo"),this);
     redoAction = new QAction(tr("&Redo"),this);
     undoAction->setShortcut(QKeySequence::Undo);
-    undoAction->setShortcut(QKeySequence::Redo);
+    redoAction->setShortcut(QKeySequence::Redo);
+    addAction(undoAction);
+    addAction(redoAction);
 }
+

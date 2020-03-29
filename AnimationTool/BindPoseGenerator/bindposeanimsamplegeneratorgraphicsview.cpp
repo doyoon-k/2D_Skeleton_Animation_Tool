@@ -1,32 +1,55 @@
-#include "bindposeanimsamplegeneratorgraphicsview.h"
+#include <BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.h>
 #include <QAction>
 #include <QMenu>
 #include <QDebug>
 #include <QContextMenuEvent>
 #include <QApplication>
-#include <bindposeanimsamplegenerator.h>
+#include <BindPoseGenerator/bindposeanimsamplegenerator.h>
 #include <QGraphicsEllipseItem>
+#include "jointgraphicsitem.h"
 
 BindPoseAnimSampleGeneratorGraphicsView::BindPoseAnimSampleGeneratorGraphicsView(QWidget *parent)
     :QGraphicsView(parent),scene(new QGraphicsScene(this))
 {
     this->parent = static_cast<BindPoseAnimSampleGenerator*>(parent);
     setScene(scene);
-    scene->setSceneRect(0,0,this->width(),this->height());
     CreateActionMenu();
-    connect(createJointAction,SIGNAL(triggered()),this,SLOT(AddJointSignalToParent()));
-
-    skeletonSpaceOrigin = scene->addEllipse(0,0,20,20,QPen(QColor(255,0,0)));
-    skeletonSpaceOrigin->setPos(0,scene->height());
+    connect(createJointAction,SIGNAL(triggered()),this,SLOT(SignalAddJointToAnimSampleGeneratorWidget()));
+    scale(1,-1);
+    setAcceptDrops(true);
+    setMouseTracking(true);
 }
 
 void BindPoseAnimSampleGeneratorGraphicsView::mousePressEvent(QMouseEvent *event)
 {
+    mouseEventPos = event->pos();
     if(event->button() == Qt::RightButton)
     {
          qDebug()<<"mousePressed";
          jointCreateMenu->popup(mapToGlobal(event->pos()));
     }
+    QGraphicsView::mousePressEvent(event);
+}
+
+void BindPoseAnimSampleGeneratorGraphicsView::mouseMoveEvent(QMouseEvent *event)
+{
+    QGraphicsView::mouseMoveEvent(event);
+
+}
+
+void BindPoseAnimSampleGeneratorGraphicsView::showEvent(QShowEvent *event)
+{
+    scene->setSceneRect(0,0,this->width(),this->height());
+
+    QPen pen(QColor(255,0,0));
+    pen.setWidth(20);
+    skeletonSpaceOrigin = scene->addEllipse(-10,-10,20,20,pen);
+    skeletonSpaceOrigin->setPos(0,0);
+}
+
+void BindPoseAnimSampleGeneratorGraphicsView::resizeEvent(QResizeEvent *event)
+{
+    scene->setSceneRect(0,0,this->width(),this->height());
 }
 
 void BindPoseAnimSampleGeneratorGraphicsView::CreateActionMenu()
@@ -38,10 +61,81 @@ void BindPoseAnimSampleGeneratorGraphicsView::CreateActionMenu()
 
 void BindPoseAnimSampleGeneratorGraphicsView::AddJoint(const Joint& joint)
 {
-
+    JointGraphicsItem* jointItem = new JointGraphicsItem(joint);
+    jointGraphicsItems.push_back(jointItem);
+    scene->addItem(jointItem);
 }
 
-void BindPoseAnimSampleGeneratorGraphicsView::AddJointSignalToParent()
+void BindPoseAnimSampleGeneratorGraphicsView::RemoveJoint(const Joint &joint)
 {
-//    parent->AddJoint(Joint(0,));
+    for(JointGraphicsItem* jointGraphicsItem : jointGraphicsItems)
+    {
+        if(joint == jointGraphicsItem->GetJoint())
+        {
+            jointGraphicsItems.removeOne(jointGraphicsItem);
+            scene->removeItem(jointGraphicsItem);
+            return;
+        }
+    }
+}
+
+void BindPoseAnimSampleGeneratorGraphicsView::SetJointName(const Joint& joint,QString name)
+{
+    for(JointGraphicsItem* jointItem : jointGraphicsItems)
+    {
+        Joint& Joint = jointItem->GetJoint();
+        if(Joint.name == joint.name)
+        {
+          Joint.name = name;
+          break;
+        }
+    }
+    scene->update(sceneRect());
+}
+
+void BindPoseAnimSampleGeneratorGraphicsView::paintEvent(QPaintEvent *event)
+{
+    QGraphicsView::paintEvent(event);
+    QPainter painter(viewport());
+    painter.setPen(QColor(255));
+    float onePixelWidth = static_cast<float>(width()) / static_cast<float>(widthPixel);
+    float onePixelHeight = static_cast<float>(height()) / static_cast<float>(heightPixel);
+    for(int i = 0; i < widthPixel; i++)
+    {
+       painter.drawLine(QPointF(onePixelWidth*i,0),QPointF(onePixelWidth*i,height()));
+    }
+    for(int j = 0; j < heightPixel; j++)
+    {
+        painter.drawLine(QPointF(0,onePixelHeight*j),QPointF(width(),onePixelHeight*j));
+    }
+}
+
+int BindPoseAnimSampleGeneratorGraphicsView::GetWidthPixel() const
+{
+    return widthPixel;
+}
+
+int BindPoseAnimSampleGeneratorGraphicsView::GetHeightPixel() const
+{
+    return heightPixel;
+}
+
+void BindPoseAnimSampleGeneratorGraphicsView::SignalAddJointToAnimSampleGeneratorWidget()
+{
+    //height - y because of the difference of coordinate system.
+    Vector3D jointPos{mouseEventPos.x(),height()-mouseEventPos.y()};
+    Joint joint{0,jointPos,"TEMP"};
+    parent->AddJoint(joint);
+}
+
+void BindPoseAnimSampleGeneratorGraphicsView::setWidthPixel(int val)
+{
+    widthPixel = val;
+    viewport()->repaint(viewport()->rect());
+}
+
+void BindPoseAnimSampleGeneratorGraphicsView::setHeightPixel(int val)
+{
+    heightPixel = val;
+    viewport()->repaint(viewport()->rect());
 }

@@ -1,4 +1,4 @@
-#include "spritelistwidget.h"
+#include "BindPoseGenerator/spritelistwidget.h"
 #include <QObject>
 
 SpriteListWidget::SpriteListWidget(QWidget* parent)

@@ -14,7 +14,7 @@ int Skeleton::GetJointByName(Joint& dstJoint, const char* jointName)
 {
 	for (Joint& joint : mJoints)
 	{
-		if (strcmp(joint.name,jointName) == 0)
+        if (joint.name == QString(jointName))
 		{
 			dstJoint = joint;
 			return 1;

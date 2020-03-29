@@ -5,11 +5,11 @@
 
 class JointTreeWidgetItem : public QTreeWidgetItem
 {
+    friend class SkeletonHierarchyTreeWidget;
 public:
+    JointTreeWidgetItem(const Joint& joint);
     JointTreeWidgetItem(QTreeWidgetItem* parent, const Joint& joint);
-//    void onDropEvent(JointTreeWidgetItem* newParent);
 private:
     Joint jointData;
 };
-
 #endif // JOINTTREEWIDGETITEM_H
