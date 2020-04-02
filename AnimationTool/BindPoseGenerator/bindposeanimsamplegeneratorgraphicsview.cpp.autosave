@@ -97,7 +97,7 @@ void BindPoseAnimSampleGeneratorGraphicsView::SetJointName(const Joint& joint,QS
 
 void BindPoseAnimSampleGeneratorGraphicsView::AddSprite(const Sprite &sprite)
 {
-
+    
 }
 
 void BindPoseAnimSampleGeneratorGraphicsView::RemoveSprite(const Sprite &sprite)

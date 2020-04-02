@@ -9,5 +9,5 @@
 		int nRepetition;
 		float playTime;
 		float playRate;
-		std::vector<uruk::AnimationSample> animSamples;
+        std::vector<AnimationSample> animSamples;
 	};

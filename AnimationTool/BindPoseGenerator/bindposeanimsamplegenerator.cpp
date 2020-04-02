@@ -5,7 +5,9 @@
 #include <QSpinBox>
 #include "BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.h"
 #include "BindPoseGenerator/skeletonhierarchytreewidget.h"
+#include "BindPoseGenerator/spritelistwidget.h"
 #include "BindPoseGenerator/addjointcommand.h"
+#include "BindPoseGenerator/addspritecommand.h"
 #include "QDebug"
 
 BindPoseAnimSampleGenerator::BindPoseAnimSampleGenerator(QWidget *parent)
@@ -25,6 +27,17 @@ void BindPoseAnimSampleGenerator::RemoveJoint(const Joint &joint)
 {
     graphicsView->RemoveJoint(joint);
     skeleonHierarchyTreeWidget->RemoveJoint(joint);
+}
+
+void BindPoseAnimSampleGenerator::AddSprite(const Sprite &sprite)
+{
+    undoStack->push(new AddSpriteCommand(this,sprite));
+}
+
+void BindPoseAnimSampleGenerator::RemoveSprite(const Sprite &sprite)
+{
+    graphicsView->RemoveSprite(sprite);
+    spriteListWidget->RemoveSprite(sprite);
 }
 
 void BindPoseAnimSampleGenerator::SetJointName(const Joint& joint,QString name)

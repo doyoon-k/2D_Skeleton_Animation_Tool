@@ -27,23 +27,27 @@ CONFIG += c++17
 SOURCES += \
         AnimationSample.cpp \
         BindPoseGenerator/addjointcommand.cpp \
+        BindPoseGenerator/addspritecommand.cpp \
         BindPoseGenerator/jointtreewidgetitem.cpp \
         BindPoseGenerator/skeletonhierarchytreewidget.cpp \
         BindPoseGenerator/spritelistwidget.cpp \
         Joint.cpp \
         Matrix3X3.cpp \
         Skeleton.cpp \
+        Sprite.cpp \
         Vector3D.cpp \
         BindPoseGenerator/bindposeanimsamplegenerator.cpp \
         BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.cpp \
         jointgraphicsitem.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        spritegraphicsitem.cpp
 
 HEADERS += \
         AnimationClip.h \
         AnimationSample.h \
         BindPoseGenerator/addjointcommand.h \
+        BindPoseGenerator/addspritecommand.h \
         BindPoseGenerator/jointtreewidgetitem.h \
         BindPoseGenerator/skeletonhierarchytreewidget.h \
         BindPoseGenerator/spritelistwidget.h \
@@ -58,6 +62,7 @@ HEADERS += \
         jointgraphicsitem.h \
         mainwindow.h \
         mathLib.h \
+        spritegraphicsitem.h \
         zorder.h
 
 FORMS += \
