@@ -36,7 +36,7 @@ void SpriteGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::mouseMoveEvent(event);
     //sprite.parentJointName 으로 GraphicsView에서 JointItem 가져와서 스프라이트 테두리가 그 조인트 위에 있도록 고정하기.
 //    JointGraphicsItem* jointItem =
-    BindPoseAnimSampleGeneratorGraphicsView* view =
+    BindPoseAnimSampleGeneratorGraphicsView* view = static_cast<BindPoseAnimSampleGeneratorGraphicsView*>(scene()->views()[0]);
     update();
 }
 
