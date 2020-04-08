@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "QTreeWidget"
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,10 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->bindPoseGeneratorWidget->skeleonHierarchyTreeWidget = ui->skeletonHierarchyTree;
     ui->bindPoseGeneratorWidget->widthPixelSpinBox = ui->widthPixelSpinBox;
     ui->bindPoseGeneratorWidget->heightPixelSpinBox = ui->heightPixelSpinBox;
+    ui->bindPoseGeneratorWidget->imagesListWidget = ui->imagesList;
     ui->bindPoseGeneratorWidget->ConnectSpinboxSignals();
     ui->bindposeGraphicsView->widthPixel = ui->widthPixelSpinBox->value();
     ui->bindposeGraphicsView->heightPixel = ui->heightPixelSpinBox->value();
-    showFullScreen();
+//    showFullScreen();
 }
 
 MainWindow::~MainWindow()
@@ -27,4 +29,11 @@ MainWindow::~MainWindow()
 void MainWindow::on_closeButton_clicked()
 {
    close();
+}
+
+void MainWindow::on_loadImagePushButton_clicked()
+{
+    QFileDialog dialog(this);
+    QString fileName = QFileDialog::getOpenFileName(this,tr("Open Image"),"/",tr("Image Files (*.png *.jpg *)"));
+    ui->imagesList->addItem(fileName);
 }

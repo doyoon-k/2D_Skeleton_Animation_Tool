@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/BindPoses"/>
+    <qresource prefix="/Images"/>
+    <qresource prefix="/AnimSamples"/>
+    <qresource prefix="/AnimClips"/>
+</RCC>

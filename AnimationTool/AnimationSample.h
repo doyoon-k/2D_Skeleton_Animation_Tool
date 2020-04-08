@@ -7,7 +7,9 @@
 	{
 		Skeleton skeleton;
 		SpriteMesh spriteMesh;
-		const char* name;
+        QString name;
 	};
 
 	AnimationSample LerpAnimSample(const AnimationSample& sample1, const AnimationSample& sample2,float t);
+
+    AnimationSample& LoadAnimSample(QString path);

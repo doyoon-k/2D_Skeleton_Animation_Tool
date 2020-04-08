@@ -3,7 +3,7 @@
 
 AnimationSample LerpAnimSample(const AnimationSample& sample1, const AnimationSample& sample2,float t)
 {
-	_ASSERT(strcmp(sample1.skeleton.GetName(), sample2.skeleton.GetName()) == 0 && strcmp(sample1.spriteMesh.name,sample2.name) == 0);
+    _ASSERT(sample1.skeleton.GetName() == sample2.skeleton.GetName() && sample1.spriteMesh.name == sample2.name);
 	Skeleton newSkeleton = sample1.skeleton;
 	const Skeleton& sample1Skeleton = sample1.skeleton;
 	const Skeleton& sample2Skeleton = sample2.skeleton;

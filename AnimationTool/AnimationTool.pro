@@ -30,6 +30,7 @@ SOURCES += \
         BindPoseGenerator/addspritecommand.cpp \
         BindPoseGenerator/jointtreewidgetitem.cpp \
         BindPoseGenerator/skeletonhierarchytreewidget.cpp \
+        BindPoseGenerator/spritecreatedialog.cpp \
         BindPoseGenerator/spritelistwidget.cpp \
         Joint.cpp \
         Matrix3X3.cpp \
@@ -50,6 +51,7 @@ HEADERS += \
         BindPoseGenerator/addspritecommand.h \
         BindPoseGenerator/jointtreewidgetitem.h \
         BindPoseGenerator/skeletonhierarchytreewidget.h \
+        BindPoseGenerator/spritecreatedialog.h \
         BindPoseGenerator/spritelistwidget.h \
         Joint.h \
         Matrix3X3.h \
@@ -66,9 +68,13 @@ HEADERS += \
         zorder.h
 
 FORMS += \
+    BindPoseGenerator/spritecreatedialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc

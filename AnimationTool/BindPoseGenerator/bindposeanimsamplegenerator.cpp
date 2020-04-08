@@ -51,10 +51,11 @@ void BindPoseAnimSampleGenerator::ConnectSpinboxSignals()
     connect(heightPixelSpinBox,SIGNAL(valueChanged(int)),graphicsView,SLOT(setHeightPixel(int)));
 }
 
-void BindPoseAnimSampleGenerator::Test()
+void BindPoseAnimSampleGenerator::LoadImagePath(QString path)
 {
-    qDebug()<<"Test()";
+
 }
+
 
 //Maybe consider AddJoint for redo & RemoveJoint for undo just for AddJoint and same for RemoveJoint to support joint Removal from Skeleton Hierarchy.
 

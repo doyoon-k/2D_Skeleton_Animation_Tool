@@ -12,7 +12,7 @@ struct [[nodiscard]] Sprite
     QString name;
     Vector3D bottomLeftCoord;//relative to Object Transform position.
     float rotationOffset;
-    QImage* pImage;
+    QImage image;
 };
 
 

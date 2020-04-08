@@ -4,10 +4,12 @@
 
 	struct [[nodiscard]] AnimationClip
 	{
-		const char* name = nullptr;
+        QString name;
 		bool isLooping = false;
 		int nRepetition;
 		float playTime;
 		float playRate;
         std::vector<AnimationSample> animSamples;
 	};
+
+    AnimationClip& LoadAnimationClip(QString path);

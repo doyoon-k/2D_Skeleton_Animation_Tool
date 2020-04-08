@@ -25,7 +25,7 @@ void SkeletonHierarchyTreeWidget::RemoveJoint(const Joint &joint)
 
 void SkeletonHierarchyTreeWidget::keyPressEvent(QKeyEvent *event)
 {
-    int key = event->key();
+    ushort key = event->text()[0].unicode();
     if(topLevelItemCount() == 0)
     {
         return;
@@ -35,18 +35,19 @@ void SkeletonHierarchyTreeWidget::keyPressEvent(QKeyEvent *event)
     QString prevName = item->text(0);
     QString text = item->text(0);
 
-    if(key == Qt::Key_Delete)
+    if(event->key() == Qt::Key_Delete)
     {
         parent->RemoveJoint(item->jointData);
         return;
     }
-    else if(key == Qt::Key_Backspace && text.size()> 0)
+    else if(event->key() == Qt::Key_Backspace && text.size()> 0)
     {
         text.resize(text.size()-1);
     }
     else if((Qt::Key_0 <= key && key <= Qt::Key_9) ||
-            (Qt::Key_A <= key && key <= Qt::Key_Z) ||
-             key == Qt::Key_Underscore)
+            (QChar('a').unicode() <= key && key <= QChar('z').unicode())||
+            (QChar('A').unicode() <= key && key <= QChar('Z').unicode()) ||
+             event->key() == Qt::Key_Underscore)
     {
         text.push_back(key);
     }
