@@ -8,6 +8,8 @@
 #include "BindPoseGenerator/spritelistwidget.h"
 #include "BindPoseGenerator/addjointcommand.h"
 #include "BindPoseGenerator/addspritecommand.h"
+#include "BindPoseGenerator/removejointcommand.h"
+#include "BindPoseGenerator/removespritecommand.h"
 #include "QDebug"
 
 BindPoseAnimSampleGenerator::BindPoseAnimSampleGenerator(QWidget *parent)
@@ -18,31 +20,34 @@ BindPoseAnimSampleGenerator::BindPoseAnimSampleGenerator(QWidget *parent)
     connect(redoAction,SIGNAL(triggered()),undoStack,SLOT(redo()));
 }
 
-void BindPoseAnimSampleGenerator::AddJoint(const Joint& joint)
+void BindPoseAnimSampleGenerator::AddJoint(QSharedPointer<Joint> joint)
 {
     undoStack->push(new AddJointCommand(this,joint));
 }
 
-void BindPoseAnimSampleGenerator::RemoveJoint(const Joint &joint)
+void BindPoseAnimSampleGenerator::RemoveJoint(QSharedPointer<Joint> joint)
 {
-    graphicsView->RemoveJoint(joint);
-    skeleonHierarchyTreeWidget->RemoveJoint(joint);
+    undoStack->push(new RemoveJointCommand(this,joint));
 }
 
-void BindPoseAnimSampleGenerator::AddSprite(const Sprite &sprite)
+void BindPoseAnimSampleGenerator::AddSprite(QSharedPointer<Sprite> sprite)
 {
     undoStack->push(new AddSpriteCommand(this,sprite));
 }
 
-void BindPoseAnimSampleGenerator::RemoveSprite(const Sprite &sprite)
+void BindPoseAnimSampleGenerator::RemoveSprite(QSharedPointer<Sprite> sprite)
 {
-    graphicsView->RemoveSprite(sprite);
-    spriteListWidget->RemoveSprite(sprite);
+    undoStack->push(new RemoveSpriteCommand(this,sprite));
 }
 
 void BindPoseAnimSampleGenerator::SetJointName(const Joint& joint,QString name)
 {
     graphicsView->SetJointName(joint,name);
+}
+
+void BindPoseAnimSampleGenerator::SetSpriteName(const Sprite &sprite, QString name)
+{
+    graphicsView->SetSpriteName(sprite,name);
 }
 
 void BindPoseAnimSampleGenerator::ConnectSpinboxSignals()
@@ -51,10 +56,7 @@ void BindPoseAnimSampleGenerator::ConnectSpinboxSignals()
     connect(heightPixelSpinBox,SIGNAL(valueChanged(int)),graphicsView,SLOT(setHeightPixel(int)));
 }
 
-void BindPoseAnimSampleGenerator::LoadImagePath(QString path)
-{
 
-}
 
 
 //Maybe consider AddJoint for redo & RemoveJoint for undo just for AddJoint and same for RemoveJoint to support joint Removal from Skeleton Hierarchy.

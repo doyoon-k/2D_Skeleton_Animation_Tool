@@ -6,15 +6,15 @@
 class JointGraphicsItem : public QGraphicsItem
 {
 public:
-    JointGraphicsItem(const Joint& joint);
+    JointGraphicsItem(QSharedPointer<Joint> joint);
     void paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget = nullptr)override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event)override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event)override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event)override;
     QRectF boundingRect()const override;
-    Joint& GetJoint();
+    QSharedPointer<Joint> GetJoint();
 private:
-    Joint joint;
+    QSharedPointer<Joint> joint;
 };
 
 #endif // JOINTGRAPHICSITEM_H

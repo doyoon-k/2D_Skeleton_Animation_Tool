@@ -9,16 +9,16 @@ SkeletonHierarchyTreeWidget::SkeletonHierarchyTreeWidget(QWidget* parent)
 {
 }
 
-void SkeletonHierarchyTreeWidget::AddJoint(const Joint &joint)
+void SkeletonHierarchyTreeWidget::AddJoint(QSharedPointer<Joint> joint)
 {
     JointTreeWidgetItem* item = new JointTreeWidgetItem(joint);
     addTopLevelItem(item);
 }
 
-void SkeletonHierarchyTreeWidget::RemoveJoint(const Joint &joint)
+void SkeletonHierarchyTreeWidget::RemoveJoint(Joint* joint)
 {
     //since the flag has set Match Exactly...each joint name should be different.
-    QTreeWidgetItem* jointItem = findItems(joint.name,Qt::MatchExactly|Qt::MatchRecursive)[0];
+    QTreeWidgetItem* jointItem = findItems(joint->name,Qt::MatchExactly|Qt::MatchRecursive)[0];
     //this is proven safe by the document.
     delete jointItem;
 }
@@ -30,7 +30,6 @@ void SkeletonHierarchyTreeWidget::keyPressEvent(QKeyEvent *event)
     {
         return;
     }
-
     JointTreeWidgetItem* item = static_cast<JointTreeWidgetItem*>(selectedItems()[0]);
     QString prevName = item->text(0);
     QString text = item->text(0);
@@ -52,6 +51,26 @@ void SkeletonHierarchyTreeWidget::keyPressEvent(QKeyEvent *event)
         text.push_back(key);
     }
     item->setText(0,text);
-    parent->SetJointName(item->jointData,text);
-    item->jointData.name = text;
+    parent->SetJointName(*item->jointData.data(),text);
+    item->jointData->name = text;
+    QTreeWidget::keyPressEvent(event);
+}
+
+void SkeletonHierarchyTreeWidget::dropEvent(QDropEvent *event)
+{
+    qDebug()<<"drop";
+    JointTreeWidgetItem* ItemUnderDrop = static_cast<JointTreeWidgetItem*>(itemAt(event->pos()));
+    if(draggingItem == ItemUnderDrop || draggingItem == nullptr || ItemUnderDrop == nullptr)
+        return;
+
+    if(draggingItem->parent() != nullptr)
+        draggingItem->parent()->removeChild(draggingItem);
+    ItemUnderDrop->addChild(draggingItem);
+    QTreeWidget::dropEvent(event);
+}
+
+void SkeletonHierarchyTreeWidget::mousePressEvent(QMouseEvent *event)
+{
+    draggingItem = static_cast<JointTreeWidgetItem*>(itemAt(event->pos()));
+    QTreeWidget::mousePressEvent(event);
 }

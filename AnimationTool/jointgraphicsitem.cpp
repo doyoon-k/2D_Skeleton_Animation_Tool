@@ -7,11 +7,11 @@
 
 #define RADIUS 10.0
 
-JointGraphicsItem::JointGraphicsItem(const Joint& joint)
+JointGraphicsItem::JointGraphicsItem(QSharedPointer<Joint> joint)
     :QGraphicsItem(),joint(joint)
 {
     setZValue(JointZValue);
-    setPos(joint.position[0],joint.position[1]);
+    setPos(joint->position[0],joint->position[1]);
     setFlag(ItemIsMovable);
     setAcceptDrops(true);
 }
@@ -22,7 +22,7 @@ void JointGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem 
     painter->setPen(QColor().black());
     painter->drawEllipse(-RADIUS,-RADIUS,RADIUS*2.0,RADIUS*2.0);
     painter->scale(1,-1);
-    painter->drawText(-RADIUS,-RADIUS,joint.name);
+    painter->drawText(-RADIUS,-RADIUS,joint->name);
 }
 
 void JointGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -47,7 +47,7 @@ void JointGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void JointGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    joint.position = Vector3D{event->scenePos().x(),event->scenePos().y()};
+    joint->position = Vector3D{event->scenePos().x(),event->scenePos().y()};
     update();
     QGraphicsItem::mouseReleaseEvent(event);
 }
@@ -59,7 +59,7 @@ QRectF JointGraphicsItem::boundingRect() const
     return QRectF(-RADIUS,-RADIUS,RADIUS*10.0,RADIUS*4.0);
 }
 
-Joint& JointGraphicsItem::GetJoint()
+QSharedPointer<Joint> JointGraphicsItem::GetJoint()
 {
     return joint;
 }

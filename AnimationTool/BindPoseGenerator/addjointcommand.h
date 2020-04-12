@@ -1,6 +1,7 @@
 #ifndef ADDJOINTCOMMAND_H
 #define ADDJOINTCOMMAND_H
 #include <QUndoCommand>
+#include <QSharedPointer>
 #include "Joint.h"
 
 class BindPoseAnimSampleGenerator;
@@ -8,11 +9,11 @@ class BindPoseAnimSampleGenerator;
 class AddJointCommand : public QUndoCommand
 {
 public:
-    AddJointCommand(BindPoseAnimSampleGenerator* bindPoseAnimSanpleGeneratorWidget,const Joint& joint);
+    AddJointCommand(BindPoseAnimSampleGenerator* bindPoseAnimSanpleGeneratorWidget,QSharedPointer<Joint> joint);
     void undo()override;
     void redo()override;
 private:
-    Joint joint;
+    QSharedPointer<Joint> joint;
     BindPoseAnimSampleGenerator* bindPoseAnimSanpleGeneratorWidget;
 };
 

@@ -5,6 +5,7 @@
 #include <QUndoStack>
 #include <QFile>
 #include "BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.h"
+#include "BindPoseGenerator/spritelistwidget.h"
 
 class BindPoseAnimSampleGeneratorGraphicsView;
 class QGraphicsScene;
@@ -21,25 +22,26 @@ class BindPoseAnimSampleGenerator : public QWidget
     friend class MainWindow;
     friend class AddJointCommand;
     friend class AddSpriteCommand;
+    friend class RemoveJointCommand;
+    friend class RemoveSpriteCommand;
     friend void BindPoseAnimSampleGeneratorGraphicsView::SignalAddSpriteToAnimSampleGeneratorWidget();
+    friend void SpriteListWidget::keyPressEvent(QKeyEvent*);
 public:
     explicit BindPoseAnimSampleGenerator(QWidget *parent = nullptr);
-    void AddJoint(const Joint& joint);
-    void RemoveJoint(const Joint& joint);
-    void AddSprite(const Sprite& sprite);
-    void RemoveSprite(const Sprite& sprite);
+    void AddJoint(QSharedPointer<Joint> joint);
+    void RemoveJoint(QSharedPointer<Joint> joint);
+    void AddSprite(QSharedPointer<Sprite> sprite);
+    void RemoveSprite(QSharedPointer<Sprite> sprite);
 
     void SetJointName(const Joint& joint,QString name);
     void SetSpriteName(const Sprite& sprite,QString name);
 
     void ConnectSpinboxSignals();
-    void LoadImagePath(QString path);
 signals:
 
 public slots:
 private:
     void CreateActions();
-    void OnRemoveJoint(const Joint& joint);
 
     BindPoseAnimSampleGeneratorGraphicsView* graphicsView;
     SpriteListWidget* spriteListWidget;

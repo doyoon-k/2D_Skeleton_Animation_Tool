@@ -38,24 +38,33 @@ SpriteCreateDialog::~SpriteCreateDialog()
 
 void SpriteCreateDialog::on_createSpritePushButton_clicked()
 {
-    if(ui->spriteNameLineEdit->text().size() == 0)
+    if(imageList->count() == 0)
     {
-      QMessageBox msgBox;
-      msgBox.setText("Name is not set.");
-      msgBox.exec();
+        QMessageBox msgBox;
+        msgBox.setText("No available Image.");
+        msgBox.exec();
     }
     else
     {
-        if(ui->imageListWidget->selectedItems().size() == 0)
+        if(ui->spriteNameLineEdit->text().size() == 0)
         {
-            QMessageBox msgBox;
-            msgBox.setText("No image path selected.");
-            msgBox.exec();
+          QMessageBox msgBox;
+          msgBox.setText("Name is not set.");
+          msgBox.exec();
         }
         else
         {
-           isSpriteCreated = true;
-           close();
+            if(ui->imageListWidget->selectedItems().size() == 0)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("No image path selected.");
+                msgBox.exec();
+            }
+            else
+            {
+                isSpriteCreated = true;
+                close();
+            }
         }
     }
 }

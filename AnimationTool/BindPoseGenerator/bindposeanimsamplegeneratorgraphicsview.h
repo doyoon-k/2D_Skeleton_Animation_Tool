@@ -18,20 +18,20 @@ class BindPoseAnimSampleGeneratorGraphicsView : public QGraphicsView
 public:
     BindPoseAnimSampleGeneratorGraphicsView(QWidget *parent = nullptr);
 
-    void AddJoint(const Joint& joint);
-    void RemoveJoint(const Joint& joint);
+    void AddJoint(QSharedPointer<Joint> joint);
+    void RemoveJoint(Joint* joint);
     void SetJointName(const Joint& joint,QString newName);
 
-    void AddSprite(const Sprite& sprite);
-    void RemoveSprite(const Sprite& sprite);
+    void AddSprite(QSharedPointer<Sprite> sprite);
+    void RemoveSprite(Sprite* sprite);
     void SetSpriteName(const Sprite& sprite,QString newName);
 
     void paintEvent(QPaintEvent* event)override;
     int GetWidthPixel()const;
     int GetHeightPixel()const;
 
-    JointGraphicsItem* GetJointGraphicsItem(const Joint& joint);
-    SpriteGraphicsItem* GetSpriteGraphicsItem(const Sprite& sprite);
+    JointGraphicsItem* GetJointGraphicsItemByName(const QString& jointName);
+    SpriteGraphicsItem* GetSpriteGraphicsItemByName(const QString& spriteName);
 protected:
     void mousePressEvent(QMouseEvent* event)override;
     void mouseMoveEvent(QMouseEvent* event)override;

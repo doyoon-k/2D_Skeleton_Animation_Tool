@@ -7,9 +7,10 @@ class JointTreeWidgetItem : public QTreeWidgetItem
 {
     friend class SkeletonHierarchyTreeWidget;
 public:
-    JointTreeWidgetItem(const Joint& joint);
-    JointTreeWidgetItem(QTreeWidgetItem* parent, const Joint& joint);
+    JointTreeWidgetItem(QSharedPointer<Joint> joint);
+    JointTreeWidgetItem(QTreeWidgetItem* parent,Joint* joint);
+    void onDropEvent(JointTreeWidgetItem *newParent);
 private:
-    Joint jointData;
+    QSharedPointer<Joint> jointData;
 };
 #endif // JOINTTREEWIDGETITEM_H

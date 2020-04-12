@@ -66,7 +66,7 @@ void BindPoseAnimSampleGeneratorGraphicsView::CreateActionMenu()
     joint_sprite_CreateMenu->addAction(createSpriteAction);
 }
 
-void BindPoseAnimSampleGeneratorGraphicsView::AddJoint(const Joint& joint)
+void BindPoseAnimSampleGeneratorGraphicsView::AddJoint(QSharedPointer<Joint> joint)
 {
     JointGraphicsItem* jointItem = new JointGraphicsItem(joint);
     jointGraphicsItems.push_back(jointItem);
@@ -74,9 +74,9 @@ void BindPoseAnimSampleGeneratorGraphicsView::AddJoint(const Joint& joint)
     update();
 }
 
-void BindPoseAnimSampleGeneratorGraphicsView::RemoveJoint(const Joint &joint)
+void BindPoseAnimSampleGeneratorGraphicsView::RemoveJoint(Joint* joint)
 {
-    JointGraphicsItem* jointGraphicsItem = GetJointGraphicsItem(joint);
+    JointGraphicsItem* jointGraphicsItem = GetJointGraphicsItemByName(joint->name);
     if(jointGraphicsItem == nullptr)
     {
         qDebug()<<"no such joint";
@@ -90,18 +90,18 @@ void BindPoseAnimSampleGeneratorGraphicsView::RemoveJoint(const Joint &joint)
 
 void BindPoseAnimSampleGeneratorGraphicsView::SetJointName(const Joint& joint,QString newName)
 {
-    JointGraphicsItem* jointItem = GetJointGraphicsItem(joint);
+    JointGraphicsItem* jointItem = GetJointGraphicsItemByName(joint.name);
     if(jointItem == nullptr)
     {
         qDebug()<<"no such joint item";
         return;
     }
 
-    jointItem->GetJoint().name = newName;
+    jointItem->GetJoint()->name = newName;
     scene->update(sceneRect());
 }
 
-void BindPoseAnimSampleGeneratorGraphicsView::AddSprite(const Sprite &sprite)
+void BindPoseAnimSampleGeneratorGraphicsView::AddSprite(QSharedPointer<Sprite> sprite)
 {
     SpriteGraphicsItem* spriteGraphicsItem = new SpriteGraphicsItem(sprite);
     spriteGraphicsItems.push_back(spriteGraphicsItem);
@@ -109,9 +109,9 @@ void BindPoseAnimSampleGeneratorGraphicsView::AddSprite(const Sprite &sprite)
     update();
 }
 
-void BindPoseAnimSampleGeneratorGraphicsView::RemoveSprite(const Sprite &sprite)
+void BindPoseAnimSampleGeneratorGraphicsView::RemoveSprite(Sprite* sprite)
 {
-    SpriteGraphicsItem* spriteGraphicsItem = GetSpriteGraphicsItem(sprite);
+    SpriteGraphicsItem* spriteGraphicsItem = GetSpriteGraphicsItemByName(sprite->name);
     if(spriteGraphicsItem == nullptr)
     {
         qDebug()<<"no such sprite";
@@ -125,7 +125,15 @@ void BindPoseAnimSampleGeneratorGraphicsView::RemoveSprite(const Sprite &sprite)
 
 void BindPoseAnimSampleGeneratorGraphicsView::SetSpriteName(const Sprite &sprite,QString newName)
 {
+    SpriteGraphicsItem* spriteGraphicsItem = GetSpriteGraphicsItemByName(sprite.name);
+    if(spriteGraphicsItem == nullptr)
+    {
+        qDebug()<<"no such sprite";
+        return;
+    }
 
+    spriteGraphicsItem->GetSprite()->name = newName;
+    scene->update(sceneRect());
 }
 
 void BindPoseAnimSampleGeneratorGraphicsView::paintEvent(QPaintEvent *event)
@@ -141,7 +149,7 @@ void BindPoseAnimSampleGeneratorGraphicsView::paintEvent(QPaintEvent *event)
     }
     for(int j = 0; j < heightPixel; j++)
     {
-        painter.drawLine(QPointF(0,onePixelHeight*j),QPointF(width(),onePixelHeight*j));
+        painter.drawLine(QPointF(0,onePixelHeight*j),QPointF(width(),onePixelHeight * j));
     }
 }
 
@@ -155,12 +163,12 @@ int BindPoseAnimSampleGeneratorGraphicsView::GetHeightPixel() const
     return heightPixel;
 }
 
-JointGraphicsItem *BindPoseAnimSampleGeneratorGraphicsView::GetJointGraphicsItem(const Joint &joint)
+JointGraphicsItem *BindPoseAnimSampleGeneratorGraphicsView::GetJointGraphicsItemByName(const QString& jointName)
 {
     for(JointGraphicsItem* jointItem : jointGraphicsItems)
     {
-        Joint& Joint = jointItem->GetJoint();
-        if(Joint.name == joint.name)
+        QSharedPointer<Joint> Joint = jointItem->GetJoint();
+        if(Joint->name == jointName)
         {
             return jointItem;
         }
@@ -168,12 +176,12 @@ JointGraphicsItem *BindPoseAnimSampleGeneratorGraphicsView::GetJointGraphicsItem
     return nullptr;
 }
 
-SpriteGraphicsItem *BindPoseAnimSampleGeneratorGraphicsView::GetSpriteGraphicsItem(const Sprite &sprite)
+SpriteGraphicsItem *BindPoseAnimSampleGeneratorGraphicsView::GetSpriteGraphicsItemByName(const QString& spriteName)
 {
     for(SpriteGraphicsItem* spriteItem : spriteGraphicsItems)
     {
-        Sprite& Sprite = spriteItem->GetSprite();
-        if(Sprite.name == sprite.name)
+        QSharedPointer<Sprite> Sprite = spriteItem->GetSprite();
+        if(Sprite->name == spriteName)
         {
             return spriteItem;
         }
@@ -185,7 +193,7 @@ void BindPoseAnimSampleGeneratorGraphicsView::SignalAddJointToAnimSampleGenerato
 {
     //height - y because of the difference of coordinate system.
     Vector3D jointPos{mouseRightClickEventPos.x(),height()-mouseRightClickEventPos.y()};
-    Joint joint{0,jointPos,"TEMP"};
+    QSharedPointer<Joint> joint{new Joint{0,jointPos,"TEMP"}};
     parent->AddJoint(joint);
 }
 
@@ -205,12 +213,12 @@ void BindPoseAnimSampleGeneratorGraphicsView::SignalAddSpriteToAnimSampleGenerat
     if(dialog.IsSpriteCreated())
     {
         //no worry for getting sprite item because joint item z value is higher.
-        Joint parentJoint = static_cast<JointGraphicsItem*>(item)->GetJoint();
+        QSharedPointer<Joint> parentJoint = static_cast<JointGraphicsItem*>(item)->GetJoint();
         QString spriteName = dialog.GetCreatedSpriteName();
         QString imagePath = dialog.GetSelectedImagePath();
         Vector3D position = {mouseRightClickEventPos.x(),height()-mouseRightClickEventPos.y()};
         //final connectedJointIndex will be decided at the save process.
-        Sprite sprite{parentJoint,0,spriteName,position,0.f,QImage(imagePath)};
+        QSharedPointer<Sprite> sprite{new Sprite{*parentJoint,0,spriteName,position,0.f,QImage(imagePath)}};
         parent->AddSprite(sprite);
         qDebug()<<"sprite created!"<<'\n';
     }

@@ -2,6 +2,7 @@
 #define ADDSPRITECOMMAND_H
 
 #include <QUndoCommand>
+#include <QSharedPointer>
 #include <Sprite.h>
 
 class BindPoseAnimSampleGenerator;
@@ -9,11 +10,11 @@ class BindPoseAnimSampleGenerator;
 class AddSpriteCommand : public QUndoCommand
 {
 public:
-    AddSpriteCommand(BindPoseAnimSampleGenerator* bindPoseAnimSanpleGeneratorWidget,const Sprite& sprite);
+    AddSpriteCommand(BindPoseAnimSampleGenerator* bindPoseAnimSanpleGeneratorWidget,QSharedPointer<Sprite> sprite);
     void undo()override;
     void redo()override;
 private:
-    Sprite sprite;
+    QSharedPointer<Sprite> sprite;
     BindPoseAnimSampleGenerator* bindPoseAnimSanpleGeneratorWidget;
 };
 

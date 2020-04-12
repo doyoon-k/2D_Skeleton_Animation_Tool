@@ -29,6 +29,8 @@ SOURCES += \
         BindPoseGenerator/addjointcommand.cpp \
         BindPoseGenerator/addspritecommand.cpp \
         BindPoseGenerator/jointtreewidgetitem.cpp \
+        BindPoseGenerator/removejointcommand.cpp \
+        BindPoseGenerator/removespritecommand.cpp \
         BindPoseGenerator/skeletonhierarchytreewidget.cpp \
         BindPoseGenerator/spritecreatedialog.cpp \
         BindPoseGenerator/spritelistwidget.cpp \
@@ -50,6 +52,8 @@ HEADERS += \
         BindPoseGenerator/addjointcommand.h \
         BindPoseGenerator/addspritecommand.h \
         BindPoseGenerator/jointtreewidgetitem.h \
+        BindPoseGenerator/removejointcommand.h \
+        BindPoseGenerator/removespritecommand.h \
         BindPoseGenerator/skeletonhierarchytreewidget.h \
         BindPoseGenerator/spritecreatedialog.h \
         BindPoseGenerator/spritelistwidget.h \
