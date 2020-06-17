@@ -1,25 +1,26 @@
 #include "Skeleton.h"
+//#include <QTextStream>
 
-Skeleton::Skeleton(const char* name)
+Skeleton::Skeleton(QString name)
 	:mName(name)
 {
 }
 
-const char* Skeleton::GetName() const
+QString Skeleton::GetName() const
 {
 	return mName;
 }
 
 int Skeleton::GetJointByName(Joint& dstJoint, const char* jointName)
 {
-	for (Joint& joint : mJoints)
-	{
-        if (joint.name == QString(jointName))
-		{
-			dstJoint = joint;
-			return 1;
-		}
-	}
+    for(int i = 0; i < mJoints.size(); i++)
+    {
+        if (mJoints[i].name == QString(jointName))
+        {
+            dstJoint = mJoints[i];
+            return i;
+        }
+    }
 	
 	return 0;
 }
@@ -68,3 +69,43 @@ Vector3D Skeleton::CalculateJointPosInSkeletonSpace(int jointIndex) const
 
 	return position;
 }
+
+void Skeleton::AddJoint(Joint newJoint)
+{
+    mJoints.push_back(newJoint);
+}
+
+int Skeleton::GetJointIndexByName(QString jointName)
+{
+    for(int i = 0; i < mJoints.size(); i++)
+    {
+        if (mJoints[i].name == QString(jointName))
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+//void LoadSkeleton(QTextStream& stream,Skeleton& skeleton)
+//{
+//    stream>>skeleton.mNJoints;
+//    stream.operator>>(skeleton.mName);
+//    skeleton.mJoints.reserve(skeleton.mNJoints);
+//    for(int i = 0; i < skeleton.mNJoints; i++)
+//    {
+//        LoadJoint(stream,skeleton.mJoints[i]);
+//    }
+//}
+
+
+//void SaveSkeleton(QTextStream& stream,Skeleton& skeleton)
+//{
+//    stream<<skeleton.mNJoints;
+//    stream.operator<<(skeleton.mName);
+//    for(int i = 0; i < skeleton.mNJoints; i++)
+//    {
+//        SaveJoint(stream,skeleton.mJoints[i]);
+//    }
+//}

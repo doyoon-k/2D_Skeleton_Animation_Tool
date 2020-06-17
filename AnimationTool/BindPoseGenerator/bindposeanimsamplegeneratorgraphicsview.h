@@ -25,6 +25,7 @@ public:
     void AddSprite(QSharedPointer<Sprite> sprite);
     void RemoveSprite(Sprite* sprite);
     void SetSpriteName(const Sprite& sprite,QString newName);
+    void SetSpriteGraphicsItemsOpacity(qreal opacity);
 
     void paintEvent(QPaintEvent* event)override;
     int GetWidthPixel()const;

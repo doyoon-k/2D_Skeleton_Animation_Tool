@@ -1,7 +1,9 @@
 #include <cassert>
 #include "Matrix3X3.h"
 #include "Vector3D.h"
-
+#include <cfloat>
+#include <cmath>
+//#include <QTextStream>
 
 
 //just a cheat to make it look clean
@@ -53,9 +55,19 @@
 		z /= length;
 	}
 
-	ostream& operator<<(ostream& os, const Vector3D& v)
-	{
-		cout << "x :" << v[0] << " y :" << v[1] << " z :" << v[2];
-		return os;
-	}
 
+//    QTextStream &operator>>(QTextStream &stream, Vector3D &vector)
+//    {
+//        stream>>vector.xyz[0];
+//        stream>>vector.xyz[1];
+//        stream>>vector.xyz[2];
+//        return stream;
+//    }
+
+//    QTextStream &operator<<(QTextStream &stream, Vector3D &vector)
+//    {
+//        stream<<vector.xyz[0];
+//        stream<<vector.xyz[1];
+//        stream<<vector.xyz[2];
+//        return stream;
+//    }

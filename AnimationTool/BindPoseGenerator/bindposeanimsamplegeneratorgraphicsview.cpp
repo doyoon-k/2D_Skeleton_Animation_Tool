@@ -11,6 +11,7 @@
 #include "BindPoseGenerator/spritecreatedialog.h"
 #include <QResource>
 #include <QMessageBox>
+#include "Sprite.h"
 
 BindPoseAnimSampleGeneratorGraphicsView::BindPoseAnimSampleGeneratorGraphicsView(QWidget *parent)
     :QGraphicsView(parent),scene(new QGraphicsScene(this))
@@ -136,6 +137,14 @@ void BindPoseAnimSampleGeneratorGraphicsView::SetSpriteName(const Sprite &sprite
     scene->update(sceneRect());
 }
 
+void BindPoseAnimSampleGeneratorGraphicsView::SetSpriteGraphicsItemsOpacity(qreal opacity)
+{
+    for(SpriteGraphicsItem* item : spriteGraphicsItems)
+    {
+        item->setOpacity(opacity);
+    }
+}
+
 void BindPoseAnimSampleGeneratorGraphicsView::paintEvent(QPaintEvent *event)
 {
     QGraphicsView::paintEvent(event);
@@ -218,7 +227,7 @@ void BindPoseAnimSampleGeneratorGraphicsView::SignalAddSpriteToAnimSampleGenerat
         QString imagePath = dialog.GetSelectedImagePath();
         Vector3D position = {mouseRightClickEventPos.x(),height()-mouseRightClickEventPos.y()};
         //final connectedJointIndex will be decided at the save process.
-        QSharedPointer<Sprite> sprite{new Sprite{*parentJoint,0,spriteName,position,0.f,QImage(imagePath)}};
+        QSharedPointer<Sprite> sprite{new Sprite{parentJoint,0,spriteName,position,0.f,QImage(imagePath)}};
         parent->AddSprite(sprite);
         qDebug()<<"sprite created!"<<'\n';
     }

@@ -21,6 +21,10 @@ private slots:
 
     void on_loadImagePushButton_clicked();
 
+    void on_spriteOpacitySlider_valueChanged(int value);
+
+    void on_saveBindPoseButton_clicked();
+    
 private:
     Ui::MainWindow *ui;
 };

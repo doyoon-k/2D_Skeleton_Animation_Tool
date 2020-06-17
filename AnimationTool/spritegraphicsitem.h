@@ -1,8 +1,10 @@
+#pragma once
 #ifndef SPRITEGRAPHICSITEM_H
 #define SPRITEGRAPHICSITEM_H
 
 #include <QGraphicsItem>
-#include "Sprite.h"
+
+struct Sprite;
 
 class SpriteGraphicsItem : public QGraphicsItem
 {

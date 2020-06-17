@@ -9,7 +9,11 @@
 		int nRepetition;
 		float playTime;
 		float playRate;
+        int nAnimSamples;
         std::vector<AnimationSample> animSamples;
 	};
 
-    AnimationClip& LoadAnimationClip(QString path);
+//    void LoadAnimationClip(QTextStream& stream,AnimationClip& animClip);
+
+//    void SaveAnimationClip(QTextStream& stream,AnimationClip& animClip);
+

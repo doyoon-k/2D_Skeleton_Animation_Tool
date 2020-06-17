@@ -1,4 +1,5 @@
 #include "Sprite.h"
+//#include <QTextStream>
 
 bool Sprite::operator==(const Sprite &other)
 {
@@ -8,3 +9,17 @@ bool Sprite::operator==(const Sprite &other)
     }
     return false;
 }
+
+//void SaveSprite(QTextStream& stream,Sprite& sprite)
+//{
+//    stream<<sprite.connectedJointIndex;
+//    stream<<sprite.rotationOffset;
+//    stream<<sprite.name;
+//}
+
+//void LoadSprite(QTextStream& stream,Sprite& sprite)
+//{
+//    stream>>sprite.connectedJointIndex;
+//    stream>>sprite.rotationOffset;
+//    stream>>sprite.name;
+//}

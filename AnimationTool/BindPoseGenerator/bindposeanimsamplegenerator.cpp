@@ -6,38 +6,36 @@
 #include "BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.h"
 #include "BindPoseGenerator/skeletonhierarchytreewidget.h"
 #include "BindPoseGenerator/spritelistwidget.h"
-#include "BindPoseGenerator/addjointcommand.h"
-#include "BindPoseGenerator/addspritecommand.h"
-#include "BindPoseGenerator/removejointcommand.h"
-#include "BindPoseGenerator/removespritecommand.h"
 #include "QDebug"
 
 BindPoseAnimSampleGenerator::BindPoseAnimSampleGenerator(QWidget *parent)
     : QWidget(parent),undoStack(new QUndoStack(this))
 {
     CreateActions();
-    connect(undoAction,SIGNAL(triggered()),undoStack,SLOT(undo()));
-    connect(redoAction,SIGNAL(triggered()),undoStack,SLOT(redo()));
 }
 
 void BindPoseAnimSampleGenerator::AddJoint(QSharedPointer<Joint> joint)
 {
-    undoStack->push(new AddJointCommand(this,joint));
+    graphicsView->AddJoint(joint);
+    skeleonHierarchyTreeWidget->AddJoint(joint);
 }
 
 void BindPoseAnimSampleGenerator::RemoveJoint(QSharedPointer<Joint> joint)
 {
-    undoStack->push(new RemoveJointCommand(this,joint));
+    graphicsView->RemoveJoint(joint.data());
+    skeleonHierarchyTreeWidget->RemoveJoint(joint.data());
 }
 
 void BindPoseAnimSampleGenerator::AddSprite(QSharedPointer<Sprite> sprite)
 {
-    undoStack->push(new AddSpriteCommand(this,sprite));
+    graphicsView->AddSprite(sprite);
+    spriteListWidget->AddSprite(sprite.data());
 }
 
 void BindPoseAnimSampleGenerator::RemoveSprite(QSharedPointer<Sprite> sprite)
 {
-    undoStack->push(new RemoveSpriteCommand(this,sprite));
+    graphicsView->RemoveSprite(sprite.data());
+    spriteListWidget->RemoveSprite(sprite.data());
 }
 
 void BindPoseAnimSampleGenerator::SetJointName(const Joint& joint,QString name)
@@ -50,10 +48,25 @@ void BindPoseAnimSampleGenerator::SetSpriteName(const Sprite &sprite, QString na
     graphicsView->SetSpriteName(sprite,name);
 }
 
+void BindPoseAnimSampleGenerator::LoadBindPose(const QString &path)
+{
+
+}
+
+void BindPoseAnimSampleGenerator::SaveBindPose(const QString &path)
+{
+
+}
+
 void BindPoseAnimSampleGenerator::ConnectSpinboxSignals()
 {
     connect(widthPixelSpinBox,SIGNAL(valueChanged(int)),graphicsView,SLOT(setWidthPixel(int)));
     connect(heightPixelSpinBox,SIGNAL(valueChanged(int)),graphicsView,SLOT(setHeightPixel(int)));
+}
+
+BindPoseAnimSampleGeneratorGraphicsView *BindPoseAnimSampleGenerator::GetGraphicsView()
+{
+    return graphicsView;
 }
 
 

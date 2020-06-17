@@ -1,48 +1,45 @@
 #pragma once
-#include <cfloat>
-#include <iostream>
-#include "cmath"
+//class QTextStream;
+
+class Vector3D
+{
+    friend class Matrix3X3;
+//    friend QTextStream& operator>>(QTextStream& stream,Vector3D& vector);
+//    friend QTextStream& operator<<(QTextStream& stream,Vector3D& vector);
+public:
+    template<typename Number>
+    constexpr Vector3D(Number X, Number Y, Number Z = 0.f) noexcept;
+    constexpr Vector3D operator+(const Vector3D& other) const noexcept;
+    constexpr Vector3D operator-(const Vector3D& other) const noexcept;
+    constexpr Vector3D operator/(float scalar) const noexcept;
+    constexpr Vector3D operator*(float scalar) const noexcept;
+    constexpr Vector3D& operator+=(const Vector3D& other) noexcept;
+    constexpr Vector3D& operator-=(const Vector3D& other) noexcept;
+    constexpr Vector3D& operator/=(float scalar) noexcept;
+    constexpr Vector3D& operator*=(float scalar) noexcept;
+    bool operator==(const Vector3D& other) const;
+    float& operator[](int index);
+    float operator[](int index) const;
+
+    [[nodiscard]] constexpr Vector3D CrossProduct(const Vector3D& other) const noexcept;
+
+    [[nodiscard]] Vector3D GetNormal() const;
+
+    [[nodiscard]] constexpr float DotProduct(const Vector3D& other) const noexcept;
+
+    [[nodiscard]] float GetLength() const;
+
+    [[nodiscard]] constexpr float GetLengthSqr() const noexcept;
+    void Normalize();
 
 
 
-	class Vector3D
-	{
-		friend class Matrix3X3;
-	public:
-		template<typename Number>
-		constexpr Vector3D(Number X, Number Y, Number Z = 0.f) noexcept;
-		constexpr Vector3D operator+(const Vector3D& other) const noexcept;
-		constexpr Vector3D operator-(const Vector3D& other) const noexcept;
-		constexpr Vector3D operator/(float scalar) const noexcept;
-		constexpr Vector3D operator*(float scalar) const noexcept;
-		constexpr Vector3D& operator+=(const Vector3D& other) noexcept;
-		constexpr Vector3D& operator-=(const Vector3D& other) noexcept;
-		constexpr Vector3D& operator/=(float scalar) noexcept;
-		constexpr Vector3D& operator*=(float scalar) noexcept;
-		bool operator==(const Vector3D& other) const;
-		float& operator[](int index);
-		float operator[](int index) const;
+private:
+    float xyz[3] = { 0.f,0.f,0.f };  //reason it's an array is because for the usage in Matrix3X3. ex) getElementAt(xyz[0],xyz[1])
+};
 
-		[[nodiscard]] constexpr Vector3D CrossProduct(const Vector3D& other) const noexcept;
-
-		[[nodiscard]] Vector3D GetNormal() const;
-
-		[[nodiscard]] constexpr float DotProduct(const Vector3D& other) const noexcept;
-
-		[[nodiscard]] float GetLength() const;
-
-		[[nodiscard]] constexpr float GetLengthSqr() const noexcept;
-		void Normalize();
-
-
-
-	private:
-		float xyz[3] = { 0.f,0.f,0.f };  //reason it's an array is because for the usage in Matrix3X3. ex) getElementAt(xyz[0],xyz[1])
-	};
-
-
-	std::ostream& operator<<(std::ostream& os, const Vector3D& v);
-
+//    QTextStream& operator>>(QTextStream& stream,Vector3D& vector);
+//    QTextStream& operator<<(QTextStream& stream,Vector3D& vector);
 
 	template<typename Number>
 	constexpr Vector3D::Vector3D(Number X, Number Y, Number Z) noexcept
@@ -121,4 +118,3 @@
 	{
 		return xyz[0] * xyz[0] + xyz[1] * xyz[1] + xyz[2] * xyz[2];
 	}
-

@@ -1,8 +1,9 @@
 #include "BindPoseGenerator/skeletonhierarchytreewidget.h"
 #include "BindPoseGenerator/jointtreewidgetitem.h"
 #include "BindPoseGenerator/bindposeanimsamplegenerator.h"
-#include "QDebug"
 #include "QKeyEvent"
+#include "Skeleton.h"
+#include <QDebug>
 
 SkeletonHierarchyTreeWidget::SkeletonHierarchyTreeWidget(QWidget* parent)
     :QTreeWidget(parent),parent(static_cast<BindPoseAnimSampleGenerator*>(parent))
@@ -73,4 +74,24 @@ void SkeletonHierarchyTreeWidget::mousePressEvent(QMouseEvent *event)
 {
     draggingItem = static_cast<JointTreeWidgetItem*>(itemAt(event->pos()));
     QTreeWidget::mousePressEvent(event);
+}
+
+Skeleton SkeletonHierarchyTreeWidget::GetSkeletonInstance(QString fileName)
+{
+    Skeleton skeleton((fileName + "Skeleton"));
+    //there must be a guarentee that there is only one topLevelItem and it is the root joint.
+    JointTreeWidgetItem* rootJointItem = static_cast<JointTreeWidgetItem*>(topLevelItem(0));
+    std::function<void(JointTreeWidgetItem*)> loadSkeleton = [loadSkeleton,&skeleton](JointTreeWidgetItem* jointItem)
+    {
+        //파라미터로 받은 조인트를 스켈레톤 조인트 벡터에 넣고 자식 조인트가 있으면 가져와서 loadSkeleton함수에 넘겨서 재귀로 호출해주고 없으면 리턴하는 로직.
+        skeleton.AddJoint(*(jointItem->jointData));
+        if(jointItem->childCount() == 0)
+            return;
+        for(int i = 0; i < jointItem->childCount(); i++)
+        {
+            JointTreeWidgetItem* childJoint = static_cast<JointTreeWidgetItem*>(jointItem->child(i));
+            loadSkeleton(childJoint);
+        }
+    };
+    return skeleton;
 }

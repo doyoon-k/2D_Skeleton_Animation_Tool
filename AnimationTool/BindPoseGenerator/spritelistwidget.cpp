@@ -4,6 +4,8 @@
 #include "Sprite.h"
 #include <QObject>
 #include <QKeyEvent>
+#include "SpriteMesh.h"
+#include "Skeleton.h"
 
 SpriteListWidget::SpriteListWidget(QWidget* parent)
     :QListWidget(parent)
@@ -51,4 +53,20 @@ void SpriteListWidget::keyPressEvent(QKeyEvent *event)
     item->setText(spriteName);
     parent->SetSpriteName(*sprite,spriteName);
     QListWidget::keyPressEvent(event);
+}
+
+SpriteMesh SpriteListWidget::GetSpriteMeshInstance(QString filename,Skeleton& skeleton)
+{
+    SpriteMesh spriteMesh;
+    spriteMesh.name = filename + "SpriteMesh";
+    spriteMesh.nSprites = count();
+    for(int i = 0; i < count(); i++)
+    {
+        QString parentJointName = static_cast<SpriteGraphicsItem*>(parent->GetGraphicsView()->GetSpriteGraphicsItemByName(item(i)->text()))->GetSprite()->name;
+        int index = skeleton.GetJointIndexByName(parentJointName);
+        spriteMesh.sprites[i].name = item(i)->text();
+        spriteMesh.sprites[i].rotationOffset = 0;
+        spriteMesh.sprites[i].connectedJointIndex = index;
+    }
+    return spriteMesh;
 }

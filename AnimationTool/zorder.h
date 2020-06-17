@@ -1,3 +1,4 @@
+#pragma once
 #ifndef ZORDER_H
 #define ZORDER_H
 

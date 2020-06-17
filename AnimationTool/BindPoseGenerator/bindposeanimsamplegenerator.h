@@ -1,3 +1,4 @@
+#pragma once
 #ifndef BINDPOSEANIMSAMPLEGENERATOR_H
 #define BINDPOSEANIMSAMPLEGENERATOR_H
 
@@ -20,10 +21,6 @@ class BindPoseAnimSampleGenerator : public QWidget
 {
     Q_OBJECT
     friend class MainWindow;
-    friend class AddJointCommand;
-    friend class AddSpriteCommand;
-    friend class RemoveJointCommand;
-    friend class RemoveSpriteCommand;
     friend void BindPoseAnimSampleGeneratorGraphicsView::SignalAddSpriteToAnimSampleGeneratorWidget();
     friend void SpriteListWidget::keyPressEvent(QKeyEvent*);
 public:
@@ -36,7 +33,11 @@ public:
     void SetJointName(const Joint& joint,QString name);
     void SetSpriteName(const Sprite& sprite,QString name);
 
+    void LoadBindPose(const QString& path);
+    void SaveBindPose(const QString& path);
+
     void ConnectSpinboxSignals();
+    BindPoseAnimSampleGeneratorGraphicsView* GetGraphicsView();
 signals:
 
 public slots:

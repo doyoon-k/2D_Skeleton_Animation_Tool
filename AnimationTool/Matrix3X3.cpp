@@ -1,6 +1,6 @@
 #include <cassert>
 #include "Matrix3X3.h"
-
+#include <cmath>
 
 
 	using namespace std;
@@ -99,11 +99,11 @@
                          Vector3D(0.f,0.f,1.f));
 	}
 
-	ostream& operator<<(ostream& os, const Matrix3X3& m)
-	{
-		cout << m.GetRow(0) << endl;
-		cout << m.GetRow(1) << endl;
-		cout << m.GetRow(2);
-		return os;
-	}
+//	ostream& operator<<(ostream& os, const Matrix3X3& m)
+//	{
+//		cout << m.GetRow(0) << endl;
+//		cout << m.GetRow(1) << endl;
+//		cout << m.GetRow(2);
+//		return os;
+//	}
 

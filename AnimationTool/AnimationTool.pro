@@ -26,11 +26,7 @@ CONFIG += c++17
 
 SOURCES += \
         AnimationSample.cpp \
-        BindPoseGenerator/addjointcommand.cpp \
-        BindPoseGenerator/addspritecommand.cpp \
         BindPoseGenerator/jointtreewidgetitem.cpp \
-        BindPoseGenerator/removejointcommand.cpp \
-        BindPoseGenerator/removespritecommand.cpp \
         BindPoseGenerator/skeletonhierarchytreewidget.cpp \
         BindPoseGenerator/spritecreatedialog.cpp \
         BindPoseGenerator/spritelistwidget.cpp \
@@ -41,19 +37,17 @@ SOURCES += \
         Vector3D.cpp \
         BindPoseGenerator/bindposeanimsamplegenerator.cpp \
         BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.cpp \
+        animationclip.cpp \
         jointgraphicsitem.cpp \
         main.cpp \
         mainwindow.cpp \
-        spritegraphicsitem.cpp
+        spritegraphicsitem.cpp \
+        spritemesh.cpp
 
 HEADERS += \
         AnimationClip.h \
         AnimationSample.h \
-        BindPoseGenerator/addjointcommand.h \
-        BindPoseGenerator/addspritecommand.h \
         BindPoseGenerator/jointtreewidgetitem.h \
-        BindPoseGenerator/removejointcommand.h \
-        BindPoseGenerator/removespritecommand.h \
         BindPoseGenerator/skeletonhierarchytreewidget.h \
         BindPoseGenerator/spritecreatedialog.h \
         BindPoseGenerator/spritelistwidget.h \

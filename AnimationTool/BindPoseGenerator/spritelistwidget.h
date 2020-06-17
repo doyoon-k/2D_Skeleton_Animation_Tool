@@ -5,6 +5,8 @@
 
 class BindPoseAnimSampleGenerator;
 struct Sprite;
+struct SpriteMesh;
+class Skeleton;
 
 class SpriteListWidget : public QListWidget
 {
@@ -14,6 +16,8 @@ public:
     void AddSprite(Sprite* sprite);
     void RemoveSprite(Sprite* sprite);
     void keyPressEvent(QKeyEvent* event)override;
+
+    SpriteMesh GetSpriteMeshInstance(QString filename,Skeleton& skeleton);
 private:
     BindPoseAnimSampleGenerator* parent;
 };

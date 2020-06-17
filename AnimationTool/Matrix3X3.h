@@ -2,8 +2,6 @@
 #include "Vector3D.h"
 
 
-
-
 	class [[nodiscard]] Matrix3X3
 	{
 		friend class Vector3D;
@@ -39,6 +37,3 @@
 	public:
 		static Matrix3X3 GetRotationMatrix(float dRadian);
 	};
-
-
-	std::ostream& operator<<(std::ostream& os, const Matrix3X3& m);

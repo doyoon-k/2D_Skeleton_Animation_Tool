@@ -5,6 +5,7 @@
 #include "BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.h"
 #include <QGraphicsSceneMouseEvent>
 #include "Vector3D.h"
+#include "Sprite.h"
 
 SpriteGraphicsItem::SpriteGraphicsItem(QSharedPointer<Sprite> sprite)
     :sprite(sprite)
@@ -60,7 +61,7 @@ QSharedPointer<Sprite> SpriteGraphicsItem::GetSprite()
 void SpriteGraphicsItem::KeepSpriteInJointBoundingArea()
 {
     BindPoseAnimSampleGeneratorGraphicsView* view = static_cast<BindPoseAnimSampleGeneratorGraphicsView*>(scene()->views()[0]);
-    JointGraphicsItem* JointItem = view->GetJointGraphicsItemByName(sprite->parentJoint.name);
+    JointGraphicsItem* JointItem = view->GetJointGraphicsItemByName(sprite->parentJoint->name);
     if(JointItem == nullptr)
         return;
     qreal xPos = std::clamp(pos().rx(),JointItem->pos().rx()-sprite->image.width(),JointItem->pos().rx());

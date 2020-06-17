@@ -3,7 +3,8 @@
 
 #include <QDialog>
 
-namespace Ui {
+namespace Ui
+{
 class SpriteCreateDialog;
 }
 
@@ -12,7 +13,6 @@ class QListWidget;
 class SpriteCreateDialog : public QDialog
 {
     Q_OBJECT
-
 public:
     explicit SpriteCreateDialog(QListWidget* imageList,QWidget *parent = nullptr);
     bool IsSpriteCreated();
@@ -21,7 +21,6 @@ public:
     ~SpriteCreateDialog();
 private slots:
     void on_createSpritePushButton_clicked();
-
 private:
     bool isSpriteCreated = false;
     QListWidget* imageList;

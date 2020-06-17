@@ -6,6 +6,7 @@
 struct Joint;
 class BindPoseAnimSampleGenerator;
 class JointTreeWidgetItem;
+class Skeleton;
 
 class SkeletonHierarchyTreeWidget : public QTreeWidget
 {
@@ -14,9 +15,10 @@ public:
     SkeletonHierarchyTreeWidget(QWidget* parent);
     void AddJoint(QSharedPointer<Joint> joint);
     void RemoveJoint(Joint* joint);
-    void keyPressEvent(QKeyEvent* event)override;
-    void dropEvent(QDropEvent* event)override;
-    void mousePressEvent(QMouseEvent* event)override;
+    void keyPressEvent(QKeyEvent* event) override;
+    void dropEvent(QDropEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    Skeleton GetSkeletonInstance(QString fileName);
 private:
     BindPoseAnimSampleGenerator* parent;
     JointTreeWidgetItem* draggingItem = nullptr;

@@ -1,5 +1,6 @@
 #include "AnimationSample.h"
 #include "mathLib.h"
+//#include <QTextStream>
 
 AnimationSample LerpAnimSample(const AnimationSample& sample1, const AnimationSample& sample2,float t)
 {
@@ -39,6 +40,21 @@ AnimationSample LerpAnimSample(const AnimationSample& sample1, const AnimationSa
 		newSprite.bottomLeftCoord = newSkeleton.CalculateJointPosInSkeletonSpace(newSprite.connectedJointIndex) + spriteLBottomCoordOffsetFromConnectedJoint;
 	}
 
-	AnimationSample newAnimSample{ newSkeleton, newSpriteMesh , "lerpedAnimSample"};
+    AnimationSample newAnimSample{ "lerpedAnimSample",newSkeleton, newSpriteMesh};
 	return newAnimSample;
 }
+
+//void LoadAnimSample(QTextStream& stream,AnimationSample& animSample)
+//{
+//    stream>>animSample.name;
+//    LoadSkeleton(stream,animSample.skeleton);
+//    LoadSpriteMesh(stream,animSample.spriteMesh);
+//}
+
+
+//void SaveAnimSample(QTextStream& stream,AnimationSample& animSample)
+//{
+//    stream<<animSample.name;
+//    SaveSkeleton(stream,animSample.skeleton);
+//    SaveSpriteMesh(stream,animSample.spriteMesh);
+//}

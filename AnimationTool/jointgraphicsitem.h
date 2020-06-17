@@ -1,3 +1,4 @@
+#pragma once
 #ifndef JOINTGRAPHICSITEM_H
 #define JOINTGRAPHICSITEM_H
 #include "QGraphicsItem"

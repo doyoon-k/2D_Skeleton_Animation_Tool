@@ -5,7 +5,12 @@
 
 	struct [[nodiscard]] SpriteMesh
 	{
-		const char* name;
+        QString name;
 		int nSprites;
 		std::vector<Sprite> sprites;
 	};
+
+
+//    void LoadSpriteMesh(QTextStream& stream,SpriteMesh& spriteMesh);
+
+//    void SaveSpriteMesh(QTextStream& stream,SpriteMesh& spriteMesh);
