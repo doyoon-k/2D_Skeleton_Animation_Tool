@@ -13,7 +13,7 @@
         std::vector<AnimationSample> animSamples;
 	};
 
-//    void LoadAnimationClip(QTextStream& stream,AnimationClip& animClip);
+    void LoadAnimationClip(QTextStream& stream,AnimationClip& animClip);
 
-//    void SaveAnimationClip(QTextStream& stream,AnimationClip& animClip);
+    void SaveAnimationClip(QTextStream& stream,AnimationClip& animClip);
 

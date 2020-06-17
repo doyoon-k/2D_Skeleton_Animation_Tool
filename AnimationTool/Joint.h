@@ -2,6 +2,7 @@
 #include "Vector3D.h"
 #include <QString>
 
+
 struct [[nodiscard]] Joint
 {
     Joint(int parentIndex, const Vector3D& pos, QString joint_name);
@@ -12,6 +13,6 @@ struct [[nodiscard]] Joint
     QString name;
 };
 
-//void LoadJoint(QTextStream& stream,Joint& joint);
+void LoadJoint(QTextStream& stream,Joint& joint);
 
-//void SaveJoint(QTextStream& stream,Joint& joint);
+void SaveJoint(QTextStream& stream,Joint& joint);

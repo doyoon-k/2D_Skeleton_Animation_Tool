@@ -17,6 +17,6 @@ struct [[nodiscard]] Sprite
 };
 
 
-//void SaveSprite(QTextStream& stream,Sprite& sprite);
+void SaveSprite(QTextStream& stream,Sprite& sprite);
 
-//void LoadSprite(QTextStream& stream,Sprite& sprite);
+void LoadSprite(QTextStream& stream,Sprite& sprite);

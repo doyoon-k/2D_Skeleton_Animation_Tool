@@ -1,11 +1,11 @@
 #pragma once
-//class QTextStream;
+class QTextStream;
 
 class Vector3D
 {
     friend class Matrix3X3;
-//    friend QTextStream& operator>>(QTextStream& stream,Vector3D& vector);
-//    friend QTextStream& operator<<(QTextStream& stream,Vector3D& vector);
+    friend QTextStream& operator>>(QTextStream& stream,Vector3D& vector);
+    friend QTextStream& operator<<(QTextStream& stream,Vector3D& vector);
 public:
     template<typename Number>
     constexpr Vector3D(Number X, Number Y, Number Z = 0.f) noexcept;
@@ -38,8 +38,8 @@ private:
     float xyz[3] = { 0.f,0.f,0.f };  //reason it's an array is because for the usage in Matrix3X3. ex) getElementAt(xyz[0],xyz[1])
 };
 
-//    QTextStream& operator>>(QTextStream& stream,Vector3D& vector);
-//    QTextStream& operator<<(QTextStream& stream,Vector3D& vector);
+    QTextStream& operator>>(QTextStream& stream,Vector3D& vector);
+    QTextStream& operator<<(QTextStream& stream,Vector3D& vector);
 
 	template<typename Number>
 	constexpr Vector3D::Vector3D(Number X, Number Y, Number Z) noexcept

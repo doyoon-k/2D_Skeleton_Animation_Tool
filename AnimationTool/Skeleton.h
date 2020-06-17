@@ -5,8 +5,8 @@
 	class [[nodiscard]] Skeleton
 	{
 		friend class SkeletonComponent;
-//        friend void LoadSkeleton(QTextStream& stream,Skeleton& skeleton);
-//        friend void SaveSkeleton(QTextStream& stream,Skeleton& skeleton);
+        friend void LoadSkeleton(QTextStream& stream,Skeleton& skeleton);
+        friend void SaveSkeleton(QTextStream& stream,Skeleton& skeleton);
 	public:
         Skeleton(QString name);
         QString GetName() const;
@@ -26,6 +26,6 @@
 		std::vector<Joint> mJoints;
 	};
 
-//    void LoadSkeleton(QTextStream& stream,Skeleton& skeleton);
+    void LoadSkeleton(QTextStream& stream,Skeleton& skeleton);
 
-//    void SaveSkeleton(QTextStream& stream,Skeleton& skeleton);
+    void SaveSkeleton(QTextStream& stream,Skeleton& skeleton);
