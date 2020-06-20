@@ -33,9 +33,6 @@ public:
     void SetJointName(const Joint& joint,QString name);
     void SetSpriteName(const Sprite& sprite,QString name);
 
-    void LoadBindPose(const QString& path);
-    void SaveBindPose(const QString& path);
-
     void ConnectSpinboxSignals();
     BindPoseAnimSampleGeneratorGraphicsView* GetGraphicsView();
 signals:

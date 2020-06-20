@@ -12,6 +12,7 @@
 #include <QResource>
 #include <QMessageBox>
 #include "Sprite.h"
+#include "mainwindow.h"
 
 BindPoseAnimSampleGeneratorGraphicsView::BindPoseAnimSampleGeneratorGraphicsView(QWidget *parent)
     :QGraphicsView(parent),scene(new QGraphicsScene(this))
@@ -247,6 +248,7 @@ void BindPoseAnimSampleGeneratorGraphicsView::SignalAddSpriteToAnimSampleGenerat
         //final connectedJointIndex will be decided at the save process.
         QSharedPointer<Sprite> sprite{new Sprite{parentJoint,0,spriteName,position,0.f,QImage(imagePath)}};
         parent->AddSprite(sprite);
+        MainWindow::AddSpriteNamePathPair(spriteName,imagePath);
         qDebug()<<"sprite created!"<<'\n';
     }
 //    parent->AddSprite(sprite);

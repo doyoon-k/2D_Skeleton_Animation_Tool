@@ -9,7 +9,6 @@ SpriteCreateDialog::SpriteCreateDialog(QListWidget* imageList,QWidget *parent) :
     ui(new Ui::SpriteCreateDialog)
 {
     ui->setupUi(this);
-    qDebug()<<imageList->count();
     for(int i = 0; i < imageList->count(); i++)
     {
         ui->imageListWidget->addItem(new QListWidgetItem(*(imageList->item(i))));

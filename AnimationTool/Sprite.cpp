@@ -25,5 +25,5 @@ void LoadSprite(QTextStream& stream,Sprite& sprite)
     stream>>sprite.name;
     stream>>sprite.bottomLeftCoord;
     stream>>sprite.rotationOffset;
-    sprite.image = QImage(MainWindow::GetImagePathByName(sprite.name));
+    sprite.image = QImage(MainWindow::GetImagePathBySpriteName(sprite.name));
 }

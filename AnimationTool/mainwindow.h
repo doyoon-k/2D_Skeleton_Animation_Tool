@@ -16,7 +16,9 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    static QString GetImagePathByName(QString imageName);
+    static QString GetImagePathBySpriteName(QString imageName);
+    static void AddSpriteNamePathPair(QString spriteName,QString path);
+    static void RemoveSpriteNamePathPair(QString spriteName);
 private slots:
 
     void on_closeButton_clicked();
@@ -31,7 +33,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    inline static QMap<QString,QString> imageNamePathPairs;
+    inline static QMap<QString,QString> spriteNamePathPairs;
 };
 
 #endif // MAINWINDOW_H

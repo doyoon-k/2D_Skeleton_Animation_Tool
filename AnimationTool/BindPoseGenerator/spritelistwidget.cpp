@@ -54,7 +54,6 @@ void SpriteListWidget::keyPressEvent(QKeyEvent *event)
     }
     item->setText(spriteName);
     parent->SetSpriteName(*sprite,spriteName);
-    QListWidget::keyPressEvent(event);
 }
 
 SpriteMesh SpriteListWidget::GetSpriteMeshInstance(QString filename,Skeleton& skeleton)
@@ -85,9 +84,8 @@ void SpriteListWidget::LoadFromSpriteMesh(const SpriteMesh &spriteMesh,const Ske
         QSharedPointer<Sprite> sprite(new Sprite());
         QString connectedJointName = skeleton.GetJoint(spriteMesh.sprites[i].connectedJointIndex).name;
         sprite->parentJoint = parent->GetGraphicsView()->GetJointGraphicsItemByName(connectedJointName)->GetJoint();
-        QString imagePath = MainWindow::GetImagePathByName(sprite->name);
+        QString imagePath = MainWindow::GetImagePathBySpriteName(sprite->name);
         sprite->image = QImage(imagePath);
         parent->AddSprite(sprite);
-        //부모 조인트 이름으로 조인트 쉐어드포인터 이름으로 검색해서 받아오고 그걸 인자로 스프라이트 생성
     }
 }

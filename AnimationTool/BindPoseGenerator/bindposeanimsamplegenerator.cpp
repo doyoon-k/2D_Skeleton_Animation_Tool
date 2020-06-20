@@ -6,7 +6,9 @@
 #include "BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.h"
 #include "BindPoseGenerator/skeletonhierarchytreewidget.h"
 #include "BindPoseGenerator/spritelistwidget.h"
-#include "QDebug"
+#include <QDebug>
+#include "mainwindow.h"
+#include "Sprite.h"
 
 BindPoseAnimSampleGenerator::BindPoseAnimSampleGenerator(QWidget *parent)
     : QWidget(parent),undoStack(new QUndoStack(this))
@@ -36,6 +38,7 @@ void BindPoseAnimSampleGenerator::RemoveSprite(QSharedPointer<Sprite> sprite)
 {
     graphicsView->RemoveSprite(sprite.data());
     spriteListWidget->RemoveSprite(sprite.data());
+    MainWindow::RemoveSpriteNamePathPair(sprite->name);
 }
 
 void BindPoseAnimSampleGenerator::SetJointName(const Joint& joint,QString name)
@@ -48,15 +51,6 @@ void BindPoseAnimSampleGenerator::SetSpriteName(const Sprite &sprite, QString na
     graphicsView->SetSpriteName(sprite,name);
 }
 
-void BindPoseAnimSampleGenerator::LoadBindPose(const QString &path)
-{
-
-}
-
-void BindPoseAnimSampleGenerator::SaveBindPose(const QString &path)
-{
-
-}
 
 void BindPoseAnimSampleGenerator::ConnectSpinboxSignals()
 {

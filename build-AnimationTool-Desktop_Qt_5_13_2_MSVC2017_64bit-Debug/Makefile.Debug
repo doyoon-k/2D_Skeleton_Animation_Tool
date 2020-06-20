@@ -2172,7 +2172,11 @@ debug\spritelistwidget.obj: ..\AnimationTool\BindPoseGenerator\spritelistwidget.
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QObject \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\QKeyEvent \
 		..\AnimationTool\SpriteMesh.h \
-		..\AnimationTool\Skeleton.h
+		..\AnimationTool\Skeleton.h \
+		..\AnimationTool\mainwindow.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QMainWindow \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QMap
 
 debug\Joint.obj: ..\AnimationTool\Joint.cpp ..\AnimationTool\Joint.h \
 		..\AnimationTool\Vector3D.h \
@@ -2394,14 +2398,39 @@ debug\Sprite.obj: ..\AnimationTool\Sprite.cpp ..\AnimationTool\Sprite.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\QTextStream \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		..\AnimationTool\mainwindow.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QMainWindow \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpalette.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qbrush.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfont.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontmetrics.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcursor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qkeysequence.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qevent.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurlquery.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfile.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfiledevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qvector2d.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qicon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QMap \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QTextStream
 
 debug\Vector3D.obj: ..\AnimationTool\Vector3D.cpp ..\AnimationTool\Matrix3X3.h \
 		..\AnimationTool\Vector3D.h \
