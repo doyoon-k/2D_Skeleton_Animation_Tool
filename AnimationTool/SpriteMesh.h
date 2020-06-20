@@ -11,6 +11,6 @@
 	};
 
 
-//    void LoadSpriteMesh(QTextStream& stream,SpriteMesh& spriteMesh);
+    void LoadSpriteMesh(QTextStream& stream,SpriteMesh& spriteMesh);
 
-//    void SaveSpriteMesh(QTextStream& stream,SpriteMesh& spriteMesh);
+    void SaveSpriteMesh(QTextStream& stream,SpriteMesh& spriteMesh);

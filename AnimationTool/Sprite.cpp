@@ -1,5 +1,6 @@
 #include "Sprite.h"
-//#include <QTextStream>
+#include "mainwindow.h"
+#include <QTextStream>
 
 bool Sprite::operator==(const Sprite &other)
 {
@@ -10,16 +11,19 @@ bool Sprite::operator==(const Sprite &other)
     return false;
 }
 
-//void SaveSprite(QTextStream& stream,Sprite& sprite)
-//{
-//    stream<<sprite.connectedJointIndex;
-//    stream<<sprite.rotationOffset;
-//    stream<<sprite.name;
-//}
+void SaveSprite(QTextStream& stream,Sprite& sprite)
+{
+    stream<<sprite.connectedJointIndex<<endl;
+    stream<<sprite.name<<endl;
+    stream<<sprite.bottomLeftCoord<<endl;
+    stream<<sprite.rotationOffset<<endl;
+}
 
-//void LoadSprite(QTextStream& stream,Sprite& sprite)
-//{
-//    stream>>sprite.connectedJointIndex;
-//    stream>>sprite.rotationOffset;
-//    stream>>sprite.name;
-//}
+void LoadSprite(QTextStream& stream,Sprite& sprite)
+{
+    stream>>sprite.connectedJointIndex;
+    stream>>sprite.name;
+    stream>>sprite.bottomLeftCoord;
+    stream>>sprite.rotationOffset;
+    sprite.image = QImage(MainWindow::GetImagePathByName(sprite.name));
+}

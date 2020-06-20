@@ -1005,6 +1005,7 @@ debug\moc_mainwindow.cpp: ..\AnimationTool\mainwindow.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\qicon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QMap \
 		debug\moc_predefs.h \
 		E:\QT\5.13.2\msvc2017_64\bin\moc.exe
 	E:\QT\5.13.2\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/doyoonkim/Desktop/SourceTreeRepos/AnimationTool/build-AnimationTool-Desktop_Qt_5_13_2_MSVC2017_64bit-Debug/debug/moc_predefs.h -IE:/QT/5.13.2/msvc2017_64/mkspecs/win32-msvc -IC:/Users/doyoonkim/Desktop/SourceTreeRepos/AnimationTool/AnimationTool -IE:/QT/5.13.2/msvc2017_64/include -IE:/QT/5.13.2/msvc2017_64/include/QtWidgets -IE:/QT/5.13.2/msvc2017_64/include/QtGui -IE:/QT/5.13.2/msvc2017_64/include/QtANGLE -IE:/QT/5.13.2/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt" ..\AnimationTool\mainwindow.h -o debug\moc_mainwindow.cpp
@@ -1619,7 +1620,15 @@ debug\AnimationSample.obj: ..\AnimationTool\AnimationSample.cpp ..\AnimationTool
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
 		..\AnimationTool\mathLib.h \
-		..\AnimationTool\Matrix3X3.h
+		..\AnimationTool\Matrix3X3.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QTextStream \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h
 
 debug\jointtreewidgetitem.obj: ..\AnimationTool\BindPoseGenerator\jointtreewidgetitem.cpp ..\AnimationTool\BindPoseGenerator\jointtreewidgetitem.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QTreeWidgetItem \
@@ -1898,6 +1907,9 @@ debug\skeletonhierarchytreewidget.obj: ..\AnimationTool\BindPoseGenerator\skelet
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qlistview.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\QKeyEvent \
 		..\AnimationTool\Skeleton.h \
+		..\AnimationTool\jointgraphicsitem.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsItem \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicsitem.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QDebug
 
 debug\spritecreatedialog.obj: ..\AnimationTool\BindPoseGenerator\spritecreatedialog.cpp ..\AnimationTool\BindPoseGenerator\spritecreatedialog.h \
@@ -2150,16 +2162,17 @@ debug\spritelistwidget.obj: ..\AnimationTool\BindPoseGenerator\spritelistwidget.
 		..\AnimationTool\spritegraphicsitem.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsItem \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicsitem.h \
-		..\AnimationTool\Sprite.h \
+		..\AnimationTool\jointgraphicsitem.h \
+		..\AnimationTool\Joint.h \
 		..\AnimationTool\Vector3D.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QString \
+		..\AnimationTool\Sprite.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QObject \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\QKeyEvent \
 		..\AnimationTool\SpriteMesh.h \
-		..\AnimationTool\Skeleton.h \
-		..\AnimationTool\Joint.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\QString
+		..\AnimationTool\Skeleton.h
 
 debug\Joint.obj: ..\AnimationTool\Joint.cpp ..\AnimationTool\Joint.h \
 		..\AnimationTool\Vector3D.h \
@@ -2194,7 +2207,40 @@ debug\Joint.obj: ..\AnimationTool\Joint.cpp ..\AnimationTool\Joint.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringliteral.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringalgorithms.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringview.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringbuilder.h
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringbuilder.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QTextStream \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiodevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiterator.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhashfunctions.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpair.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvector.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpoint.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearraylist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qregexp.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringmatcher.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcoreevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qscopedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmetatype.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h
 
 debug\Matrix3X3.obj: ..\AnimationTool\Matrix3X3.cpp ..\AnimationTool\Matrix3X3.h \
 		..\AnimationTool\Vector3D.h
@@ -2233,7 +2279,40 @@ debug\Skeleton.obj: ..\AnimationTool\Skeleton.cpp ..\AnimationTool\Skeleton.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringliteral.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringalgorithms.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringview.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringbuilder.h
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringbuilder.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QTextStream \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiodevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiterator.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhashfunctions.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpair.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvector.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpoint.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearraylist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qregexp.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringmatcher.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcoreevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qscopedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmetatype.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h
 
 debug\Sprite.obj: ..\AnimationTool\Sprite.cpp ..\AnimationTool\Sprite.h \
 		..\AnimationTool\Vector3D.h \
@@ -2314,10 +2393,82 @@ debug\Sprite.obj: ..\AnimationTool\Sprite.cpp ..\AnimationTool\Sprite.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QTextStream \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h
 
 debug\Vector3D.obj: ..\AnimationTool\Vector3D.cpp ..\AnimationTool\Matrix3X3.h \
-		..\AnimationTool\Vector3D.h
+		..\AnimationTool\Vector3D.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QTextStream \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiodevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtcore-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsystemdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qprocessordetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtypeinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsysinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlogging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qflags.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbasicatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qgenericatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobalstatic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmutex.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnumeric.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qversiontagging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnamespace.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstring.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qchar.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrefcount.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qarraydata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringliteral.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringbuilder.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiterator.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhashfunctions.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpair.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvector.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpoint.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearraylist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qregexp.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringmatcher.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcoreevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qscopedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmetatype.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h
 
 debug\bindposeanimsamplegenerator.obj: ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegenerator.cpp ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegenerator.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QWidget \
@@ -2724,7 +2875,15 @@ debug\animationclip.obj: ..\AnimationTool\animationclip.cpp ..\AnimationTool\Ani
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QTextStream \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h
 
 debug\jointgraphicsitem.obj: ..\AnimationTool\jointgraphicsitem.cpp ..\AnimationTool\jointgraphicsitem.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsItem \
@@ -2958,6 +3117,7 @@ debug\main.obj: ..\AnimationTool\main.cpp ..\AnimationTool\mainwindow.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\qicon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QMap \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QApplication \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qapplication.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcoreapplication.h \
@@ -3073,6 +3233,7 @@ debug\mainwindow.obj: ..\AnimationTool\mainwindow.cpp ..\AnimationTool\mainwindo
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\qicon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QMap \
 		ui_mainwindow.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QTreeWidget \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtreewidget.h \
@@ -3102,12 +3263,14 @@ debug\mainwindow.obj: ..\AnimationTool\mainwindow.cpp ..\AnimationTool\mainwindo
 		..\AnimationTool\Joint.h \
 		..\AnimationTool\Vector3D.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QString \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QTextStream \
 		..\AnimationTool\AnimationSample.h \
 		..\AnimationTool\SpriteMesh.h \
 		..\AnimationTool\Sprite.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer \
-		..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.h
+		..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QDebug
 
 debug\spritegraphicsitem.obj: ..\AnimationTool\spritegraphicsitem.cpp ..\AnimationTool\spritegraphicsitem.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsItem \
@@ -3232,7 +3395,10 @@ debug\spritegraphicsitem.obj: ..\AnimationTool\spritegraphicsitem.cpp ..\Animati
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicsscene.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QPointF \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsSceneMouseEvent \
-		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicssceneevent.h
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicssceneevent.h \
+		..\AnimationTool\Sprite.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer
 
 debug\spritemesh.obj: ..\AnimationTool\spritemesh.cpp ..\AnimationTool\SpriteMesh.h \
 		..\AnimationTool\Sprite.h \
@@ -3314,7 +3480,15 @@ debug\spritemesh.obj: ..\AnimationTool\spritemesh.cpp ..\AnimationTool\SpriteMes
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QTextStream \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h
 
 debug\qrc_resources.obj: debug\qrc_resources.cpp 
 

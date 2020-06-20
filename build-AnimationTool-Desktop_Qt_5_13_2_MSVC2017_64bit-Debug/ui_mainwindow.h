@@ -43,21 +43,21 @@ public:
     BindPoseAnimSampleGenerator *bindPoseGeneratorWidget;
     QGridLayout *gridLayout_2;
     QSlider *spriteOpacitySlider;
+    QSpinBox *widthPixelSpinBox;
     QPushButton *loadImagePushButton;
     QPushButton *loadBindPoseButton;
-    QLabel *WidthPixelLabel;
-    QPushButton *saveBindPoseButton;
-    QListWidget *imagesList;
-    QSpinBox *widthPixelSpinBox;
-    QLabel *skeletonHierarchyLabel;
-    QLabel *imagesLabel;
-    SkeletonHierarchyTreeWidget *skeletonHierarchyTree;
-    QLabel *HeightPixelLabel;
-    QLabel *spritesLabel;
-    QLabel *spriteOpacityLabel;
-    BindPoseAnimSampleGeneratorGraphicsView *bindposeGraphicsView;
     QSpinBox *heightPixelSpinBox;
+    BindPoseAnimSampleGeneratorGraphicsView *bindposeGraphicsView;
+    QLabel *spriteOpacityLabel;
+    QLabel *HeightPixelLabel;
+    QLabel *imagesLabel;
+    QLabel *spritesLabel;
+    QListWidget *imagesList;
     SpriteListWidget *spriteList;
+    QLabel *skeletonHierarchyLabel;
+    SkeletonHierarchyTreeWidget *skeletonHierarchyTree;
+    QPushButton *saveBindPoseButton;
+    QLabel *WidthPixelLabel;
     QPushButton *closeButton;
     QStatusBar *statusbar;
     QMenuBar *menubar;
@@ -68,7 +68,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1000, 600);
+        MainWindow->resize(1000, 620);
         QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -100,54 +100,84 @@ public:
         spriteOpacitySlider->setMaximumSize(QSize(800, 16777215));
         spriteOpacitySlider->setOrientation(Qt::Horizontal);
 
-        gridLayout_2->addWidget(spriteOpacitySlider, 13, 2, 1, 1);
+        gridLayout_2->addWidget(spriteOpacitySlider, 15, 2, 1, 1);
+
+        widthPixelSpinBox = new QSpinBox(bindPoseGeneratorWidget);
+        widthPixelSpinBox->setObjectName(QString::fromUtf8("widthPixelSpinBox"));
+        widthPixelSpinBox->setMaximumSize(QSize(200, 200));
+        widthPixelSpinBox->setMaximum(2000);
+        widthPixelSpinBox->setValue(100);
+
+        gridLayout_2->addWidget(widthPixelSpinBox, 2, 2, 1, 1);
 
         loadImagePushButton = new QPushButton(bindPoseGeneratorWidget);
         loadImagePushButton->setObjectName(QString::fromUtf8("loadImagePushButton"));
         loadImagePushButton->setMaximumSize(QSize(800, 16777215));
 
-        gridLayout_2->addWidget(loadImagePushButton, 16, 2, 1, 1);
+        gridLayout_2->addWidget(loadImagePushButton, 18, 2, 1, 1);
 
         loadBindPoseButton = new QPushButton(bindPoseGeneratorWidget);
         loadBindPoseButton->setObjectName(QString::fromUtf8("loadBindPoseButton"));
         loadBindPoseButton->setMaximumSize(QSize(800, 200));
 
-        gridLayout_2->addWidget(loadBindPoseButton, 17, 0, 1, 1);
+        gridLayout_2->addWidget(loadBindPoseButton, 19, 0, 1, 1);
 
-        WidthPixelLabel = new QLabel(bindPoseGeneratorWidget);
-        WidthPixelLabel->setObjectName(QString::fromUtf8("WidthPixelLabel"));
-        WidthPixelLabel->setMaximumSize(QSize(200, 200));
+        heightPixelSpinBox = new QSpinBox(bindPoseGeneratorWidget);
+        heightPixelSpinBox->setObjectName(QString::fromUtf8("heightPixelSpinBox"));
+        heightPixelSpinBox->setMaximumSize(QSize(200, 200));
+        heightPixelSpinBox->setMaximum(2000);
+        heightPixelSpinBox->setValue(100);
 
-        gridLayout_2->addWidget(WidthPixelLabel, 2, 2, 1, 1);
+        gridLayout_2->addWidget(heightPixelSpinBox, 5, 2, 1, 1);
 
-        saveBindPoseButton = new QPushButton(bindPoseGeneratorWidget);
-        saveBindPoseButton->setObjectName(QString::fromUtf8("saveBindPoseButton"));
-        saveBindPoseButton->setMaximumSize(QSize(800, 200));
+        bindposeGraphicsView = new BindPoseAnimSampleGeneratorGraphicsView(bindPoseGeneratorWidget);
+        bindposeGraphicsView->setObjectName(QString::fromUtf8("bindposeGraphicsView"));
+        bindposeGraphicsView->setMinimumSize(QSize(600, 400));
+        bindposeGraphicsView->setMouseTracking(true);
+        bindposeGraphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        bindposeGraphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        bindposeGraphicsView->setDragMode(QGraphicsView::RubberBandDrag);
 
-        gridLayout_2->addWidget(saveBindPoseButton, 18, 0, 1, 1);
+        gridLayout_2->addWidget(bindposeGraphicsView, 0, 0, 19, 1);
+
+        spriteOpacityLabel = new QLabel(bindPoseGeneratorWidget);
+        spriteOpacityLabel->setObjectName(QString::fromUtf8("spriteOpacityLabel"));
+        spriteOpacityLabel->setMaximumSize(QSize(800, 16777215));
+
+        gridLayout_2->addWidget(spriteOpacityLabel, 14, 2, 1, 1);
+
+        HeightPixelLabel = new QLabel(bindPoseGeneratorWidget);
+        HeightPixelLabel->setObjectName(QString::fromUtf8("HeightPixelLabel"));
+        HeightPixelLabel->setMaximumSize(QSize(200, 200));
+
+        gridLayout_2->addWidget(HeightPixelLabel, 3, 2, 1, 1);
+
+        imagesLabel = new QLabel(bindPoseGeneratorWidget);
+        imagesLabel->setObjectName(QString::fromUtf8("imagesLabel"));
+
+        gridLayout_2->addWidget(imagesLabel, 16, 2, 1, 1);
+
+        spritesLabel = new QLabel(bindPoseGeneratorWidget);
+        spritesLabel->setObjectName(QString::fromUtf8("spritesLabel"));
+
+        gridLayout_2->addWidget(spritesLabel, 12, 2, 1, 1);
 
         imagesList = new QListWidget(bindPoseGeneratorWidget);
         imagesList->setObjectName(QString::fromUtf8("imagesList"));
         imagesList->setMaximumSize(QSize(800, 16777215));
 
-        gridLayout_2->addWidget(imagesList, 15, 2, 1, 1);
+        gridLayout_2->addWidget(imagesList, 17, 2, 1, 1);
 
-        widthPixelSpinBox = new QSpinBox(bindPoseGeneratorWidget);
-        widthPixelSpinBox->setObjectName(QString::fromUtf8("widthPixelSpinBox"));
-        widthPixelSpinBox->setMaximumSize(QSize(200, 200));
-        widthPixelSpinBox->setValue(20);
+        spriteList = new SpriteListWidget(bindPoseGeneratorWidget);
+        spriteList->setObjectName(QString::fromUtf8("spriteList"));
+        spriteList->setMaximumSize(QSize(800, 16777215));
 
-        gridLayout_2->addWidget(widthPixelSpinBox, 1, 2, 1, 1);
+        gridLayout_2->addWidget(spriteList, 13, 2, 1, 1);
 
         skeletonHierarchyLabel = new QLabel(bindPoseGeneratorWidget);
         skeletonHierarchyLabel->setObjectName(QString::fromUtf8("skeletonHierarchyLabel"));
 
-        gridLayout_2->addWidget(skeletonHierarchyLabel, 6, 2, 1, 1);
-
-        imagesLabel = new QLabel(bindPoseGeneratorWidget);
-        imagesLabel->setObjectName(QString::fromUtf8("imagesLabel"));
-
-        gridLayout_2->addWidget(imagesLabel, 14, 2, 1, 1);
+        gridLayout_2->addWidget(skeletonHierarchyLabel, 8, 2, 1, 1);
 
         skeletonHierarchyTree = new SkeletonHierarchyTreeWidget(bindPoseGeneratorWidget);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
@@ -161,47 +191,19 @@ public:
         skeletonHierarchyTree->setDragDropMode(QAbstractItemView::InternalMove);
         skeletonHierarchyTree->setColumnCount(1);
 
-        gridLayout_2->addWidget(skeletonHierarchyTree, 7, 2, 1, 1);
+        gridLayout_2->addWidget(skeletonHierarchyTree, 9, 2, 1, 1);
 
-        HeightPixelLabel = new QLabel(bindPoseGeneratorWidget);
-        HeightPixelLabel->setObjectName(QString::fromUtf8("HeightPixelLabel"));
-        HeightPixelLabel->setMaximumSize(QSize(200, 200));
+        saveBindPoseButton = new QPushButton(bindPoseGeneratorWidget);
+        saveBindPoseButton->setObjectName(QString::fromUtf8("saveBindPoseButton"));
+        saveBindPoseButton->setMaximumSize(QSize(800, 200));
 
-        gridLayout_2->addWidget(HeightPixelLabel, 0, 2, 1, 1);
+        gridLayout_2->addWidget(saveBindPoseButton, 20, 0, 1, 1);
 
-        spritesLabel = new QLabel(bindPoseGeneratorWidget);
-        spritesLabel->setObjectName(QString::fromUtf8("spritesLabel"));
+        WidthPixelLabel = new QLabel(bindPoseGeneratorWidget);
+        WidthPixelLabel->setObjectName(QString::fromUtf8("WidthPixelLabel"));
+        WidthPixelLabel->setMaximumSize(QSize(200, 200));
 
-        gridLayout_2->addWidget(spritesLabel, 10, 2, 1, 1);
-
-        spriteOpacityLabel = new QLabel(bindPoseGeneratorWidget);
-        spriteOpacityLabel->setObjectName(QString::fromUtf8("spriteOpacityLabel"));
-        spriteOpacityLabel->setMaximumSize(QSize(800, 16777215));
-
-        gridLayout_2->addWidget(spriteOpacityLabel, 12, 2, 1, 1);
-
-        bindposeGraphicsView = new BindPoseAnimSampleGeneratorGraphicsView(bindPoseGeneratorWidget);
-        bindposeGraphicsView->setObjectName(QString::fromUtf8("bindposeGraphicsView"));
-        bindposeGraphicsView->setMinimumSize(QSize(600, 400));
-        bindposeGraphicsView->setMouseTracking(true);
-        bindposeGraphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        bindposeGraphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        bindposeGraphicsView->setDragMode(QGraphicsView::RubberBandDrag);
-
-        gridLayout_2->addWidget(bindposeGraphicsView, 0, 0, 17, 1);
-
-        heightPixelSpinBox = new QSpinBox(bindPoseGeneratorWidget);
-        heightPixelSpinBox->setObjectName(QString::fromUtf8("heightPixelSpinBox"));
-        heightPixelSpinBox->setMaximumSize(QSize(200, 200));
-        heightPixelSpinBox->setValue(20);
-
-        gridLayout_2->addWidget(heightPixelSpinBox, 3, 2, 1, 1);
-
-        spriteList = new SpriteListWidget(bindPoseGeneratorWidget);
-        spriteList->setObjectName(QString::fromUtf8("spriteList"));
-        spriteList->setMaximumSize(QSize(800, 16777215));
-
-        gridLayout_2->addWidget(spriteList, 11, 2, 1, 1);
+        gridLayout_2->addWidget(WidthPixelLabel, 1, 2, 1, 1);
 
         animSampleClipBindposeTab->addTab(bindPoseGeneratorWidget, QString());
 
@@ -244,13 +246,13 @@ public:
         animSampleClipBindposeTab->setTabText(animSampleClipBindposeTab->indexOf(animationClipEditorWidget), QCoreApplication::translate("MainWindow", "AnimationClip Editor", nullptr));
         loadImagePushButton->setText(QCoreApplication::translate("MainWindow", "Load Image", nullptr));
         loadBindPoseButton->setText(QCoreApplication::translate("MainWindow", "Load BindPose", nullptr));
-        WidthPixelLabel->setText(QCoreApplication::translate("MainWindow", "Width Pixel", nullptr));
-        saveBindPoseButton->setText(QCoreApplication::translate("MainWindow", "Save BindPose", nullptr));
-        skeletonHierarchyLabel->setText(QCoreApplication::translate("MainWindow", "Skeleton Hierarchy", nullptr));
-        imagesLabel->setText(QCoreApplication::translate("MainWindow", "Images ", nullptr));
-        HeightPixelLabel->setText(QCoreApplication::translate("MainWindow", "Height Pixel", nullptr));
-        spritesLabel->setText(QCoreApplication::translate("MainWindow", "Sprites", nullptr));
         spriteOpacityLabel->setText(QCoreApplication::translate("MainWindow", "Sprite Opacity", nullptr));
+        HeightPixelLabel->setText(QCoreApplication::translate("MainWindow", "Height Pixel", nullptr));
+        imagesLabel->setText(QCoreApplication::translate("MainWindow", "Images ", nullptr));
+        spritesLabel->setText(QCoreApplication::translate("MainWindow", "Sprites", nullptr));
+        skeletonHierarchyLabel->setText(QCoreApplication::translate("MainWindow", "Skeleton Hierarchy", nullptr));
+        saveBindPoseButton->setText(QCoreApplication::translate("MainWindow", "Save BindPose", nullptr));
+        WidthPixelLabel->setText(QCoreApplication::translate("MainWindow", "Width Pixel", nullptr));
         animSampleClipBindposeTab->setTabText(animSampleClipBindposeTab->indexOf(bindPoseGeneratorWidget), QCoreApplication::translate("MainWindow", "BindPose Generator", nullptr));
         closeButton->setText(QCoreApplication::translate("MainWindow", "Close", nullptr));
         menuAnimationTool->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));

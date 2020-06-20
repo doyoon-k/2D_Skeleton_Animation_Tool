@@ -245,6 +245,7 @@ Makefile: ..\AnimationTool\AnimationTool.pro E:\QT\5.13.2\msvc2017_64\mkspecs\wi
 		E:\QT\5.13.2\msvc2017_64\mkspecs\features\qt_config.prf \
 		E:\QT\5.13.2\msvc2017_64\mkspecs\win32-msvc\qmake.conf \
 		E:\QT\5.13.2\msvc2017_64\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		E:\QT\5.13.2\msvc2017_64\mkspecs\features\exclusive_builds.prf \
 		E:\QT\5.13.2\msvc2017_64\mkspecs\common\msvc-version.conf \
 		E:\QT\5.13.2\msvc2017_64\mkspecs\features\toolchain.prf \
@@ -442,6 +443,7 @@ E:\QT\5.13.2\msvc2017_64\mkspecs\features\qt_functions.prf:
 E:\QT\5.13.2\msvc2017_64\mkspecs\features\qt_config.prf:
 E:\QT\5.13.2\msvc2017_64\mkspecs\win32-msvc\qmake.conf:
 E:\QT\5.13.2\msvc2017_64\mkspecs\features\spec_post.prf:
+.qmake.stash:
 E:\QT\5.13.2\msvc2017_64\mkspecs\features\exclusive_builds.prf:
 E:\QT\5.13.2\msvc2017_64\mkspecs\common\msvc-version.conf:
 E:\QT\5.13.2\msvc2017_64\mkspecs\features\toolchain.prf:

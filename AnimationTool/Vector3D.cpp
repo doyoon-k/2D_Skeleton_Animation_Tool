@@ -3,7 +3,7 @@
 #include "Vector3D.h"
 #include <cfloat>
 #include <cmath>
-//#include <QTextStream>
+#include <QTextStream>
 
 
 //just a cheat to make it look clean
@@ -17,7 +17,7 @@
 
 
 
-	bool Vector3D::operator==(const Vector3D& other) const
+    bool Vector3D::operator==(const Vector3D& other) const
 	{
         return  (fabs(x - other.x) <= FLT_EPSILON) &&
             (fabs(y - other.y) <= FLT_EPSILON) &&
@@ -56,18 +56,21 @@
 	}
 
 
-//    QTextStream &operator>>(QTextStream &stream, Vector3D &vector)
-//    {
-//        stream>>vector.xyz[0];
-//        stream>>vector.xyz[1];
-//        stream>>vector.xyz[2];
-//        return stream;
-//    }
+    QTextStream &operator>>(QTextStream &stream, Vector3D &vector)
+    {
+        char rest;
+        stream>>vector.xyz[0];
+        stream>>rest;
+        stream>>vector.xyz[1];
+        stream>>rest;
+        stream>>vector.xyz[2];
+        return stream;
+    }
 
-//    QTextStream &operator<<(QTextStream &stream, Vector3D &vector)
-//    {
-//        stream<<vector.xyz[0];
-//        stream<<vector.xyz[1];
-//        stream<<vector.xyz[2];
-//        return stream;
-//    }
+    QTextStream &operator<<(QTextStream &stream, Vector3D &vector)
+    {
+        stream<<vector.xyz[0]<<',';
+        stream<<vector.xyz[1]<<',';
+        stream<<vector.xyz[2];
+        return stream;
+    }

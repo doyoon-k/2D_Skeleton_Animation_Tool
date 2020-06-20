@@ -30,6 +30,8 @@ public:
     void paintEvent(QPaintEvent* event)override;
     int GetWidthPixel()const;
     int GetHeightPixel()const;
+    qreal GetScalarWidthPixel();
+    qreal GetScalarHeightPixel();
 
     JointGraphicsItem* GetJointGraphicsItemByName(const QString& jointName);
     SpriteGraphicsItem* GetSpriteGraphicsItemByName(const QString& spriteName);
@@ -44,13 +46,14 @@ private:
     QAction* createSpriteAction;
     QGraphicsScene* scene;
     BindPoseAnimSampleGenerator* parent;
-    QGraphicsEllipseItem* skeletonSpaceOrigin;
+    QGraphicsRectItem* skeletonSpaceOrigin;
     QVector<JointGraphicsItem*> jointGraphicsItems;
     QVector<SpriteGraphicsItem*> spriteGraphicsItems;
     QPoint mouseRightClickEventPos{0,0};
     void CreateActionMenu();
     int widthPixel;
     int heightPixel;
+    void RescaleGraphicsItems();
 public slots:
     void SignalAddJointToAnimSampleGeneratorWidget();
     void SignalAddSpriteToAnimSampleGeneratorWidget();

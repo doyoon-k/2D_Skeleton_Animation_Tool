@@ -2,9 +2,11 @@
 #include <vector>
 #include "Joint.h"
 
+    class SkeletonHierarchyTreeWidget;
 	class [[nodiscard]] Skeleton
 	{
 		friend class SkeletonComponent;
+        friend class SkeletonHierarchyTreeWidget;
         friend void LoadSkeleton(QTextStream& stream,Skeleton& skeleton);
         friend void SaveSkeleton(QTextStream& stream,Skeleton& skeleton);
 	public:

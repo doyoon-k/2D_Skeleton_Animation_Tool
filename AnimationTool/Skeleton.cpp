@@ -1,5 +1,5 @@
 #include "Skeleton.h"
-//#include <QTextStream>
+#include <QTextStream>
 
 Skeleton::Skeleton(QString name)
 	:mName(name)
@@ -88,24 +88,24 @@ int Skeleton::GetJointIndexByName(QString jointName)
     return -1;
 }
 
-//void LoadSkeleton(QTextStream& stream,Skeleton& skeleton)
-//{
-//    stream>>skeleton.mNJoints;
-//    stream.operator>>(skeleton.mName);
-//    skeleton.mJoints.reserve(skeleton.mNJoints);
-//    for(int i = 0; i < skeleton.mNJoints; i++)
-//    {
-//        LoadJoint(stream,skeleton.mJoints[i]);
-//    }
-//}
+void LoadSkeleton(QTextStream& stream,Skeleton& skeleton)
+{
+    stream>>skeleton.mNJoints;
+    stream>>skeleton.mName;
+    skeleton.mJoints.reserve(skeleton.mNJoints);
+    for(int i = 0; i < skeleton.mNJoints; i++)
+    {
+        LoadJoint(stream,skeleton.mJoints[i]);
+    }
+}
 
 
-//void SaveSkeleton(QTextStream& stream,Skeleton& skeleton)
-//{
-//    stream<<skeleton.mNJoints;
-//    stream.operator<<(skeleton.mName);
-//    for(int i = 0; i < skeleton.mNJoints; i++)
-//    {
-//        SaveJoint(stream,skeleton.mJoints[i]);
-//    }
-//}
+void SaveSkeleton(QTextStream& stream,Skeleton& skeleton)
+{
+    stream<<skeleton.mNJoints<<endl;
+    stream<<skeleton.mName<<endl;
+    for(int i = 0; i < skeleton.mNJoints; i++)
+    {
+        SaveJoint(stream,skeleton.mJoints[i]);
+    }
+}

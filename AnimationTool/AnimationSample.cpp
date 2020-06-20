@@ -1,6 +1,6 @@
 #include "AnimationSample.h"
 #include "mathLib.h"
-//#include <QTextStream>
+#include <QTextStream>
 
 AnimationSample LerpAnimSample(const AnimationSample& sample1, const AnimationSample& sample2,float t)
 {
@@ -44,17 +44,17 @@ AnimationSample LerpAnimSample(const AnimationSample& sample1, const AnimationSa
 	return newAnimSample;
 }
 
-//void LoadAnimSample(QTextStream& stream,AnimationSample& animSample)
-//{
-//    stream>>animSample.name;
-//    LoadSkeleton(stream,animSample.skeleton);
-//    LoadSpriteMesh(stream,animSample.spriteMesh);
-//}
+void LoadAnimSample(QTextStream& stream,AnimationSample& animSample)
+{
+    stream>>animSample.name;
+    LoadSkeleton(stream,animSample.skeleton);
+    LoadSpriteMesh(stream,animSample.spriteMesh);
+}
 
 
-//void SaveAnimSample(QTextStream& stream,AnimationSample& animSample)
-//{
-//    stream<<animSample.name;
-//    SaveSkeleton(stream,animSample.skeleton);
-//    SaveSpriteMesh(stream,animSample.spriteMesh);
-//}
+void SaveAnimSample(QTextStream& stream,AnimationSample& animSample)
+{
+    stream<<animSample.name<<endl;
+    SaveSkeleton(stream,animSample.skeleton);
+    SaveSpriteMesh(stream,animSample.spriteMesh);
+}

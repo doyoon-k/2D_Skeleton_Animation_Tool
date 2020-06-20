@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>600</height>
+    <height>620</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -47,7 +47,7 @@
         <string>BindPose Generator</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="13" column="2">
+        <item row="15" column="2">
          <widget class="QSlider" name="spriteOpacitySlider">
           <property name="maximumSize">
            <size>
@@ -60,7 +60,23 @@
           </property>
          </widget>
         </item>
-        <item row="16" column="2">
+        <item row="2" column="2">
+         <widget class="QSpinBox" name="widthPixelSpinBox">
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="maximum">
+           <number>2000</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="18" column="2">
          <widget class="QPushButton" name="loadImagePushButton">
           <property name="maximumSize">
            <size>
@@ -73,7 +89,7 @@
           </property>
          </widget>
         </item>
-        <item row="17" column="0">
+        <item row="19" column="0">
          <widget class="QPushButton" name="loadBindPoseButton">
           <property name="maximumSize">
            <size>
@@ -86,8 +102,59 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="2">
-         <widget class="QLabel" name="WidthPixelLabel">
+        <item row="5" column="2">
+         <widget class="QSpinBox" name="heightPixelSpinBox">
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="maximum">
+           <number>2000</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" rowspan="19">
+         <widget class="BindPoseAnimSampleGeneratorGraphicsView" name="bindposeGraphicsView">
+          <property name="minimumSize">
+           <size>
+            <width>600</width>
+            <height>400</height>
+           </size>
+          </property>
+          <property name="mouseTracking">
+           <bool>true</bool>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="dragMode">
+           <enum>QGraphicsView::RubberBandDrag</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="2">
+         <widget class="QLabel" name="spriteOpacityLabel">
+          <property name="maximumSize">
+           <size>
+            <width>800</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Sprite Opacity</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QLabel" name="HeightPixelLabel">
           <property name="maximumSize">
            <size>
             <width>200</width>
@@ -95,24 +162,25 @@
            </size>
           </property>
           <property name="text">
-           <string>Width Pixel</string>
+           <string>Height Pixel</string>
           </property>
          </widget>
         </item>
-        <item row="18" column="0">
-         <widget class="QPushButton" name="saveBindPoseButton">
-          <property name="maximumSize">
-           <size>
-            <width>800</width>
-            <height>200</height>
-           </size>
-          </property>
+        <item row="16" column="2">
+         <widget class="QLabel" name="imagesLabel">
           <property name="text">
-           <string>Save BindPose</string>
+           <string>Images </string>
           </property>
          </widget>
         </item>
-        <item row="15" column="2">
+        <item row="12" column="2">
+         <widget class="QLabel" name="spritesLabel">
+          <property name="text">
+           <string>Sprites</string>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="2">
          <widget class="QListWidget" name="imagesList">
           <property name="maximumSize">
            <size>
@@ -122,34 +190,24 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="2">
-         <widget class="QSpinBox" name="widthPixelSpinBox">
+        <item row="13" column="2">
+         <widget class="SpriteListWidget" name="spriteList">
           <property name="maximumSize">
            <size>
-            <width>200</width>
-            <height>200</height>
+            <width>800</width>
+            <height>16777215</height>
            </size>
-          </property>
-          <property name="value">
-           <number>20</number>
           </property>
          </widget>
         </item>
-        <item row="6" column="2">
+        <item row="8" column="2">
          <widget class="QLabel" name="skeletonHierarchyLabel">
           <property name="text">
            <string>Skeleton Hierarchy</string>
           </property>
          </widget>
         </item>
-        <item row="14" column="2">
-         <widget class="QLabel" name="imagesLabel">
-          <property name="text">
-           <string>Images </string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="2">
+        <item row="9" column="2">
          <widget class="SkeletonHierarchyTreeWidget" name="skeletonHierarchyTree">
           <property name="maximumSize">
            <size>
@@ -179,8 +237,21 @@
           </column>
          </widget>
         </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="HeightPixelLabel">
+        <item row="20" column="0">
+         <widget class="QPushButton" name="saveBindPoseButton">
+          <property name="maximumSize">
+           <size>
+            <width>800</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Save BindPose</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="WidthPixelLabel">
           <property name="maximumSize">
            <size>
             <width>200</width>
@@ -188,72 +259,7 @@
            </size>
           </property>
           <property name="text">
-           <string>Height Pixel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="2">
-         <widget class="QLabel" name="spritesLabel">
-          <property name="text">
-           <string>Sprites</string>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="2">
-         <widget class="QLabel" name="spriteOpacityLabel">
-          <property name="maximumSize">
-           <size>
-            <width>800</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Sprite Opacity</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" rowspan="17">
-         <widget class="BindPoseAnimSampleGeneratorGraphicsView" name="bindposeGraphicsView">
-          <property name="minimumSize">
-           <size>
-            <width>600</width>
-            <height>400</height>
-           </size>
-          </property>
-          <property name="mouseTracking">
-           <bool>true</bool>
-          </property>
-          <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
-          </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
-          </property>
-          <property name="dragMode">
-           <enum>QGraphicsView::RubberBandDrag</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <widget class="QSpinBox" name="heightPixelSpinBox">
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>200</height>
-           </size>
-          </property>
-          <property name="value">
-           <number>20</number>
-          </property>
-         </widget>
-        </item>
-        <item row="11" column="2">
-         <widget class="SpriteListWidget" name="spriteList">
-          <property name="maximumSize">
-           <size>
-            <width>800</width>
-            <height>16777215</height>
-           </size>
+           <string>Width Pixel</string>
           </property>
          </widget>
         </item>

@@ -1,11 +1,13 @@
 #include "BindPoseGenerator/spritelistwidget.h"
 #include "BindPoseGenerator/bindposeanimsamplegenerator.h"
 #include "spritegraphicsitem.h"
+#include "jointgraphicsitem.h"
 #include "Sprite.h"
 #include <QObject>
 #include <QKeyEvent>
 #include "SpriteMesh.h"
 #include "Skeleton.h"
+#include "mainwindow.h"
 
 SpriteListWidget::SpriteListWidget(QWidget* parent)
     :QListWidget(parent)
@@ -60,13 +62,32 @@ SpriteMesh SpriteListWidget::GetSpriteMeshInstance(QString filename,Skeleton& sk
     SpriteMesh spriteMesh;
     spriteMesh.name = filename + "SpriteMesh";
     spriteMesh.nSprites = count();
+    spriteMesh.sprites.resize(spriteMesh.nSprites);
     for(int i = 0; i < count(); i++)
     {
-        QString parentJointName = static_cast<SpriteGraphicsItem*>(parent->GetGraphicsView()->GetSpriteGraphicsItemByName(item(i)->text()))->GetSprite()->name;
-        int index = skeleton.GetJointIndexByName(parentJointName);
+        SpriteGraphicsItem* spriteItem = parent->GetGraphicsView()->GetSpriteGraphicsItemByName(item(i)->text());
+        JointGraphicsItem* jointItem = parent->GetGraphicsView()->GetJointGraphicsItemByName(spriteItem->GetSprite()->parentJoint->name);
+        int index = skeleton.GetJointIndexByName(jointItem->GetJoint()->name);
         spriteMesh.sprites[i].name = item(i)->text();
         spriteMesh.sprites[i].rotationOffset = 0;
         spriteMesh.sprites[i].connectedJointIndex = index;
+        spriteMesh.sprites[i].bottomLeftCoord = Vector3D(spriteItem->pos().x(),spriteItem->pos().y());
+        spriteMesh.sprites[i].bottomLeftCoord[0] /= parent->GetGraphicsView()->GetScalarWidthPixel();
+        spriteMesh.sprites[i].bottomLeftCoord[1] /= parent->GetGraphicsView()->GetScalarHeightPixel();
     }
     return spriteMesh;
+}
+
+void SpriteListWidget::LoadFromSpriteMesh(const SpriteMesh &spriteMesh,const Skeleton& skeleton)
+{
+    for(int i = 0; i < spriteMesh.nSprites; i++)
+    {
+        QSharedPointer<Sprite> sprite(new Sprite());
+        QString connectedJointName = skeleton.GetJoint(spriteMesh.sprites[i].connectedJointIndex).name;
+        sprite->parentJoint = parent->GetGraphicsView()->GetJointGraphicsItemByName(connectedJointName)->GetJoint();
+        QString imagePath = MainWindow::GetImagePathByName(sprite->name);
+        sprite->image = QImage(imagePath);
+        parent->AddSprite(sprite);
+        //부모 조인트 이름으로 조인트 쉐어드포인터 이름으로 검색해서 받아오고 그걸 인자로 스프라이트 생성
+    }
 }

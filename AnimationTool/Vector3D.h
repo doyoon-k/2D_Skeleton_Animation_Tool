@@ -9,6 +9,7 @@ class Vector3D
 public:
     template<typename Number>
     constexpr Vector3D(Number X, Number Y, Number Z = 0.f) noexcept;
+    constexpr Vector3D() noexcept;
     constexpr Vector3D operator+(const Vector3D& other) const noexcept;
     constexpr Vector3D operator-(const Vector3D& other) const noexcept;
     constexpr Vector3D operator/(float scalar) const noexcept;
@@ -48,6 +49,12 @@ private:
 		xyz[1] = static_cast<float>(Y);
 		xyz[2] = static_cast<float>(Z);
 	}
+
+    constexpr Vector3D::Vector3D() noexcept
+        :Vector3D(0,0)
+    {
+
+    }
 
 	constexpr Vector3D Vector3D::operator+(const Vector3D& other) const noexcept
 	{
