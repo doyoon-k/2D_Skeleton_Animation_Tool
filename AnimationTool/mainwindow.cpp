@@ -86,7 +86,7 @@ MainWindow::~MainWindow()
     {
         for(int i = 0; i < ui->spriteList->count(); i++)
         {
-            paths.insert(ui->spriteList->item(i)->text());
+            paths.insert(ui->imagesList->item(i)->text());
         }
         QTextStream stream(&newImagePathList);
         for(auto it = paths.begin(); it != paths.end(); it++)
