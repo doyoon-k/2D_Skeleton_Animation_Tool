@@ -92,7 +92,7 @@ void LoadSkeleton(QTextStream& stream,Skeleton& skeleton)
 {
     stream>>skeleton.mNJoints;
     stream>>skeleton.mName;
-    skeleton.mJoints.reserve(skeleton.mNJoints);
+    skeleton.mJoints.resize(skeleton.mNJoints);
     for(int i = 0; i < skeleton.mNJoints; i++)
     {
         LoadJoint(stream,skeleton.mJoints[i]);

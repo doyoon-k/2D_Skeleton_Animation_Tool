@@ -5,7 +5,7 @@ void LoadSpriteMesh(QTextStream& stream,SpriteMesh& spriteMesh)
 {
     stream>>spriteMesh.nSprites;
     stream>>spriteMesh.name;
-    spriteMesh.sprites.reserve(spriteMesh.nSprites);
+    spriteMesh.sprites.resize(spriteMesh.nSprites);
     for(int i = 0; i < spriteMesh.nSprites; i++)
     {
         LoadSprite(stream,spriteMesh.sprites[i]);

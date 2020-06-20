@@ -81,7 +81,7 @@ void SpriteListWidget::LoadFromSpriteMesh(const SpriteMesh &spriteMesh,const Ske
 {
     for(int i = 0; i < spriteMesh.nSprites; i++)
     {
-        QSharedPointer<Sprite> sprite(new Sprite());
+        QSharedPointer<Sprite> sprite(new Sprite(spriteMesh.sprites[i]));
         QString connectedJointName = skeleton.GetJoint(spriteMesh.sprites[i].connectedJointIndex).name;
         sprite->parentJoint = parent->GetGraphicsView()->GetJointGraphicsItemByName(connectedJointName)->GetJoint();
         QString imagePath = MainWindow::GetImagePathBySpriteName(sprite->name);

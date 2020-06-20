@@ -2646,7 +2646,15 @@ release\bindposeanimsamplegenerator.obj: ..\AnimationTool\BindPoseGenerator\bind
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QSpinBox \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qspinbox.h \
 		..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\QDebug
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QDebug \
+		..\AnimationTool\mainwindow.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QMainWindow \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QMap \
+		..\AnimationTool\Sprite.h \
+		..\AnimationTool\Vector3D.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer
 
 release\bindposeanimsamplegeneratorgraphicsview.obj: ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegeneratorgraphicsview.cpp ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegeneratorgraphicsview.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsView \
@@ -2816,7 +2824,11 @@ release\bindposeanimsamplegeneratorgraphicsview.obj: ..\AnimationTool\BindPoseGe
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qmessagebox.h \
 		..\AnimationTool\Sprite.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer \
+		..\AnimationTool\mainwindow.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QMainWindow \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QMap
 
 release\animationclip.obj: ..\AnimationTool\animationclip.cpp ..\AnimationTool\AnimationClip.h \
 		..\AnimationTool\AnimationSample.h \
@@ -3298,7 +3310,9 @@ release\mainwindow.obj: ..\AnimationTool\mainwindow.cpp ..\AnimationTool\mainwin
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer \
 		..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\QDebug
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QDebug \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QMessageBox \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qmessagebox.h
 
 release\spritegraphicsitem.obj: ..\AnimationTool\spritegraphicsitem.cpp ..\AnimationTool\spritegraphicsitem.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsItem \

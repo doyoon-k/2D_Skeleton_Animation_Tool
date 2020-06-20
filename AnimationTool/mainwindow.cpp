@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
         while(!stream.atEnd())
         {
             QString imagePath;
+            stream>>imagePath;
             ui->imagesList->addItem(imagePath);
         }
     }
@@ -48,13 +49,13 @@ MainWindow::MainWindow(QWidget *parent) :
             stream>>spriteName;
             stream>>imagePath;
             spriteNamePathPairs.insert(spriteName,imagePath);
-            ui->imagesList->addItem(imagePath);
         }
     }
     else
     {
         qDebug()<<"SpriteName-Path Pair file does not exists!"<<endl;
     }
+
 //    showFullScreen();
 }
 
@@ -86,6 +87,11 @@ MainWindow::~MainWindow()
         for(int i = 0; i < ui->spriteList->count(); i++)
         {
             paths.insert(ui->spriteList->item(i)->text());
+        }
+        QTextStream stream(&newImagePathList);
+        for(auto it = paths.begin(); it != paths.end(); it++)
+        {
+            stream<<*it<<endl;
         }
     }
     else
@@ -151,8 +157,8 @@ void MainWindow::on_saveBindPoseButton_clicked()
         {
             QString spriteName;
             QString imagePath;
-            stream>>spriteName;
-            stream>>imagePath;
+            stream>>spriteName>>endl;
+            stream>>imagePath>>endl;
             prevPairsFromFile.insert(spriteName,imagePath);
         }
     }
@@ -187,8 +193,8 @@ void MainWindow::on_saveBindPoseButton_clicked()
     QTextStream stream(&newNamePathPairsFile);
     for(auto it = spriteNamePathPairs.begin(); it != spriteNamePathPairs.end(); it++)
     {
-       stream<<it.key();
-       stream<<it.value();
+       stream<<it.key()<<endl;
+       stream<<it.value()<<endl;
     }
 
     if(ui->skeletonHierarchyTree->topLevelItemCount() != 1)
@@ -204,6 +210,8 @@ void MainWindow::on_saveBindPoseButton_clicked()
     {
         //스켈레톤 위젯에서 스켈레톤 인스턴스 조립한거 반환받고 스프라이트 리스트 위젯에서 스프라이트 메시 조립해서 반환받고 애님샘플에 그 두개 복사해넣고 saveAnim함수 콜해서 저장.
         QTextStream stream(&saveFile);
+        stream<<ui->widthPixelSpinBox->value()<<endl;
+        stream<<ui->heightPixelSpinBox->value()<<endl;
         Skeleton&& skeleton = ui->bindPoseGeneratorWidget->skeleonHierarchyTreeWidget->GetSkeletonInstance(fileName);
         SpriteMesh&& spriteMesh = ui->bindPoseGeneratorWidget->spriteListWidget->GetSpriteMeshInstance(fileName,skeleton);
         AnimationSample bindPose{fileName,skeleton,spriteMesh};
@@ -228,10 +236,23 @@ void MainWindow::on_loadBindPoseButton_clicked()
     QFile saveFile(filePath);
     if(saveFile.open(QIODevice::ReadOnly|QIODevice::Text))
     {
-        QTextStream stream(&filePath);
+        QTextStream stream(&saveFile);
+        int widthPixel;
+        int heightPixel;
+        stream>>widthPixel;
+        stream>>heightPixel;
+        ui->widthPixelSpinBox->setValue(widthPixel);
+        ui->heightPixelSpinBox->setValue(heightPixel);
         AnimationSample bindPose{fileName,Skeleton(fileName+"Skeleton"),SpriteMesh()};
         LoadAnimSample(stream,bindPose);
         ui->skeletonHierarchyTree->LoadFromSkeleton(bindPose.skeleton);
         ui->spriteList->LoadFromSpriteMesh(bindPose.spriteMesh,bindPose.skeleton);
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Cannot open file!");
+        msgBox.exec();
+        return;
     }
 }
