@@ -9,6 +9,7 @@ class JointTreeWidgetItem : public QTreeWidgetItem
 public:
     JointTreeWidgetItem(QSharedPointer<Joint> joint);
     JointTreeWidgetItem(QTreeWidgetItem* parent,Joint* joint);
+    JointTreeWidgetItem(const JointTreeWidgetItem& other);
     void onDropEvent(JointTreeWidgetItem *newParent);
 private:
     QSharedPointer<Joint> jointData;

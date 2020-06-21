@@ -84,7 +84,7 @@ MainWindow::~MainWindow()
     QFile newImagePathList("ImagePaths.txt");
     if(newImagePathList.open(QIODevice::WriteOnly|QIODevice::Truncate|QIODevice::Text))
     {
-        for(int i = 0; i < ui->spriteList->count(); i++)
+        for(int i = 0; i < ui->imagesList->count(); i++)
         {
             paths.insert(ui->imagesList->item(i)->text());
         }

@@ -33,7 +33,6 @@ void SkeletonHierarchyTreeWidget::keyPressEvent(QKeyEvent *event)
         return;
     }
     JointTreeWidgetItem* item = static_cast<JointTreeWidgetItem*>(currentItem());
-    qDebug()<<item->text(0);
     if(item == nullptr)
         return;
     QString prevName = item->text(0);
@@ -115,8 +114,10 @@ void SkeletonHierarchyTreeWidget::LoadFromSkeleton(const Skeleton &skeleton)
 
     for(int i = skeleton.mNJoints - 1; i > 0; i--)
     {
-         QTreeWidgetItem* jointItem = findItems(skeleton.mJoints[i].name,Qt::MatchExactly|Qt::MatchRecursive)[0];
-         QTreeWidgetItem* parentItem = findItems(skeleton.mJoints[skeleton.mJoints[i].parentIndex].name,Qt::MatchExactly|Qt::MatchRecursive)[0];
-         parentItem->addChild(jointItem);
+         JointTreeWidgetItem* jointItem = static_cast<JointTreeWidgetItem*>(findItems(skeleton.mJoints[i].name,Qt::MatchExactly|Qt::MatchRecursive)[0]);
+         JointTreeWidgetItem* parentItem = static_cast<JointTreeWidgetItem*>(findItems(skeleton.mJoints[skeleton.mJoints[i].parentIndex].name,Qt::MatchExactly|Qt::MatchRecursive)[0]);
+         JointTreeWidgetItem* childItem(new JointTreeWidgetItem(*jointItem));
+         delete jointItem;
+         parentItem->addChild(childItem);
     }
 }
