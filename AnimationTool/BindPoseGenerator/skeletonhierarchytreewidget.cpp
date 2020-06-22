@@ -153,3 +153,9 @@ void SkeletonHierarchyTreeWidget::LoadFromSkeleton(Skeleton &skeleton)
          parentItem->addChild(childItem);
     }
 }
+
+void SkeletonHierarchyTreeWidget::Reset()
+{
+    draggingItem = nullptr;
+    clear();
+}

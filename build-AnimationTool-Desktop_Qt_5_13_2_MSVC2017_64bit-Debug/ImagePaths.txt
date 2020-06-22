@@ -1,3 +1,3 @@
 
-C:/Users/doyoonkim/Desktop/SourceTreeRepos/CS230_Doyoon.Kim/CS230/assets/treeStump1.png
 C:/Users/doyoonkim/Desktop/SourceTreeRepos/AnimationTool/build-AnimationTool-Desktop_Qt_5_13_2_MSVC2017_64bit-Debug/treeStump1.png
+C:/Users/doyoonkim/Desktop/SourceTreeRepos/CS230_Doyoon.Kim/CS230/assets/treeStump1.png

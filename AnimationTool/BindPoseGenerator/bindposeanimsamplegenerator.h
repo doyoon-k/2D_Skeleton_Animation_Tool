@@ -38,7 +38,7 @@ signals:
 
 public slots:
 private:
-
+    void Reset();
     BindPoseAnimSampleGeneratorGraphicsView* graphicsView;
     SpriteListWidget* spriteListWidget;
     SkeletonHierarchyTreeWidget* skeleonHierarchyTreeWidget;

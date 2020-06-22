@@ -13,7 +13,7 @@ public:
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event)override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event)override;
     QRectF boundingRect()const override;
-    QSharedPointer<Joint> GetJoint();
+    QSharedPointer<Joint> GetJoint() const;
 private:
     QSharedPointer<Joint> joint;
     bool isForBindPoseGenerator;

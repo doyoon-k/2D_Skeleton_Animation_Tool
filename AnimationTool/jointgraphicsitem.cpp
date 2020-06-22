@@ -68,7 +68,7 @@ QRectF JointGraphicsItem::boundingRect() const
     return QRectF(-RADIUS*2,-RADIUS*3,RADIUS*10.0,RADIUS*10.0);
 }
 
-QSharedPointer<Joint> JointGraphicsItem::GetJoint()
+QSharedPointer<Joint> JointGraphicsItem::GetJoint() const
 {
     return joint;
 }

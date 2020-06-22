@@ -35,6 +35,8 @@ public:
 
     JointGraphicsItem *GetJointGraphicsItemByName(const QString& jointName);
     SpriteGraphicsItem* GetSpriteGraphicsItemByName(const QString& spriteName);
+
+    void Reset();
 protected:
     void mousePressEvent(QMouseEvent* event)override;
     void mouseMoveEvent(QMouseEvent* event)override;
@@ -59,6 +61,7 @@ public slots:
     void SignalAddSpriteToAnimSampleGeneratorWidget();
     void SetWidthPixel(int val);
     void SetHeightPixel(int val);
+private:
 };
 
 #endif // BINDPOSEANIMSAMPLEGENERATORGRAPHICSVIEW_H

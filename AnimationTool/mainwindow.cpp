@@ -236,6 +236,7 @@ void MainWindow::on_loadBindPoseButton_clicked()
     QFile saveFile(filePath);
     if(saveFile.open(QIODevice::ReadOnly|QIODevice::Text))
     {
+        ui->bindPoseGeneratorWidget->Reset();
         QTextStream stream(&saveFile);
         int widthPixel;
         int heightPixel;
@@ -286,6 +287,7 @@ void MainWindow::on_LoadPushButton_clicked()
     QFile saveFile(filePath);
     if(saveFile.open(QIODevice::ReadOnly|QIODevice::Text))
     {
+        ui->AnimSampleEditorGraphicView->Reset();
         QTextStream stream(&saveFile);
         int widthPixel;
         int heightPixel;

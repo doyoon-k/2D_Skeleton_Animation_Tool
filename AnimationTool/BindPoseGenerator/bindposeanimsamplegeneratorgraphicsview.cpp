@@ -267,3 +267,19 @@ void BindPoseAnimSampleGeneratorGraphicsView::SetHeightPixel(int val)
     viewport()->repaint(viewport()->rect());
     RescaleGraphicsItems();
 }
+
+void BindPoseAnimSampleGeneratorGraphicsView::Reset()
+{
+    for(JointGraphicsItem* jointItem : jointGraphicsItems)
+    {
+        scene->removeItem(jointItem);
+        delete jointItem;
+    }
+    jointGraphicsItems.clear();
+    for(SpriteGraphicsItem* spriteItem : spriteGraphicsItems)
+    {
+        scene->removeItem(spriteItem);
+        delete spriteItem;
+    }
+    spriteGraphicsItems.clear();
+}

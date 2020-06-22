@@ -91,3 +91,8 @@ void SpriteListWidget::LoadFromSpriteMesh(SpriteMesh &spriteMesh,const Skeleton&
         parent->AddSprite(sprite);
     }
 }
+
+void SpriteListWidget::Reset()
+{
+    clear();
+}

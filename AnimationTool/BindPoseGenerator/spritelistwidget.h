@@ -19,6 +19,7 @@ public:
 
     SpriteMesh GetSpriteMeshInstance(QString filename,Skeleton& skeleton);
     void LoadFromSpriteMesh(SpriteMesh& spriteMesh,const Skeleton& skeleton);
+    void Reset();
 private:
     BindPoseAnimSampleGenerator* parent;
 };

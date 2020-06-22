@@ -20,6 +20,7 @@ public:
     void mousePressEvent(QMouseEvent* event) override;
     Skeleton GetSkeletonInstance(QString poseName);
     void LoadFromSkeleton(Skeleton& skeleton);
+    void Reset();
 private:
     BindPoseAnimSampleGenerator* parent;
     JointTreeWidgetItem* draggingItem = nullptr;

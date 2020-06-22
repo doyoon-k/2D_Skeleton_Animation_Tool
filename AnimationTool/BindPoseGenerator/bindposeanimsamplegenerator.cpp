@@ -62,3 +62,10 @@ BindPoseAnimSampleGeneratorGraphicsView *BindPoseAnimSampleGenerator::GetGraphic
     return graphicsView;
 }
 
+void BindPoseAnimSampleGenerator::Reset()
+{
+    graphicsView->Reset();
+    spriteListWidget->Reset();
+    skeleonHierarchyTreeWidget->Reset();
+}
+
