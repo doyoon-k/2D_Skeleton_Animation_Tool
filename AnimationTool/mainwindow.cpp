@@ -56,7 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug()<<"SpriteName-Path Pair file does not exists!"<<endl;
     }
 
-//    showFullScreen();
+    showFullScreen();
 }
 
 MainWindow::~MainWindow()
@@ -243,6 +243,8 @@ void MainWindow::on_loadBindPoseButton_clicked()
         stream>>heightPixel;
         ui->widthPixelSpinBox->setValue(widthPixel);
         ui->heightPixelSpinBox->setValue(heightPixel);
+        ui->bindposeGraphicsView->SetWidthPixel(widthPixel);
+        ui->bindposeGraphicsView->SetHeightPixel(heightPixel);
         AnimationSample bindPose{fileName,Skeleton(fileName+"Skeleton"),SpriteMesh()};
         LoadAnimSample(stream,bindPose);
         ui->skeletonHierarchyTree->LoadFromSkeleton(bindPose.skeleton);
@@ -255,4 +257,56 @@ void MainWindow::on_loadBindPoseButton_clicked()
         msgBox.exec();
         return;
     }
+}
+
+void MainWindow::on_widthPixelSpinBox_valueChanged(int arg1)
+{
+    ui->bindposeGraphicsView->SetWidthPixel(arg1);
+}
+
+void MainWindow::on_heightPixelSpinBox_valueChanged(int arg1)
+{
+    ui->bindposeGraphicsView->SetHeightPixel(arg1);
+}
+
+void MainWindow::on_LoadPushButton_clicked()
+{
+    QFile namePathPairsFile("SpriteNamePathPairs.txt");
+    QFileInfo info(namePathPairsFile);
+    if(!info.exists())
+    {
+        QMessageBox msgBox;
+        msgBox.setText("SpriteName - ImagePath pair file does not exist!");
+        msgBox.exec();
+        return;
+    }
+
+    QString filePath = QFileDialog::getOpenFileName(this,tr("Open BindPose"),"./",tr("AnimSample file (*.asmpl)"));
+    QString fileName = QFileInfo(filePath).baseName();
+    QFile saveFile(filePath);
+    if(saveFile.open(QIODevice::ReadOnly|QIODevice::Text))
+    {
+        QTextStream stream(&saveFile);
+        int widthPixel;
+        int heightPixel;
+        stream>>widthPixel;
+        stream>>heightPixel;
+        ui->AnimSampleEditorGraphicView->SetWidthPixel(widthPixel);
+        ui->AnimSampleEditorGraphicView->SetHeightPixel(heightPixel);
+        AnimationSample animSample{fileName,Skeleton(fileName+"Skeleton"),SpriteMesh()};
+        LoadAnimSample(stream,animSample);
+        ui->AnimSampleEditorGraphicView->LoadAnimSample(animSample.skeleton,animSample.spriteMesh);
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Cannot open file!");
+        msgBox.exec();
+        return;
+    }
+}
+
+void MainWindow::on_SavePushButton_clicked()
+{
+
 }

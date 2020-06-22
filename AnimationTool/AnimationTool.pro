@@ -26,6 +26,7 @@ CONFIG += c++17
 
 SOURCES += \
         AnimationSample.cpp \
+        animsampleeditorgraphicsview.cpp \
         BindPoseGenerator/jointtreewidgetitem.cpp \
         BindPoseGenerator/skeletonhierarchytreewidget.cpp \
         BindPoseGenerator/spritecreatedialog.cpp \
@@ -38,6 +39,7 @@ SOURCES += \
         BindPoseGenerator/bindposeanimsamplegenerator.cpp \
         BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.cpp \
         animationclip.cpp \
+        animsampleeditorgraphicsview.cpp \
         jointgraphicsitem.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -47,6 +49,7 @@ SOURCES += \
 HEADERS += \
         AnimationClip.h \
         AnimationSample.h \
+        animsampleeditorgraphicsview.h \
         BindPoseGenerator/jointtreewidgetitem.h \
         BindPoseGenerator/skeletonhierarchytreewidget.h \
         BindPoseGenerator/spritecreatedialog.h \
@@ -59,6 +62,7 @@ HEADERS += \
         Vector3D.h \
         BindPoseGenerator/bindposeanimsamplegenerator.h \
         BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.h \
+        animsampleeditorgraphicsview.h \
         jointgraphicsitem.h \
         mainwindow.h \
         mathLib.h \

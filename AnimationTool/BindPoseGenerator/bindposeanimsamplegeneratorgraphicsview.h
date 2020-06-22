@@ -33,14 +33,14 @@ public:
     qreal GetScalarWidthPixel();
     qreal GetScalarHeightPixel();
 
-    JointGraphicsItem* GetJointGraphicsItemByName(const QString& jointName);
+    JointGraphicsItem *GetJointGraphicsItemByName(const QString& jointName);
     SpriteGraphicsItem* GetSpriteGraphicsItemByName(const QString& spriteName);
 protected:
     void mousePressEvent(QMouseEvent* event)override;
     void mouseMoveEvent(QMouseEvent* event)override;
     void showEvent(QShowEvent* event) override;
     void resizeEvent(QResizeEvent* event)override;
-private:
+
     QMenu* joint_sprite_CreateMenu;
     QAction* createJointAction;
     QAction* createSpriteAction;
@@ -57,8 +57,8 @@ private:
 public slots:
     void SignalAddJointToAnimSampleGeneratorWidget();
     void SignalAddSpriteToAnimSampleGeneratorWidget();
-    void setWidthPixel(int val);
-    void setHeightPixel(int val);
+    void SetWidthPixel(int val);
+    void SetHeightPixel(int val);
 };
 
 #endif // BINDPOSEANIMSAMPLEGENERATORGRAPHICSVIEW_H

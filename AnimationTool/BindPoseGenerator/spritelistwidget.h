@@ -18,7 +18,7 @@ public:
     void keyPressEvent(QKeyEvent* event)override;
 
     SpriteMesh GetSpriteMeshInstance(QString filename,Skeleton& skeleton);
-    void LoadFromSpriteMesh(const SpriteMesh& spriteMesh,const Skeleton& skeleton);
+    void LoadFromSpriteMesh(SpriteMesh& spriteMesh,const Skeleton& skeleton);
 private:
     BindPoseAnimSampleGenerator* parent;
 };

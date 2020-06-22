@@ -7,7 +7,7 @@
 class JointGraphicsItem : public QGraphicsItem
 {
 public:
-    JointGraphicsItem(QSharedPointer<Joint> joint);
+    JointGraphicsItem(QSharedPointer<Joint> joint,bool isForBindPoseGenerator = true);
     void paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget = nullptr)override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event)override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event)override;
@@ -16,6 +16,7 @@ public:
     QSharedPointer<Joint> GetJoint();
 private:
     QSharedPointer<Joint> joint;
+    bool isForBindPoseGenerator;
 };
 
 #endif // JOINTGRAPHICSITEM_H

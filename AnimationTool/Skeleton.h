@@ -20,7 +20,6 @@
         void AddJoint(Joint newJoint);
 
 		//the origin is the object's transform position
-        Vector3D CalculateJointPosInSkeletonSpace(int jointIndex);
         Vector3D CalculateJointPosInSkeletonSpace(int jointIndex) const;
 	private:
 		int mNJoints = 0;

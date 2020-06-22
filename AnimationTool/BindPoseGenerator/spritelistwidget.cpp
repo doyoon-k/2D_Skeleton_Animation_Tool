@@ -77,10 +77,12 @@ SpriteMesh SpriteListWidget::GetSpriteMeshInstance(QString filename,Skeleton& sk
     return spriteMesh;
 }
 
-void SpriteListWidget::LoadFromSpriteMesh(const SpriteMesh &spriteMesh,const Skeleton& skeleton)
+void SpriteListWidget::LoadFromSpriteMesh(SpriteMesh &spriteMesh,const Skeleton& skeleton)
 {
     for(int i = 0; i < spriteMesh.nSprites; i++)
     {
+        spriteMesh.sprites[i].bottomLeftCoord[0] *= parent->GetGraphicsView()->GetScalarWidthPixel();
+        spriteMesh.sprites[i].bottomLeftCoord[1] *= parent->GetGraphicsView()->GetScalarHeightPixel();
         QSharedPointer<Sprite> sprite(new Sprite(spriteMesh.sprites[i]));
         QString connectedJointName = skeleton.GetJoint(spriteMesh.sprites[i].connectedJointIndex).name;
         sprite->parentJoint = parent->GetGraphicsView()->GetJointGraphicsItemByName(connectedJointName)->GetJoint();

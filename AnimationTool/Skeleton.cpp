@@ -40,32 +40,21 @@ Joint Skeleton::GetJoint(int index) const
 	return mJoints[index];
 }
 
-Vector3D Skeleton::CalculateJointPosInSkeletonSpace(int jointIndex)
-{
-	Joint& joint = mJoints[jointIndex];
-    Vector3D position = joint.position;
-
-	while (joint.parentIndex != -1)
-	{
-		joint = mJoints[joint.parentIndex];
-		position += joint.position;
-	}
-    position += mJoints[0].position;
-
-	return position;
-}
-
 Vector3D Skeleton::CalculateJointPosInSkeletonSpace(int jointIndex) const
 {
-	Joint joint = mJoints[jointIndex];
+    Joint joint = mJoints[jointIndex];
     Vector3D position = joint.position;
 
-	while (joint.parentIndex != -1)
-	{
-		joint = mJoints[joint.parentIndex];
-		position += joint.position;
-	}
-	position += mJoints[0].position;
+    if(jointIndex == 0)
+    {
+        return position;
+    }
+
+    while (joint.parentIndex != -1)
+    {
+        joint = mJoints[joint.parentIndex];
+        position += joint.position;
+    }
 
 	return position;
 }

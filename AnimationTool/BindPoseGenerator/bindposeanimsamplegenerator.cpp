@@ -11,9 +11,8 @@
 #include "Sprite.h"
 
 BindPoseAnimSampleGenerator::BindPoseAnimSampleGenerator(QWidget *parent)
-    : QWidget(parent),undoStack(new QUndoStack(this))
+    : QWidget(parent)
 {
-    CreateActions();
 }
 
 void BindPoseAnimSampleGenerator::AddJoint(QSharedPointer<Joint> joint)
@@ -54,27 +53,12 @@ void BindPoseAnimSampleGenerator::SetSpriteName(const Sprite &sprite, QString na
 
 void BindPoseAnimSampleGenerator::ConnectSpinboxSignals()
 {
-    connect(widthPixelSpinBox,SIGNAL(valueChanged(int)),graphicsView,SLOT(setWidthPixel(int)));
-    connect(heightPixelSpinBox,SIGNAL(valueChanged(int)),graphicsView,SLOT(setHeightPixel(int)));
+    connect(widthPixelSpinBox,SIGNAL(valueChanged(int)),graphicsView,SLOT(SetWidthPixel(int)));
+    connect(heightPixelSpinBox,SIGNAL(valueChanged(int)),graphicsView,SLOT(SetHeightPixel(int)));
 }
 
 BindPoseAnimSampleGeneratorGraphicsView *BindPoseAnimSampleGenerator::GetGraphicsView()
 {
     return graphicsView;
-}
-
-
-
-
-//Maybe consider AddJoint for redo & RemoveJoint for undo just for AddJoint and same for RemoveJoint to support joint Removal from Skeleton Hierarchy.
-
-void BindPoseAnimSampleGenerator::CreateActions()
-{
-    undoAction = new QAction(tr("&Undo"),this);
-    redoAction = new QAction(tr("&Redo"),this);
-    undoAction->setShortcut(QKeySequence::Undo);
-    redoAction->setShortcut(QKeySequence::Redo);
-    addAction(undoAction);
-    addAction(redoAction);
 }
 

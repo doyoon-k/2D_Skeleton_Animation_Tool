@@ -9,7 +9,7 @@ struct Sprite;
 class SpriteGraphicsItem : public QGraphicsItem
 {
 public:
-    SpriteGraphicsItem(QSharedPointer<Sprite> sprite);
+    SpriteGraphicsItem(QSharedPointer<Sprite> sprite,bool isForBindPoseGenerator = true);
     void paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget = nullptr)override;
     void mousePressEvent(QGraphicsSceneMouseEvent* event)override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event)override;
@@ -19,6 +19,7 @@ public:
 private:
     void KeepSpriteInJointBoundingArea();
     QSharedPointer<Sprite> sprite;
+    bool isForBindPoseGenerator;
 };
 
 #endif // SPRITEGRAPHICSITEM_H

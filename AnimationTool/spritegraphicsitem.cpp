@@ -7,8 +7,8 @@
 #include "Vector3D.h"
 #include "Sprite.h"
 
-SpriteGraphicsItem::SpriteGraphicsItem(QSharedPointer<Sprite> sprite)
-    :sprite(sprite)
+SpriteGraphicsItem::SpriteGraphicsItem(QSharedPointer<Sprite> sprite,bool isForBindPoseGenerator)
+    :sprite(sprite),isForBindPoseGenerator(isForBindPoseGenerator)
 {
     setZValue(TextureZValue);
     setPos(sprite->bottomLeftCoord[0],sprite->bottomLeftCoord[1]);
@@ -18,7 +18,10 @@ SpriteGraphicsItem::SpriteGraphicsItem(QSharedPointer<Sprite> sprite)
 
 void SpriteGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    KeepSpriteInJointBoundingArea();
+    if(isForBindPoseGenerator)
+    {
+        KeepSpriteInJointBoundingArea();
+    }
     painter->setPen(QColor().black());
     const QRectF& target = QRectF(0,0,sprite->image.width(),sprite->image.height());
     const QRectF& source = QRectF(0,0,sprite->image.width(),sprite->image.height());
@@ -44,15 +47,18 @@ void SpriteGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void SpriteGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseMoveEvent(event);
-    KeepSpriteInJointBoundingArea();
-    BindPoseAnimSampleGeneratorGraphicsView* view = static_cast<BindPoseAnimSampleGeneratorGraphicsView*>(scene()->views()[0]);
-    int widthPixel = view->GetWidthPixel();
-    int heightPixel = view->GetHeightPixel();
-    float onePixelWidth = static_cast<float>(view->viewport()->width())/static_cast<float>(widthPixel);
-    float onePixelHeight = static_cast<float>(view->viewport()->height()/static_cast<float>(heightPixel));
-    float newPosX = pos().rx()-fmod(pos().rx(),onePixelWidth);
-    float newPosY = pos().ry()-fmod(pos().ry(),onePixelHeight);
-    setPos(std::clamp(newPosX,0.f,static_cast<float>(view->viewport()->width())),std::clamp(newPosY,0.f,static_cast<float>(view->viewport()->height()-sprite->image.height()*onePixelHeight)));
+    if(isForBindPoseGenerator)
+    {
+        KeepSpriteInJointBoundingArea();
+        BindPoseAnimSampleGeneratorGraphicsView* view = static_cast<BindPoseAnimSampleGeneratorGraphicsView*>(scene()->views()[0]);
+        int widthPixel = view->GetWidthPixel();
+        int heightPixel = view->GetHeightPixel();
+        float onePixelWidth = static_cast<float>(view->viewport()->width())/static_cast<float>(widthPixel);
+        float onePixelHeight = static_cast<float>(view->viewport()->height()/static_cast<float>(heightPixel));
+        float newPosX = pos().rx()-fmod(pos().rx(),onePixelWidth);
+        float newPosY = pos().ry()-fmod(pos().ry(),onePixelHeight);
+        setPos(std::clamp(newPosX,0.f,static_cast<float>(view->viewport()->width())),std::clamp(newPosY,0.f,static_cast<float>(view->viewport()->height()-sprite->image.height()*onePixelHeight)));
+    }
     update();
 }
 

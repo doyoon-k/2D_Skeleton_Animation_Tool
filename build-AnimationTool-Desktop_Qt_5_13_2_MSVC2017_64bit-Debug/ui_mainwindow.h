@@ -29,6 +29,7 @@
 #include "BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.h"
 #include "BindPoseGenerator/skeletonhierarchytreewidget.h"
 #include "BindPoseGenerator/spritelistwidget.h"
+#include "animsampleeditorgraphicsview.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -37,9 +38,8 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QGridLayout *gridLayout;
+    QPushButton *closeButton;
     QTabWidget *animSampleClipBindposeTab;
-    QWidget *animationSampleEditorWidget;
-    QWidget *animationClipEditorWidget;
     BindPoseAnimSampleGenerator *bindPoseGeneratorWidget;
     QGridLayout *gridLayout_2;
     QSlider *spriteOpacitySlider;
@@ -58,7 +58,12 @@ public:
     SkeletonHierarchyTreeWidget *skeletonHierarchyTree;
     QPushButton *saveBindPoseButton;
     QLabel *WidthPixelLabel;
-    QPushButton *closeButton;
+    QWidget *animationSampleEditorWidget;
+    QGridLayout *gridLayout_3;
+    AnimSampleEditorGraphicsView *AnimSampleEditorGraphicView;
+    QPushButton *LoadPushButton;
+    QPushButton *SavePushButton;
+    QWidget *animationClipEditorWidget;
     QStatusBar *statusbar;
     QMenuBar *menubar;
     QMenu *menuAnimationTool;
@@ -68,7 +73,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1000, 620);
+        MainWindow->resize(1000, 626);
         QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -81,14 +86,14 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        closeButton = new QPushButton(centralwidget);
+        closeButton->setObjectName(QString::fromUtf8("closeButton"));
+        closeButton->setMaximumSize(QSize(100, 100));
+
+        gridLayout->addWidget(closeButton, 2, 0, 1, 1);
+
         animSampleClipBindposeTab = new QTabWidget(centralwidget);
         animSampleClipBindposeTab->setObjectName(QString::fromUtf8("animSampleClipBindposeTab"));
-        animationSampleEditorWidget = new QWidget();
-        animationSampleEditorWidget->setObjectName(QString::fromUtf8("animationSampleEditorWidget"));
-        animSampleClipBindposeTab->addTab(animationSampleEditorWidget, QString());
-        animationClipEditorWidget = new QWidget();
-        animationClipEditorWidget->setObjectName(QString::fromUtf8("animationClipEditorWidget"));
-        animSampleClipBindposeTab->addTab(animationClipEditorWidget, QString());
         bindPoseGeneratorWidget = new BindPoseAnimSampleGenerator();
         bindPoseGeneratorWidget->setObjectName(QString::fromUtf8("bindPoseGeneratorWidget"));
         gridLayout_2 = new QGridLayout(bindPoseGeneratorWidget);
@@ -206,14 +211,33 @@ public:
         gridLayout_2->addWidget(WidthPixelLabel, 1, 2, 1, 1);
 
         animSampleClipBindposeTab->addTab(bindPoseGeneratorWidget, QString());
+        animationSampleEditorWidget = new QWidget();
+        animationSampleEditorWidget->setObjectName(QString::fromUtf8("animationSampleEditorWidget"));
+        gridLayout_3 = new QGridLayout(animationSampleEditorWidget);
+        gridLayout_3->setSpacing(6);
+        gridLayout_3->setContentsMargins(11, 11, 11, 11);
+        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+        AnimSampleEditorGraphicView = new AnimSampleEditorGraphicsView(animationSampleEditorWidget);
+        AnimSampleEditorGraphicView->setObjectName(QString::fromUtf8("AnimSampleEditorGraphicView"));
+
+        gridLayout_3->addWidget(AnimSampleEditorGraphicView, 0, 0, 1, 2);
+
+        LoadPushButton = new QPushButton(animationSampleEditorWidget);
+        LoadPushButton->setObjectName(QString::fromUtf8("LoadPushButton"));
+
+        gridLayout_3->addWidget(LoadPushButton, 1, 0, 1, 1);
+
+        SavePushButton = new QPushButton(animationSampleEditorWidget);
+        SavePushButton->setObjectName(QString::fromUtf8("SavePushButton"));
+
+        gridLayout_3->addWidget(SavePushButton, 1, 1, 1, 1);
+
+        animSampleClipBindposeTab->addTab(animationSampleEditorWidget, QString());
+        animationClipEditorWidget = new QWidget();
+        animationClipEditorWidget->setObjectName(QString::fromUtf8("animationClipEditorWidget"));
+        animSampleClipBindposeTab->addTab(animationClipEditorWidget, QString());
 
         gridLayout->addWidget(animSampleClipBindposeTab, 4, 0, 1, 1);
-
-        closeButton = new QPushButton(centralwidget);
-        closeButton->setObjectName(QString::fromUtf8("closeButton"));
-        closeButton->setMaximumSize(QSize(100, 100));
-
-        gridLayout->addWidget(closeButton, 2, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
@@ -233,7 +257,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        animSampleClipBindposeTab->setCurrentIndex(2);
+        animSampleClipBindposeTab->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -242,8 +266,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        animSampleClipBindposeTab->setTabText(animSampleClipBindposeTab->indexOf(animationSampleEditorWidget), QCoreApplication::translate("MainWindow", "AnimationSample Editor", nullptr));
-        animSampleClipBindposeTab->setTabText(animSampleClipBindposeTab->indexOf(animationClipEditorWidget), QCoreApplication::translate("MainWindow", "AnimationClip Editor", nullptr));
+        closeButton->setText(QCoreApplication::translate("MainWindow", "Close", nullptr));
         loadImagePushButton->setText(QCoreApplication::translate("MainWindow", "Load Image", nullptr));
         loadBindPoseButton->setText(QCoreApplication::translate("MainWindow", "Load BindPose", nullptr));
         spriteOpacityLabel->setText(QCoreApplication::translate("MainWindow", "Sprite Opacity", nullptr));
@@ -254,7 +277,10 @@ public:
         saveBindPoseButton->setText(QCoreApplication::translate("MainWindow", "Save BindPose", nullptr));
         WidthPixelLabel->setText(QCoreApplication::translate("MainWindow", "Width Pixel", nullptr));
         animSampleClipBindposeTab->setTabText(animSampleClipBindposeTab->indexOf(bindPoseGeneratorWidget), QCoreApplication::translate("MainWindow", "BindPose Generator", nullptr));
-        closeButton->setText(QCoreApplication::translate("MainWindow", "Close", nullptr));
+        LoadPushButton->setText(QCoreApplication::translate("MainWindow", "Load AnimSample", nullptr));
+        SavePushButton->setText(QCoreApplication::translate("MainWindow", "Save AnimSample", nullptr));
+        animSampleClipBindposeTab->setTabText(animSampleClipBindposeTab->indexOf(animationSampleEditorWidget), QCoreApplication::translate("MainWindow", "AnimationSample Editor", nullptr));
+        animSampleClipBindposeTab->setTabText(animSampleClipBindposeTab->indexOf(animationClipEditorWidget), QCoreApplication::translate("MainWindow", "AnimationClip Editor", nullptr));
         menuAnimationTool->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
     } // retranslateUi

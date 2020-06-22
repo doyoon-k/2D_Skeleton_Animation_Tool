@@ -24,9 +24,3 @@ JointTreeWidgetItem::JointTreeWidgetItem(const JointTreeWidgetItem &other)
         addChild(otherChild);
     }
 }
-
-
-void JointTreeWidgetItem::onDropEvent(JointTreeWidgetItem *newParent)
-{
-
-}

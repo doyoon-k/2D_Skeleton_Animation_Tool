@@ -31,6 +31,14 @@ private slots:
     
     void on_loadBindPoseButton_clicked();
 
+    void on_widthPixelSpinBox_valueChanged(int arg1);
+
+    void on_heightPixelSpinBox_valueChanged(int arg1);
+
+    void on_LoadPushButton_clicked();
+
+    void on_SavePushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     inline static QMap<QString,QString> spriteNamePathPairs;

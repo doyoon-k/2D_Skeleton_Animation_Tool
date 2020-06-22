@@ -3,7 +3,6 @@
 #define BINDPOSEANIMSAMPLEGENERATOR_H
 
 #include <QWidget>
-#include <QUndoStack>
 #include <QFile>
 #include "BindPoseGenerator/bindposeanimsamplegeneratorgraphicsview.h"
 #include "BindPoseGenerator/spritelistwidget.h"
@@ -39,7 +38,6 @@ signals:
 
 public slots:
 private:
-    void CreateActions();
 
     BindPoseAnimSampleGeneratorGraphicsView* graphicsView;
     SpriteListWidget* spriteListWidget;
@@ -47,9 +45,6 @@ private:
     QListWidget* imagesListWidget;
     QSpinBox* widthPixelSpinBox;
     QSpinBox* heightPixelSpinBox;
-    QAction* undoAction;
-    QAction* redoAction;
-    QUndoStack* undoStack;
 
 //    QVector<QString> imagesPath;
 };

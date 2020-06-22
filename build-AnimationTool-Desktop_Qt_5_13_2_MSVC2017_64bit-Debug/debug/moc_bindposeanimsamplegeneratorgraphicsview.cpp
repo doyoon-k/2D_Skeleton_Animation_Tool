@@ -36,15 +36,15 @@ QT_MOC_LITERAL(0, 0, 39), // "BindPoseAnimSampleGeneratorGr..."
 QT_MOC_LITERAL(1, 40, 41), // "SignalAddJointToAnimSampleGen..."
 QT_MOC_LITERAL(2, 82, 0), // ""
 QT_MOC_LITERAL(3, 83, 42), // "SignalAddSpriteToAnimSampleGe..."
-QT_MOC_LITERAL(4, 126, 13), // "setWidthPixel"
+QT_MOC_LITERAL(4, 126, 13), // "SetWidthPixel"
 QT_MOC_LITERAL(5, 140, 3), // "val"
-QT_MOC_LITERAL(6, 144, 14) // "setHeightPixel"
+QT_MOC_LITERAL(6, 144, 14) // "SetHeightPixel"
 
     },
     "BindPoseAnimSampleGeneratorGraphicsView\0"
     "SignalAddJointToAnimSampleGeneratorWidget\0"
     "\0SignalAddSpriteToAnimSampleGeneratorWidget\0"
-    "setWidthPixel\0val\0setHeightPixel"
+    "SetWidthPixel\0val\0SetHeightPixel"
 };
 #undef QT_MOC_LITERAL
 
@@ -84,8 +84,8 @@ void BindPoseAnimSampleGeneratorGraphicsView::qt_static_metacall(QObject *_o, QM
         switch (_id) {
         case 0: _t->SignalAddJointToAnimSampleGeneratorWidget(); break;
         case 1: _t->SignalAddSpriteToAnimSampleGeneratorWidget(); break;
-        case 2: _t->setWidthPixel((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 3: _t->setHeightPixel((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 2: _t->SetWidthPixel((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 3: _t->SetHeightPixel((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }

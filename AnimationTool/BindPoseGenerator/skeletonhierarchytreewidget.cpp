@@ -40,8 +40,21 @@ void SkeletonHierarchyTreeWidget::keyPressEvent(QKeyEvent *event)
 
     if(event->key() == Qt::Key_Delete)
     {
-        //자식노드의 조인트데이타까지 재귀적으로 호출
-        parent->RemoveJoint(item->jointData);
+        std::function<void(JointTreeWidgetItem*)> removeJoint = [&](JointTreeWidgetItem* item)
+        {
+            int childCount = item->childCount();
+            if(childCount != 0)
+            {
+               for(int i = 0; i < childCount; i++)
+               {
+                   removeJoint(static_cast<JointTreeWidgetItem*>(item->child(0)));
+               }
+            }
+            parent->RemoveJoint(item->jointData);
+        };
+
+        removeJoint(item);
+
         return;
     }
     else if(event->key() == Qt::Key_Backspace && text.size()> 0)
@@ -81,13 +94,6 @@ Skeleton SkeletonHierarchyTreeWidget::GetSkeletonInstance(QString poseName)
     {
         //파라미터로 받은 조인트를 스켈레톤 조인트 벡터에 넣고 자식 조인트가 있으면 가져와서 loadSkeleton함수에 넘겨서 재귀로 호출해주고 없으면 리턴하는 로직.
         jointItem->jointData->parentIndex = parentIndex;
-        if(parentIndex != -1)
-        {
-            JointGraphicsItem* parentJointItem = parent->GetGraphicsView()->GetJointGraphicsItemByName(skeleton.mJoints[parentIndex].name);
-            jointItem->jointData->position -= parentJointItem->GetJoint()->position;
-        }
-        jointItem->jointData->position[0] /= parent->GetGraphicsView()->GetScalarWidthPixel();
-        jointItem->jointData->position[1] /= parent->GetGraphicsView()->GetScalarHeightPixel();
         skeleton.AddJoint(*(jointItem->jointData));
         nJoints++;
         int currIndex = nJoints;
@@ -102,14 +108,40 @@ Skeleton SkeletonHierarchyTreeWidget::GetSkeletonInstance(QString poseName)
     };
     loadSkeleton(rootJointItem,-1);
     skeleton.mNJoints = nJoints;
+    Skeleton tempSkeleton(skeleton);
+    for(int i = 0; i < skeleton.mNJoints; i++)
+    {
+        if(i != 0)
+        {
+            skeleton.mJoints[i].position = tempSkeleton.mJoints[i].position - tempSkeleton.mJoints[tempSkeleton.mJoints[i].parentIndex].position;
+        }
+    }
+    for(int i = 0; i < skeleton.mNJoints; i++)
+    {
+        qreal scalarW = parent->GetGraphicsView()->GetScalarWidthPixel();
+        qreal scalarH = parent->GetGraphicsView()->GetScalarHeightPixel();
+        skeleton.mJoints[i].position[0] /= scalarW;
+        skeleton.mJoints[i].position[1] /= scalarH;
+    }
+
     return skeleton;
 }
 
-void SkeletonHierarchyTreeWidget::LoadFromSkeleton(const Skeleton &skeleton)
+void SkeletonHierarchyTreeWidget::LoadFromSkeleton(Skeleton &skeleton)
 {
     for(int i = 0; i < skeleton.mNJoints; i++)
     {
-        parent->AddJoint(QSharedPointer<Joint>(new Joint(skeleton.mJoints[i])));
+        qreal scalarW = parent->GetGraphicsView()->GetScalarWidthPixel();
+        qreal scalarH = parent->GetGraphicsView()->GetScalarHeightPixel();
+        skeleton.mJoints[i].position[0] *= scalarW;
+        skeleton.mJoints[i].position[1] *= scalarH;
+    }
+
+    for(int i = 0; i < skeleton.mNJoints; i++)
+    {
+        Joint joint = skeleton.mJoints[i];
+        joint.position = skeleton.CalculateJointPosInSkeletonSpace(i);
+        parent->AddJoint(QSharedPointer<Joint>(new Joint(joint)));
     }
 
     for(int i = skeleton.mNJoints - 1; i > 0; i--)

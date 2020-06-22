@@ -19,7 +19,7 @@ public:
     void dropEvent(QDropEvent* event) override;
     void mousePressEvent(QMouseEvent* event) override;
     Skeleton GetSkeletonInstance(QString poseName);
-    void LoadFromSkeleton(const Skeleton& skeleton);
+    void LoadFromSkeleton(Skeleton& skeleton);
 private:
     BindPoseAnimSampleGenerator* parent;
     JointTreeWidgetItem* draggingItem = nullptr;

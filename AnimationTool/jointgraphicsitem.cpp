@@ -7,8 +7,8 @@
 
 #define RADIUS 10.0
 
-JointGraphicsItem::JointGraphicsItem(QSharedPointer<Joint> joint)
-    :QGraphicsItem(),joint(joint)
+JointGraphicsItem::JointGraphicsItem(QSharedPointer<Joint> joint,bool isForBindPoseGenerator)
+    :QGraphicsItem(),joint(joint),isForBindPoseGenerator(isForBindPoseGenerator)
 {
     setZValue(JointZValue);
     setPos(joint->position[0],joint->position[1]);
@@ -40,14 +40,17 @@ void JointGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void JointGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseMoveEvent(event);
-    BindPoseAnimSampleGeneratorGraphicsView* view = static_cast<BindPoseAnimSampleGeneratorGraphicsView*>(scene()->views()[0]);
-    int widthPixel = view->GetWidthPixel();
-    int heightPixel = view->GetHeightPixel();
-    float onePixelWidth = static_cast<float>(view->viewport()->width())/static_cast<float>(widthPixel);
-    float onePixelHeight = static_cast<float>(view->viewport()->height()/static_cast<float>(heightPixel));
-    float newPosX = pos().rx()-fmod(pos().rx(),onePixelWidth);
-    float newPosY = pos().ry()-fmod(pos().ry(),onePixelHeight);
-    setPos(std::clamp(newPosX,0.f,static_cast<float>(view->viewport()->width())),std::clamp(newPosY,0.f,static_cast<float>(view->viewport()->height())));
+    if(isForBindPoseGenerator)
+    {
+        BindPoseAnimSampleGeneratorGraphicsView* view = static_cast<BindPoseAnimSampleGeneratorGraphicsView*>(scene()->views()[0]);
+        int widthPixel = view->GetWidthPixel();
+        int heightPixel = view->GetHeightPixel();
+        float onePixelWidth = static_cast<float>(view->viewport()->width())/static_cast<float>(widthPixel);
+        float onePixelHeight = static_cast<float>(view->viewport()->height()/static_cast<float>(heightPixel));
+        float newPosX = pos().rx()-fmod(pos().rx(),onePixelWidth);
+        float newPosY = pos().ry()-fmod(pos().ry(),onePixelHeight);
+        setPos(std::clamp(newPosX,0.f,static_cast<float>(view->viewport()->width())),std::clamp(newPosY,0.f,static_cast<float>(view->viewport()->height())));
+    }
     update();
 }
 
