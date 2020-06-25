@@ -48,8 +48,6 @@ void BindPoseAnimSampleGeneratorGraphicsView::showEvent(QShowEvent *event)
     scene->setSceneRect(0,0,this->width(),this->height());
     QPen pen(QColor(255,0,0));
     pen.setWidth(1);
-    skeletonSpaceOrigin = scene->addRect(0,0,qreal( viewport()->width())/qreal(widthPixel),qreal( viewport()->height())/qreal(heightPixel),pen);
-    skeletonSpaceOrigin->setPos(0,0);
 }
 
 void BindPoseAnimSampleGeneratorGraphicsView::resizeEvent(QResizeEvent *event)
@@ -69,11 +67,6 @@ void BindPoseAnimSampleGeneratorGraphicsView::CreateActionMenu()
 
 void BindPoseAnimSampleGeneratorGraphicsView::RescaleGraphicsItems()
 {
-    QTransform transform;
-    qreal scaleX = (viewport()->width()/qreal(widthPixel))/skeletonSpaceOrigin->boundingRect().width();
-    qreal scaleY = (viewport()->height()/qreal(heightPixel))/skeletonSpaceOrigin->boundingRect().height();
-    transform.scale(scaleX,scaleY);
-    skeletonSpaceOrigin->setTransform(transform);
     for(SpriteGraphicsItem* spriteItem : spriteGraphicsItems)
     {
         QTransform transform;
@@ -179,13 +172,13 @@ int BindPoseAnimSampleGeneratorGraphicsView::GetHeightPixel() const
     return heightPixel;
 }
 
-qreal BindPoseAnimSampleGeneratorGraphicsView::GetScalarWidthPixel()
+qreal BindPoseAnimSampleGeneratorGraphicsView::GetScalarWidthPixel() const
 {
     qreal scaleX = (qreal(viewport()->width())/qreal(widthPixel));
     return scaleX;
 }
 
-qreal BindPoseAnimSampleGeneratorGraphicsView::GetScalarHeightPixel()
+qreal BindPoseAnimSampleGeneratorGraphicsView::GetScalarHeightPixel() const
 {
     qreal scaleY = (qreal(viewport()->height())/qreal(heightPixel));
     return scaleY;
@@ -251,7 +244,6 @@ void BindPoseAnimSampleGeneratorGraphicsView::SignalAddSpriteToAnimSampleGenerat
         MainWindow::AddSpriteNamePathPair(spriteName,imagePath);
         qDebug()<<"sprite created!"<<'\n';
     }
-//    parent->AddSprite(sprite);
 }
 
 void BindPoseAnimSampleGeneratorGraphicsView::SetWidthPixel(int val)

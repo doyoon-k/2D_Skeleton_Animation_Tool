@@ -48,6 +48,9 @@ OBJECTS_DIR   = release
 ####### Files
 
 SOURCES       = ..\AnimationTool\AnimationSample.cpp \
+		..\AnimationTool\animationclipeditor.cpp \
+		..\AnimationTool\animationclipeditorgraphicsview.cpp \
+		..\AnimationTool\animationsamplelistwidgetitem.cpp \
 		..\AnimationTool\animsampleeditorgraphicsview.cpp \
 		..\AnimationTool\BindPoseGenerator\jointtreewidgetitem.cpp \
 		..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.cpp \
@@ -67,6 +70,7 @@ SOURCES       = ..\AnimationTool\AnimationSample.cpp \
 		..\AnimationTool\mainwindow.cpp \
 		..\AnimationTool\spritegraphicsitem.cpp \
 		..\AnimationTool\spritemesh.cpp release\qrc_resources.cpp \
+		release\moc_animationclipeditor.cpp \
 		release\moc_skeletonhierarchytreewidget.cpp \
 		release\moc_spritecreatedialog.cpp \
 		release\moc_spritelistwidget.cpp \
@@ -74,6 +78,9 @@ SOURCES       = ..\AnimationTool\AnimationSample.cpp \
 		release\moc_bindposeanimsamplegeneratorgraphicsview.cpp \
 		release\moc_mainwindow.cpp
 OBJECTS       = release\AnimationSample.obj \
+		release\animationclipeditor.obj \
+		release\animationclipeditorgraphicsview.obj \
+		release\animationsamplelistwidgetitem.obj \
 		release\animsampleeditorgraphicsview.obj \
 		release\jointtreewidgetitem.obj \
 		release\skeletonhierarchytreewidget.obj \
@@ -94,6 +101,7 @@ OBJECTS       = release\AnimationSample.obj \
 		release\spritegraphicsitem.obj \
 		release\spritemesh.obj \
 		release\qrc_resources.obj \
+		release\moc_animationclipeditor.obj \
 		release\moc_skeletonhierarchytreewidget.obj \
 		release\moc_spritecreatedialog.obj \
 		release\moc_spritelistwidget.obj \
@@ -103,6 +111,9 @@ OBJECTS       = release\AnimationSample.obj \
 
 DIST          =  ..\AnimationTool\AnimationClip.h \
 		..\AnimationTool\AnimationSample.h \
+		..\AnimationTool\animationclipeditor.h \
+		..\AnimationTool\animationclipeditorgraphicsview.h \
+		..\AnimationTool\animationsamplelistwidgetitem.h \
 		..\AnimationTool\animsampleeditorgraphicsview.h \
 		..\AnimationTool\BindPoseGenerator\jointtreewidgetitem.h \
 		..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.h \
@@ -122,6 +133,9 @@ DIST          =  ..\AnimationTool\AnimationClip.h \
 		..\AnimationTool\mathLib.h \
 		..\AnimationTool\spritegraphicsitem.h \
 		..\AnimationTool\zorder.h ..\AnimationTool\AnimationSample.cpp \
+		..\AnimationTool\animationclipeditor.cpp \
+		..\AnimationTool\animationclipeditorgraphicsview.cpp \
+		..\AnimationTool\animationsamplelistwidgetitem.cpp \
 		..\AnimationTool\animsampleeditorgraphicsview.cpp \
 		..\AnimationTool\BindPoseGenerator\jointtreewidgetitem.cpp \
 		..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.cpp \
@@ -237,7 +251,8 @@ all: Makefile.Release  release\AnimationTool.exe
 
 release\AnimationTool.exe: E:\QT\5.13.2\msvc2017_64\lib\Qt5Widgets.lib E:\QT\5.13.2\msvc2017_64\lib\Qt5Gui.lib E:\QT\5.13.2\msvc2017_64\lib\Qt5Core.lib E:\QT\5.13.2\msvc2017_64\lib\qtmain.lib ui_spritecreatedialog.h ui_mainwindow.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-release\AnimationSample.obj release\animsampleeditorgraphicsview.obj release\jointtreewidgetitem.obj release\skeletonhierarchytreewidget.obj release\spritecreatedialog.obj release\spritelistwidget.obj release\Joint.obj release\Matrix3X3.obj release\Skeleton.obj release\Sprite.obj release\Vector3D.obj release\bindposeanimsamplegenerator.obj release\bindposeanimsamplegeneratorgraphicsview.obj release\animationclip.obj release\animsampleeditorgraphicsview.obj release\jointgraphicsitem.obj release\main.obj release\mainwindow.obj release\spritegraphicsitem.obj release\spritemesh.obj release\qrc_resources.obj release\moc_skeletonhierarchytreewidget.obj release\moc_spritecreatedialog.obj release\moc_spritelistwidget.obj release\moc_bindposeanimsamplegenerator.obj release\moc_bindposeanimsamplegeneratorgraphicsview.obj release\moc_mainwindow.obj
+release\AnimationSample.obj release\animationclipeditor.obj release\animationclipeditorgraphicsview.obj release\animationsamplelistwidgetitem.obj release\animsampleeditorgraphicsview.obj release\jointtreewidgetitem.obj release\skeletonhierarchytreewidget.obj release\spritecreatedialog.obj release\spritelistwidget.obj release\Joint.obj release\Matrix3X3.obj release\Skeleton.obj release\Sprite.obj release\Vector3D.obj release\bindposeanimsamplegenerator.obj release\bindposeanimsamplegeneratorgraphicsview.obj release\animationclip.obj release\animsampleeditorgraphicsview.obj release\jointgraphicsitem.obj release\main.obj release\mainwindow.obj release\spritegraphicsitem.obj release\spritemesh.obj release\qrc_resources.obj release\moc_animationclipeditor.obj release\moc_skeletonhierarchytreewidget.obj release\moc_spritecreatedialog.obj release\moc_spritelistwidget.obj release\moc_bindposeanimsamplegenerator.obj release\moc_bindposeanimsamplegeneratorgraphicsview.obj
+release\moc_mainwindow.obj
 $(LIBS)
 <<
 
@@ -247,10 +262,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) AnimationTool.zip $(SOURCES) $(DIST) ..\AnimationTool\AnimationTool.pro E:\QT\5.13.2\msvc2017_64\mkspecs\features\spec_pre.prf E:\QT\5.13.2\msvc2017_64\mkspecs\common\angle.conf E:\QT\5.13.2\msvc2017_64\mkspecs\common\windows-desktop.conf E:\QT\5.13.2\msvc2017_64\mkspecs\features\win32\windows_vulkan_sdk.prf E:\QT\5.13.2\msvc2017_64\mkspecs\common\windows-vulkan.conf E:\QT\5.13.2\msvc2017_64\mkspecs\common\msvc-desktop.conf E:\QT\5.13.2\msvc2017_64\mkspecs\qconfig.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3danimation.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3danimation_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dcore.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dcore_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dextras.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dextras_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dinput.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dinput_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dlogic.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dlogic_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquick.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquick_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3drender.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3drender_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_accessibility_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axbase.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axbase_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axcontainer.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axcontainer_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axserver.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_bodymovin_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_charts.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_charts_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_core.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_core_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_datavisualization.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_datavisualization_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_dbus.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_dbus_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_designer.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_designer_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_designercomponents_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_edid_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_egl_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_fb_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_gamepad.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_gamepad_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_gui.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_gui_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_help.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_help_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_location.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_location_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_multimedia.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_multimedia_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_network.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_network_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_networkauth.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_networkauth_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_nfc.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_nfc_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_opengl.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_opengl_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_openglextensions.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_openglextensions_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_packetprotocol_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_positioning.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_positioning_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_positioningquick.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_positioningquick_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_printsupport.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_printsupport_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_purchasing.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_purchasing_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qml.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qml_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qmldebug_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qmldevtools_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qmltest.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qmltest_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quick.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quick_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickparticles_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickshapes_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_repparser.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_repparser_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_script.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_script_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_scripttools.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_scripttools_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_scxml.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_scxml_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_sensors.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_sensors_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_serialbus.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_serialbus_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_serialport.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_serialport_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_sql.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_sql_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_svg.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_svg_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_testlib.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_testlib_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_texttospeech.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_texttospeech_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_theme_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_uiplugin.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_uitools.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_uitools_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_virtualkeyboard.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_vulkan_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webchannel.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webchannel_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webengine.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webengine_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webenginecore.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webenginecore_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_websockets.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_websockets_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webview.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webview_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_widgets.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_widgets_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_winextras.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_winextras_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_xml.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_xml_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_zlib_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\features\qt_functions.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\qt_config.prf E:\QT\5.13.2\msvc2017_64\mkspecs\win32-msvc\qmake.conf E:\QT\5.13.2\msvc2017_64\mkspecs\features\spec_post.prf .qmake.stash E:\QT\5.13.2\msvc2017_64\mkspecs\features\exclusive_builds.prf E:\QT\5.13.2\msvc2017_64\mkspecs\common\msvc-version.conf E:\QT\5.13.2\msvc2017_64\mkspecs\features\toolchain.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\default_pre.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\win32\default_pre.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\resolve_config.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\exclusive_builds_post.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\default_post.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\build_pass.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\qml_debug.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\precompile_header.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\warn_on.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\qt.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\resources.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\moc.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\win32\opengl.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\uic.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\qmake_use.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\file_copies.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\win32\windows.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\testcase_targets.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\exceptions.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\yacc.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\lex.prf ..\AnimationTool\AnimationTool.pro ..\AnimationTool\resources.qrc E:\QT\5.13.2\msvc2017_64\lib\Qt5Widgets.prl E:\QT\5.13.2\msvc2017_64\lib\Qt5Gui.prl E:\QT\5.13.2\msvc2017_64\lib\Qt5Core.prl E:\QT\5.13.2\msvc2017_64\lib\qtmain.prl   ..\AnimationTool\resources.qrc E:\QT\5.13.2\msvc2017_64\mkspecs\features\data\dummy.cpp ..\AnimationTool\AnimationClip.h ..\AnimationTool\AnimationSample.h ..\AnimationTool\animsampleeditorgraphicsview.h ..\AnimationTool\BindPoseGenerator\jointtreewidgetitem.h ..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.h ..\AnimationTool\BindPoseGenerator\spritecreatedialog.h ..\AnimationTool\BindPoseGenerator\spritelistwidget.h ..\AnimationTool\Joint.h ..\AnimationTool\Matrix3X3.h ..\AnimationTool\Skeleton.h ..\AnimationTool\Sprite.h ..\AnimationTool\SpriteMesh.h ..\AnimationTool\Vector3D.h ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegenerator.h ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegeneratorgraphicsview.h ..\AnimationTool\animsampleeditorgraphicsview.h ..\AnimationTool\jointgraphicsitem.h ..\AnimationTool\mainwindow.h ..\AnimationTool\mathLib.h ..\AnimationTool\spritegraphicsitem.h ..\AnimationTool\zorder.h  ..\AnimationTool\AnimationSample.cpp ..\AnimationTool\animsampleeditorgraphicsview.cpp ..\AnimationTool\BindPoseGenerator\jointtreewidgetitem.cpp ..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.cpp ..\AnimationTool\BindPoseGenerator\spritecreatedialog.cpp ..\AnimationTool\BindPoseGenerator\spritelistwidget.cpp ..\AnimationTool\Joint.cpp ..\AnimationTool\Matrix3X3.cpp ..\AnimationTool\Skeleton.cpp ..\AnimationTool\Sprite.cpp ..\AnimationTool\Vector3D.cpp ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegenerator.cpp ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegeneratorgraphicsview.cpp ..\AnimationTool\animationclip.cpp ..\AnimationTool\animsampleeditorgraphicsview.cpp ..\AnimationTool\jointgraphicsitem.cpp ..\AnimationTool\main.cpp ..\AnimationTool\mainwindow.cpp ..\AnimationTool\spritegraphicsitem.cpp ..\AnimationTool\spritemesh.cpp ..\AnimationTool\BindPoseGenerator\spritecreatedialog.ui ..\AnimationTool\mainwindow.ui    
+	$(ZIP) AnimationTool.zip $(SOURCES) $(DIST) ..\AnimationTool\AnimationTool.pro E:\QT\5.13.2\msvc2017_64\mkspecs\features\spec_pre.prf E:\QT\5.13.2\msvc2017_64\mkspecs\common\angle.conf E:\QT\5.13.2\msvc2017_64\mkspecs\common\windows-desktop.conf E:\QT\5.13.2\msvc2017_64\mkspecs\features\win32\windows_vulkan_sdk.prf E:\QT\5.13.2\msvc2017_64\mkspecs\common\windows-vulkan.conf E:\QT\5.13.2\msvc2017_64\mkspecs\common\msvc-desktop.conf E:\QT\5.13.2\msvc2017_64\mkspecs\qconfig.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3danimation.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3danimation_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dcore.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dcore_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dextras.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dextras_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dinput.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dinput_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dlogic.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dlogic_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquick.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquick_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3drender.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_3drender_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_accessibility_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axbase.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axbase_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axcontainer.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axcontainer_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axserver.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_bodymovin_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_charts.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_charts_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_core.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_core_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_datavisualization.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_datavisualization_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_dbus.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_dbus_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_designer.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_designer_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_designercomponents_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_edid_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_egl_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_fb_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_gamepad.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_gamepad_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_gui.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_gui_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_help.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_help_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_location.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_location_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_multimedia.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_multimedia_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_network.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_network_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_networkauth.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_networkauth_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_nfc.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_nfc_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_opengl.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_opengl_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_openglextensions.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_openglextensions_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_packetprotocol_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_positioning.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_positioning_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_positioningquick.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_positioningquick_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_printsupport.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_printsupport_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_purchasing.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_purchasing_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qml.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qml_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qmldebug_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qmldevtools_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qmltest.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qmltest_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quick.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quick_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickparticles_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickshapes_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_repparser.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_repparser_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_script.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_script_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_scripttools.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_scripttools_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_scxml.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_scxml_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_sensors.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_sensors_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_serialbus.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_serialbus_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_serialport.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_serialport_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_sql.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_sql_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_svg.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_svg_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_testlib.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_testlib_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_texttospeech.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_texttospeech_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_theme_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_uiplugin.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_uitools.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_uitools_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_virtualkeyboard.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_vulkan_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webchannel.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webchannel_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webengine.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webengine_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webenginecore.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webenginecore_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_websockets.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_websockets_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webview.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_webview_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_widgets.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_widgets_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_winextras.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_winextras_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_xml.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_xml_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\modules\qt_lib_zlib_private.pri E:\QT\5.13.2\msvc2017_64\mkspecs\features\qt_functions.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\qt_config.prf E:\QT\5.13.2\msvc2017_64\mkspecs\win32-msvc\qmake.conf E:\QT\5.13.2\msvc2017_64\mkspecs\features\spec_post.prf .qmake.stash E:\QT\5.13.2\msvc2017_64\mkspecs\features\exclusive_builds.prf E:\QT\5.13.2\msvc2017_64\mkspecs\common\msvc-version.conf E:\QT\5.13.2\msvc2017_64\mkspecs\features\toolchain.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\default_pre.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\win32\default_pre.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\resolve_config.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\exclusive_builds_post.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\default_post.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\build_pass.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\qml_debug.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\precompile_header.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\warn_on.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\qt.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\resources.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\moc.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\win32\opengl.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\uic.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\qmake_use.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\file_copies.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\win32\windows.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\testcase_targets.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\exceptions.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\yacc.prf E:\QT\5.13.2\msvc2017_64\mkspecs\features\lex.prf ..\AnimationTool\AnimationTool.pro ..\AnimationTool\resources.qrc E:\QT\5.13.2\msvc2017_64\lib\Qt5Widgets.prl E:\QT\5.13.2\msvc2017_64\lib\Qt5Gui.prl E:\QT\5.13.2\msvc2017_64\lib\Qt5Core.prl E:\QT\5.13.2\msvc2017_64\lib\qtmain.prl   ..\AnimationTool\resources.qrc E:\QT\5.13.2\msvc2017_64\mkspecs\features\data\dummy.cpp ..\AnimationTool\AnimationClip.h ..\AnimationTool\AnimationSample.h ..\AnimationTool\animationclipeditor.h ..\AnimationTool\animationclipeditorgraphicsview.h ..\AnimationTool\animationsamplelistwidgetitem.h ..\AnimationTool\animsampleeditorgraphicsview.h ..\AnimationTool\BindPoseGenerator\jointtreewidgetitem.h ..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.h ..\AnimationTool\BindPoseGenerator\spritecreatedialog.h ..\AnimationTool\BindPoseGenerator\spritelistwidget.h ..\AnimationTool\Joint.h ..\AnimationTool\Matrix3X3.h ..\AnimationTool\Skeleton.h ..\AnimationTool\Sprite.h ..\AnimationTool\SpriteMesh.h ..\AnimationTool\Vector3D.h ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegenerator.h ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegeneratorgraphicsview.h ..\AnimationTool\animsampleeditorgraphicsview.h ..\AnimationTool\jointgraphicsitem.h ..\AnimationTool\mainwindow.h ..\AnimationTool\mathLib.h ..\AnimationTool\spritegraphicsitem.h ..\AnimationTool\zorder.h  ..\AnimationTool\AnimationSample.cpp ..\AnimationTool\animationclipeditor.cpp ..\AnimationTool\animationclipeditorgraphicsview.cpp ..\AnimationTool\animationsamplelistwidgetitem.cpp ..\AnimationTool\animsampleeditorgraphicsview.cpp ..\AnimationTool\BindPoseGenerator\jointtreewidgetitem.cpp ..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.cpp ..\AnimationTool\BindPoseGenerator\spritecreatedialog.cpp ..\AnimationTool\BindPoseGenerator\spritelistwidget.cpp ..\AnimationTool\Joint.cpp ..\AnimationTool\Matrix3X3.cpp ..\AnimationTool\Skeleton.cpp ..\AnimationTool\Sprite.cpp ..\AnimationTool\Vector3D.cpp ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegenerator.cpp ..\AnimationTool\BindPoseGenerator\bindposeanimsamplegeneratorgraphicsview.cpp ..\AnimationTool\animationclip.cpp ..\AnimationTool\animsampleeditorgraphicsview.cpp ..\AnimationTool\jointgraphicsitem.cpp ..\AnimationTool\main.cpp ..\AnimationTool\mainwindow.cpp ..\AnimationTool\spritegraphicsitem.cpp ..\AnimationTool\spritemesh.cpp ..\AnimationTool\BindPoseGenerator\spritecreatedialog.ui ..\AnimationTool\mainwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\AnimationSample.obj release\animsampleeditorgraphicsview.obj release\jointtreewidgetitem.obj release\skeletonhierarchytreewidget.obj release\spritecreatedialog.obj release\spritelistwidget.obj release\Joint.obj release\Matrix3X3.obj release\Skeleton.obj release\Sprite.obj release\Vector3D.obj release\bindposeanimsamplegenerator.obj release\bindposeanimsamplegeneratorgraphicsview.obj release\animationclip.obj release\animsampleeditorgraphicsview.obj release\jointgraphicsitem.obj release\main.obj release\mainwindow.obj release\spritegraphicsitem.obj release\spritemesh.obj release\qrc_resources.obj release\moc_skeletonhierarchytreewidget.obj release\moc_spritecreatedialog.obj release\moc_spritelistwidget.obj release\moc_bindposeanimsamplegenerator.obj release\moc_bindposeanimsamplegeneratorgraphicsview.obj release\moc_mainwindow.obj
+	-$(DEL_FILE) release\AnimationSample.obj release\animationclipeditor.obj release\animationclipeditorgraphicsview.obj release\animationsamplelistwidgetitem.obj release\animsampleeditorgraphicsview.obj release\jointtreewidgetitem.obj release\skeletonhierarchytreewidget.obj release\spritecreatedialog.obj release\spritelistwidget.obj release\Joint.obj release\Matrix3X3.obj release\Skeleton.obj release\Sprite.obj release\Vector3D.obj release\bindposeanimsamplegenerator.obj release\bindposeanimsamplegeneratorgraphicsview.obj release\animationclip.obj release\animsampleeditorgraphicsview.obj release\jointgraphicsitem.obj release\main.obj release\mainwindow.obj release\spritegraphicsitem.obj release\spritemesh.obj release\qrc_resources.obj release\moc_animationclipeditor.obj release\moc_skeletonhierarchytreewidget.obj release\moc_spritecreatedialog.obj release\moc_spritelistwidget.obj release\moc_bindposeanimsamplegenerator.obj release\moc_bindposeanimsamplegeneratorgraphicsview.obj release\moc_mainwindow.obj
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -280,9 +295,117 @@ compiler_moc_predefs_clean:
 release\moc_predefs.h: E:\QT\5.13.2\msvc2017_64\mkspecs\features\data\dummy.cpp
 	cl -BxE:\QT\5.13.2\msvc2017_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -O2 -MD -std:c++17 -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E E:\QT\5.13.2\msvc2017_64\mkspecs\features\data\dummy.cpp 2>NUL >release\moc_predefs.h
 
-compiler_moc_header_make_all: release\moc_skeletonhierarchytreewidget.cpp release\moc_spritecreatedialog.cpp release\moc_spritelistwidget.cpp release\moc_bindposeanimsamplegenerator.cpp release\moc_bindposeanimsamplegeneratorgraphicsview.cpp release\moc_mainwindow.cpp
+compiler_moc_header_make_all: release\moc_animationclipeditor.cpp release\moc_skeletonhierarchytreewidget.cpp release\moc_spritecreatedialog.cpp release\moc_spritelistwidget.cpp release\moc_bindposeanimsamplegenerator.cpp release\moc_bindposeanimsamplegeneratorgraphicsview.cpp release\moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_skeletonhierarchytreewidget.cpp release\moc_spritecreatedialog.cpp release\moc_spritelistwidget.cpp release\moc_bindposeanimsamplegenerator.cpp release\moc_bindposeanimsamplegeneratorgraphicsview.cpp release\moc_mainwindow.cpp
+	-$(DEL_FILE) release\moc_animationclipeditor.cpp release\moc_skeletonhierarchytreewidget.cpp release\moc_spritecreatedialog.cpp release\moc_spritelistwidget.cpp release\moc_bindposeanimsamplegenerator.cpp release\moc_bindposeanimsamplegeneratorgraphicsview.cpp release\moc_mainwindow.cpp
+release\moc_animationclipeditor.cpp: ..\AnimationTool\animationclipeditor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QWidget \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtguiglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtcore-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsystemdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qprocessordetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtypeinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsysinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlogging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qflags.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbasicatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qgenericatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobalstatic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmutex.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnumeric.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qversiontagging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtgui-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnamespace.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstring.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qchar.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrefcount.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qarraydata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringliteral.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringbuilder.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiterator.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhashfunctions.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpair.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvector.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpoint.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearraylist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qregexp.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringmatcher.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcoreevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qscopedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmetatype.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmargins.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpaintdevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrect.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsize.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpalette.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcolor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgb.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgba64.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qbrush.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qmatrix.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpolygon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qregion.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdatastream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiodevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qline.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtransform.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpainterpath.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qimage.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixelformat.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfont.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontmetrics.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcursor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qkeysequence.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurlquery.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfile.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfiledevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qvector2d.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
+		release\moc_predefs.h \
+		E:\QT\5.13.2\msvc2017_64\bin\moc.exe
+	E:\QT\5.13.2\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/doyoonkim/Desktop/SourceTreeRepos/AnimationTool/build-AnimationTool-Desktop_Qt_5_13_2_MSVC2017_64bit-Debug/release/moc_predefs.h -IE:/QT/5.13.2/msvc2017_64/mkspecs/win32-msvc -IC:/Users/doyoonkim/Desktop/SourceTreeRepos/AnimationTool/AnimationTool -IE:/QT/5.13.2/msvc2017_64/include -IE:/QT/5.13.2/msvc2017_64/include/QtWidgets -IE:/QT/5.13.2/msvc2017_64/include/QtGui -IE:/QT/5.13.2/msvc2017_64/include/QtANGLE -IE:/QT/5.13.2/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt" ..\AnimationTool\animationclipeditor.h -o release\moc_animationclipeditor.cpp
+
 release\moc_skeletonhierarchytreewidget.cpp: ..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QTreeWidget \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtreewidget.h \
@@ -1033,6 +1156,8 @@ ui_mainwindow.h: ..\AnimationTool\mainwindow.ui \
 		..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.h \
 		..\AnimationTool\BindPoseGenerator\spritelistwidget.h \
 		..\AnimationTool\animsampleeditorgraphicsview.h \
+		..\AnimationTool\animationclipeditor.h \
+		..\AnimationTool\animationclipeditorgraphicsview.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QWidget \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qwidget.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -1636,7 +1761,226 @@ ui_mainwindow.h: ..\AnimationTool\mainwindow.ui \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\qvector2d.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicsscene.h \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\QPointF
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QPointF \
+		..\AnimationTool\Vector3D.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QWidget \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtguiglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtcore-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsystemdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qprocessordetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtypeinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsysinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlogging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qflags.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbasicatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qgenericatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobalstatic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmutex.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnumeric.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qversiontagging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtgui-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnamespace.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstring.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qchar.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrefcount.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qarraydata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringliteral.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringbuilder.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiterator.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhashfunctions.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpair.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvector.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpoint.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearraylist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qregexp.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringmatcher.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcoreevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qscopedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmetatype.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmargins.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpaintdevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrect.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsize.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpalette.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcolor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgb.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgba64.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qbrush.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qmatrix.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpolygon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qregion.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdatastream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiodevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qline.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtransform.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpainterpath.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qimage.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixelformat.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfont.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontmetrics.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcursor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qkeysequence.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurlquery.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfile.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfiledevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qvector2d.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
+		..\AnimationTool\BindPoseGenerator\bindposeanimsamplegeneratorgraphicsview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsView \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicsview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtguiglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtcore-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsystemdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qprocessordetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtypeinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsysinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlogging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qflags.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbasicatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qgenericatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobalstatic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmutex.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnumeric.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qversiontagging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtgui-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmetatype.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrefcount.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnamespace.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qarraydata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpainter.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrect.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmargins.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsize.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpoint.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qscopedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpaintdevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcolor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgb.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiterator.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhashfunctions.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstring.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qchar.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringliteral.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringbuilder.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpair.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvector.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearraylist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qregexp.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringmatcher.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgba64.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcoreevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qimage.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixelformat.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtransform.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qmatrix.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpolygon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qregion.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdatastream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiodevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qline.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpainterpath.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtextoption.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpen.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qbrush.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfont.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontmetrics.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qscrollarea.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qframe.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpalette.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcursor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qkeysequence.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurlquery.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfile.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfiledevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qvector2d.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicsscene.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QPointF \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QElapsedTimer \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qelapsedtimer.h
 	E:\QT\5.13.2\msvc2017_64\bin\uic.exe ..\AnimationTool\mainwindow.ui -o ui_mainwindow.h
 
 compiler_yacc_decl_make_all:
@@ -1746,6 +2090,414 @@ release\AnimationSample.obj: ..\AnimationTool\AnimationSample.cpp ..\AnimationTo
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h
+
+release\animationclipeditor.obj: ..\AnimationTool\animationclipeditor.cpp ..\AnimationTool\animationclipeditor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QWidget \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtguiglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtcore-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsystemdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qprocessordetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtypeinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsysinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlogging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qflags.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbasicatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qgenericatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobalstatic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmutex.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnumeric.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qversiontagging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtgui-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnamespace.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstring.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qchar.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrefcount.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qarraydata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringliteral.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringbuilder.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiterator.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhashfunctions.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpair.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvector.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpoint.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearraylist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qregexp.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringmatcher.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcoreevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qscopedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmetatype.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmargins.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpaintdevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrect.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsize.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpalette.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcolor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgb.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgba64.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qbrush.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qmatrix.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpolygon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qregion.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdatastream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiodevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qline.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtransform.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpainterpath.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qimage.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixelformat.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfont.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontmetrics.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcursor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qkeysequence.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurlquery.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfile.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfiledevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qvector2d.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
+		..\AnimationTool\animationsamplelistwidgetitem.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QListWidgetItem \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qlistwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qlistview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractitemview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qframe.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qitemselectionmodel.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qvalidator.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qregularexpression.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qicon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qslider.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qstyle.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtabbar.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qrubberband.h \
+		..\AnimationTool\AnimationSample.h \
+		..\AnimationTool\Skeleton.h \
+		..\AnimationTool\Joint.h \
+		..\AnimationTool\Vector3D.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QString \
+		..\AnimationTool\SpriteMesh.h \
+		..\AnimationTool\Sprite.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QDoubleSpinBox \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qspinbox.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QCheckBox \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qcheckbox.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QListWidget \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QSlider \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QDebug
+
+release\animationclipeditorgraphicsview.obj: ..\AnimationTool\animationclipeditorgraphicsview.cpp ..\AnimationTool\animationclipeditorgraphicsview.h \
+		..\AnimationTool\BindPoseGenerator\bindposeanimsamplegeneratorgraphicsview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsView \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicsview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtguiglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtcore-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsystemdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qprocessordetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtypeinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsysinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlogging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qflags.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbasicatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qgenericatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobalstatic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmutex.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnumeric.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qversiontagging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtgui-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmetatype.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrefcount.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnamespace.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qarraydata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpainter.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrect.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmargins.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsize.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpoint.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qscopedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpaintdevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcolor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgb.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiterator.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhashfunctions.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstring.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qchar.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringliteral.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringbuilder.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpair.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvector.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearraylist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qregexp.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringmatcher.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgba64.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcoreevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qimage.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixelformat.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtransform.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qmatrix.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpolygon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qregion.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdatastream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiodevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qline.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpainterpath.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtextoption.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpen.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qbrush.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfont.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontmetrics.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qscrollarea.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qframe.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpalette.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcursor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qkeysequence.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurlquery.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfile.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfiledevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qvector2d.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicsscene.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QPointF \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QElapsedTimer \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qelapsedtimer.h \
+		..\AnimationTool\animationclipeditor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QWidget \
+		..\AnimationTool\jointgraphicsitem.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsItem \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicsitem.h \
+		..\AnimationTool\Joint.h \
+		..\AnimationTool\Vector3D.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QString \
+		..\AnimationTool\spritegraphicsitem.h \
+		..\AnimationTool\AnimationSample.h \
+		..\AnimationTool\Skeleton.h \
+		..\AnimationTool\SpriteMesh.h \
+		..\AnimationTool\Sprite.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer
+
+release\animationsamplelistwidgetitem.obj: ..\AnimationTool\animationsamplelistwidgetitem.cpp ..\AnimationTool\animationsamplelistwidgetitem.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QListWidgetItem \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qlistwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtguiglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobal.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qconfig.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtcore-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsystemdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qprocessordetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtypeinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsysinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlogging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qflags.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbasicatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qgenericatomic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qglobalstatic.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmutex.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnumeric.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qversiontagging.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtgui-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qlistview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractitemview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qframe.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qnamespace.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstring.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qchar.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrefcount.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qarraydata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringliteral.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringbuilder.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qalgorithms.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiterator.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhashfunctions.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpair.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvector.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qpoint.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qbytearraylist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringlist.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qregexp.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qstringmatcher.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcoreevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qscopedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmetatype.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qobject_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmargins.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpaintdevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qrect.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsize.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpalette.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcolor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgb.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qrgba64.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qbrush.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qmatrix.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpolygon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qregion.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdatastream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qiodevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qline.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtransform.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpainterpath.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qimage.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixelformat.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qpixmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qshareddata.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qhash.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfont.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontmetrics.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qfontinfo.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qcursor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qkeysequence.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qevent.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qvariant.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmap.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qdebug.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qtextstream.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qlocale.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qset.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurl.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qurlquery.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfile.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qfiledevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qvector2d.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qitemselectionmodel.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qvalidator.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qregularexpression.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\qicon.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qslider.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qstyle.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtabbar.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qrubberband.h \
+		..\AnimationTool\AnimationSample.h \
+		..\AnimationTool\Skeleton.h \
+		..\AnimationTool\Joint.h \
+		..\AnimationTool\Vector3D.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QString \
+		..\AnimationTool\SpriteMesh.h \
+		..\AnimationTool\Sprite.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer
 
 release\animsampleeditorgraphicsview.obj: ..\AnimationTool\animsampleeditorgraphicsview.cpp ..\AnimationTool\animsampleeditorgraphicsview.h \
 		..\AnimationTool\BindPoseGenerator\bindposeanimsamplegeneratorgraphicsview.h \
@@ -1861,9 +2613,9 @@ release\animsampleeditorgraphicsview.obj: ..\AnimationTool\animsampleeditorgraph
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicsscene.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QPointF \
+		..\AnimationTool\Vector3D.h \
 		..\AnimationTool\Skeleton.h \
 		..\AnimationTool\Joint.h \
-		..\AnimationTool\Vector3D.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QString \
 		..\AnimationTool\jointgraphicsitem.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsItem \
@@ -1873,7 +2625,13 @@ release\animsampleeditorgraphicsview.obj: ..\AnimationTool\animsampleeditorgraph
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer \
 		..\AnimationTool\spritegraphicsitem.h \
-		..\AnimationTool\AnimationSample.h
+		..\AnimationTool\AnimationSample.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\QMouseEvent \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QDebug \
+		..\AnimationTool\mathLib.h \
+		..\AnimationTool\Matrix3X3.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QtMath \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmath.h
 
 release\jointtreewidgetitem.obj: ..\AnimationTool\BindPoseGenerator\jointtreewidgetitem.cpp ..\AnimationTool\BindPoseGenerator\jointtreewidgetitem.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QTreeWidgetItem \
@@ -3277,9 +4035,9 @@ release\animsampleeditorgraphicsview.obj: ..\AnimationTool\animsampleeditorgraph
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\qtouchdevice.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicsscene.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QPointF \
+		..\AnimationTool\Vector3D.h \
 		..\AnimationTool\Skeleton.h \
 		..\AnimationTool\Joint.h \
-		..\AnimationTool\Vector3D.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QString \
 		..\AnimationTool\jointgraphicsitem.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsItem \
@@ -3289,7 +4047,13 @@ release\animsampleeditorgraphicsview.obj: ..\AnimationTool\animsampleeditorgraph
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer \
 		..\AnimationTool\spritegraphicsitem.h \
-		..\AnimationTool\AnimationSample.h
+		..\AnimationTool\AnimationSample.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtGui\QMouseEvent \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QDebug \
+		..\AnimationTool\mathLib.h \
+		..\AnimationTool\Matrix3X3.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QtMath \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmath.h
 
 release\jointgraphicsitem.obj: ..\AnimationTool\jointgraphicsitem.cpp ..\AnimationTool\jointgraphicsitem.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QGraphicsItem \
@@ -3676,6 +4440,8 @@ release\mainwindow.obj: ..\AnimationTool\mainwindow.cpp ..\AnimationTool\mainwin
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer \
 		..\AnimationTool\BindPoseGenerator\skeletonhierarchytreewidget.h \
+		..\AnimationTool\animationclipeditor.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QWidget \
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\QDebug \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\QMessageBox \
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qmessagebox.h
@@ -3806,7 +4572,12 @@ release\spritegraphicsitem.obj: ..\AnimationTool\spritegraphicsitem.cpp ..\Anima
 		E:\QT\5.13.2\msvc2017_64\include\QtWidgets\qgraphicssceneevent.h \
 		..\AnimationTool\Sprite.h \
 		E:\QT\5.13.2\msvc2017_64\include\QtGui\QImage \
-		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QSharedPointer \
+		..\AnimationTool\Matrix3X3.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QDebug \
+		..\AnimationTool\animsampleeditorgraphicsview.h \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\QtMath \
+		E:\QT\5.13.2\msvc2017_64\include\QtCore\qmath.h
 
 release\spritemesh.obj: ..\AnimationTool\spritemesh.cpp ..\AnimationTool\SpriteMesh.h \
 		..\AnimationTool\Sprite.h \
@@ -3899,6 +4670,8 @@ release\spritemesh.obj: ..\AnimationTool\spritemesh.cpp ..\AnimationTool\SpriteM
 		E:\QT\5.13.2\msvc2017_64\include\QtCore\qcontiguouscache.h
 
 release\qrc_resources.obj: release\qrc_resources.cpp 
+
+release\moc_animationclipeditor.obj: release\moc_animationclipeditor.cpp 
 
 release\moc_skeletonhierarchytreewidget.obj: release\moc_skeletonhierarchytreewidget.cpp 
 

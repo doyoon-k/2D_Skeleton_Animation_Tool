@@ -39,6 +39,20 @@ private slots:
 
     void on_SavePushButton_clicked();
 
+    void on_PlayPushButton_clicked();
+
+    void on_StopPushButton_clicked();
+
+    void on_ResumePushButton_clicked();
+
+    void on_LoadAnimationClipPushButton_clicked();
+
+    void on_SaveAnimationClipPushButton_clicked();
+
+    void on_LoadAnimSamplePushButton_clicked();
+
+    void on_ResetAnimSampleListPushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     inline static QMap<QString,QString> spriteNamePathPairs;

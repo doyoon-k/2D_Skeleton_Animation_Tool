@@ -1,3 +1,10 @@
+C:/Users/doyoonkim/Desktop/SourceTreeRepos/CS230_Doyoon.Kim/CS230/assets/Hero.png
+C:\Users\doyoonkim\Desktop\SourceTreeRepos\GAM150_URUK\GAM150_URUK\resource\texture/leftleg.png
+C:\Users\doyoonkim\Desktop\SourceTreeRepos\GAM150_URUK\GAM150_URUK\resource\texture/rightleg.png
+C:\Users\doyoonkim\Desktop\SourceTreeRepos\GAM150_URUK\GAM150_URUK\resource\texture/leftfoot.png
+C:\Users\doyoonkim\Desktop\SourceTreeRepos\GAM150_URUK\GAM150_URUK\resource\texture/body.png
 
 C:/Users/doyoonkim/Desktop/SourceTreeRepos/AnimationTool/build-AnimationTool-Desktop_Qt_5_13_2_MSVC2017_64bit-Debug/treeStump1.png
 C:/Users/doyoonkim/Desktop/SourceTreeRepos/CS230_Doyoon.Kim/CS230/assets/treeStump1.png
+C:\Users\doyoonkim\Desktop\SourceTreeRepos\GAM150_URUK\GAM150_URUK\resource\texture/rightfoot.png
+C:/Users/doyoonkim/Desktop/SourceTreeRepos/GAM150_URUK/GAM150_URUK/resource/texture/head.png

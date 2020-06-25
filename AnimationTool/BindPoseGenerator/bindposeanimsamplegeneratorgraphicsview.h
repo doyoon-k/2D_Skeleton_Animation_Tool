@@ -15,6 +15,7 @@ class BindPoseAnimSampleGeneratorGraphicsView : public QGraphicsView
 {
     Q_OBJECT
     friend class MainWindow;
+    friend class SpriteGraphicsItem;
 public:
     BindPoseAnimSampleGeneratorGraphicsView(QWidget *parent = nullptr);
 
@@ -30,8 +31,8 @@ public:
     void paintEvent(QPaintEvent* event)override;
     int GetWidthPixel()const;
     int GetHeightPixel()const;
-    qreal GetScalarWidthPixel();
-    qreal GetScalarHeightPixel();
+    qreal GetScalarWidthPixel() const;
+    qreal GetScalarHeightPixel() const;
 
     JointGraphicsItem *GetJointGraphicsItemByName(const QString& jointName);
     SpriteGraphicsItem* GetSpriteGraphicsItemByName(const QString& spriteName);
@@ -48,7 +49,6 @@ protected:
     QAction* createSpriteAction;
     QGraphicsScene* scene;
     BindPoseAnimSampleGenerator* parent;
-    QGraphicsRectItem* skeletonSpaceOrigin;
     QVector<JointGraphicsItem*> jointGraphicsItems;
     QVector<SpriteGraphicsItem*> spriteGraphicsItems;
     QPoint mouseRightClickEventPos{0,0};

@@ -5,9 +5,13 @@
 #include "Skeleton.h"
 #include <QTextStream>
 #include "AnimationSample.h"
+#include "AnimationClip.h"
 #include "BindPoseGenerator/skeletonhierarchytreewidget.h"
+#include "animationclipeditor.h"
+#include "animationclipeditorgraphicsview.h"
 #include <QDebug>
 #include <QMessageBox>
+#include "animationsamplelistwidgetitem.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,6 +27,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->bindPoseGeneratorWidget->ConnectSpinboxSignals();
     ui->bindposeGraphicsView->widthPixel = ui->widthPixelSpinBox->value();
     ui->bindposeGraphicsView->heightPixel = ui->heightPixelSpinBox->value();
+
+    ui->animationClipEditorWidget->animationSampleEditorGraphicsView = ui->AnimationClipGraphicsView;
+    ui->animationClipEditorWidget->animationSampleListWidget = ui->AnimationSampleListWidget;
+    ui->animationClipEditorWidget->playSlider = ui->AnimationPlaySlider;
+    ui->animationClipEditorWidget->isLoopingCheckBox = ui->IsLoopingCheckBox;
+    ui->animationClipEditorWidget->nRepetitionSpinBox = ui->RepetitionSpinbox;
+    ui->animationClipEditorWidget->playtimeSpinBox = ui->PlaytimeDoubleSpinBox;
+    ui->animationClipEditorWidget->playRateSpinBox = ui->PlayRateDoubleSpinBox;
+    ui->animationClipEditorWidget->SetUpConnections();
 
     QFile imagePathList("ImagePaths.txt");
     if(imagePathList.open(QIODevice::ReadOnly|QIODevice::Text))
@@ -204,9 +217,14 @@ void MainWindow::on_saveBindPoseButton_clicked()
         msgBox.exec();
         return;
     }
+
     QString fileName = QFileInfo(QFileDialog::getSaveFileName(this,tr("Set file name"),"./",tr("Animation Sample File (*.asmpl)"))).baseName();
+
+    if(fileName == "")
+        return;
+
     QFile saveFile(fileName+".asmpl");
-    if(saveFile.open(QIODevice::ReadWrite|QIODevice::Text))
+    if(saveFile.open(QIODevice::WriteOnly|QIODevice::Text))
     {
         //스켈레톤 위젯에서 스켈레톤 인스턴스 조립한거 반환받고 스프라이트 리스트 위젯에서 스프라이트 메시 조립해서 반환받고 애님샘플에 그 두개 복사해넣고 saveAnim함수 콜해서 저장.
         QTextStream stream(&saveFile);
@@ -216,6 +234,13 @@ void MainWindow::on_saveBindPoseButton_clicked()
         SpriteMesh&& spriteMesh = ui->bindPoseGeneratorWidget->spriteListWidget->GetSpriteMeshInstance(fileName,skeleton);
         AnimationSample bindPose{fileName,skeleton,spriteMesh};
         SaveAnimSample(stream,bindPose);
+    }
+    else
+    {
+        QMessageBox msg;
+        msg.setText("Cannot open file!");
+        msg.exec();
+        return;
     }
 }
 
@@ -310,5 +335,125 @@ void MainWindow::on_LoadPushButton_clicked()
 
 void MainWindow::on_SavePushButton_clicked()
 {
+    QString fileName = QFileInfo(QFileDialog::getSaveFileName(this,tr("Set file name"),"./",tr("Animation Sample File (*.asmpl)"))).baseName();
 
+    if(fileName == "")
+        return;
+
+    QFile saveFile(fileName+".asmpl");
+    if(saveFile.open(QIODevice::ReadWrite|QIODevice::Text))
+    {
+        QTextStream stream(&saveFile);
+        stream<<ui->AnimSampleEditorGraphicView->GetWidthPixel()<<endl;
+        stream<<ui->AnimSampleEditorGraphicView->GetHeightPixel()<<endl;
+        AnimationSample animSample = ui->AnimSampleEditorGraphicView->GetAnimSample(fileName);
+        SaveAnimSample(stream,animSample);
+    }
+    else
+    {
+        QMessageBox msg;
+        msg.setText("Cannot open file!");
+        msg.exec();
+        return;
+    }
+}
+
+void MainWindow::on_PlayPushButton_clicked()
+{
+    ui->animationClipEditorWidget->Play();
+}
+
+void MainWindow::on_StopPushButton_clicked()
+{
+    ui->animationClipEditorWidget->Stop();
+}
+
+void MainWindow::on_ResumePushButton_clicked()
+{
+    ui->animationClipEditorWidget->Resume();
+}
+
+void MainWindow::on_LoadAnimationClipPushButton_clicked()
+{
+
+}
+
+void MainWindow::on_SaveAnimationClipPushButton_clicked()
+{
+    QString fileName = QFileInfo(QFileDialog::getSaveFileName(this,tr("Set file name"),"./",tr("Animation Clip File (*.aclip)"))).baseName();
+
+    if(fileName == "")
+        return;
+
+    QFile saveFile(fileName+".aclip");
+    if(saveFile.open(QIODevice::ReadWrite|QIODevice::Text))
+    {
+        QTextStream stream(&saveFile);
+        stream<<ui->AnimationClipGraphicsView->GetWidthPixel()<<endl;
+        stream<<ui->AnimationClipGraphicsView->GetHeightPixel()<<endl;
+        AnimationClip animClip = ui->animationClipEditorWidget->GetAnimationClip(fileName);
+        SaveAnimationClip(stream,animClip);
+    }
+    else
+    {
+        QMessageBox msg;
+        msg.setText("Cannot open file!");
+        msg.exec();
+        return;
+    }
+}
+
+void MainWindow::on_LoadAnimSamplePushButton_clicked()
+{
+    QFile namePathPairsFile("SpriteNamePathPairs.txt");
+    QFileInfo info(namePathPairsFile);
+    if(!info.exists())
+    {
+        QMessageBox msgBox;
+        msgBox.setText("SpriteName - ImagePath pair file does not exist!");
+        msgBox.exec();
+        return;
+    }
+
+    QString filePath = QFileDialog::getOpenFileName(this,tr("Open BindPose"),"./",tr("AnimSample file (*.asmpl)"));
+    QString fileName = QFileInfo(filePath).baseName();
+    QFile saveFile(filePath);
+    if(saveFile.open(QIODevice::ReadOnly|QIODevice::Text))
+    {
+        ui->AnimationClipGraphicsView->Reset();
+        QTextStream stream(&saveFile);
+        int widthPixel;
+        int heightPixel;
+        stream>>widthPixel;
+        stream>>heightPixel;
+        ui->AnimationClipGraphicsView->SetWidthPixel(widthPixel);
+        ui->AnimationClipGraphicsView->SetHeightPixel(heightPixel);
+        AnimationSample animSample{fileName,Skeleton(fileName+"Skeleton"),SpriteMesh()};
+        LoadAnimSample(stream,animSample);
+        for(int i = 0; i < animSample.skeleton.GetNumbertOfJoints(); i++)
+        {
+            Joint& joint = animSample.skeleton.GetJoint(i);
+            joint.position[0] *= ui->AnimationClipGraphicsView->GetScalarWidthPixel();
+            joint.position[1] *= ui->AnimationClipGraphicsView->GetScalarHeightPixel();
+        }
+        for(int i = 0; i < animSample.spriteMesh.nSprites; i++)
+        {
+            Sprite& sprite = animSample.spriteMesh.sprites[i];
+            sprite.bottomLeftCoord[0] *= ui->AnimationClipGraphicsView->GetScalarWidthPixel();
+            sprite.bottomLeftCoord[1] *= ui->AnimationClipGraphicsView->GetScalarHeightPixel();
+        }
+        ui->AnimationSampleListWidget->addItem(new AnimationSampleListWidgetItem(animSample));
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Cannot open file!");
+        msgBox.exec();
+        return;
+    }
+}
+
+void MainWindow::on_ResetAnimSampleListPushButton_clicked()
+{
+    ui->animationClipEditorWidget->Reset();
 }

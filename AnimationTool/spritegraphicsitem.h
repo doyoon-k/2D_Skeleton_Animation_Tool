@@ -17,7 +17,6 @@ public:
     QRectF boundingRect()const override;
     QSharedPointer<Sprite> GetSprite();
 private:
-    void KeepSpriteInJointBoundingArea();
     QSharedPointer<Sprite> sprite;
     bool isForBindPoseGenerator;
 };

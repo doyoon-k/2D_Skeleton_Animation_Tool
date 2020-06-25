@@ -28,7 +28,10 @@ void JointGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem 
     qreal heightPixel = view->GetHeightPixel();
     qreal onePixelWidth = view->viewport()->width() / widthPixel;
     qreal onePixelHeight = view->viewport()->height() / heightPixel;
-    painter->drawText(-RADIUS,RADIUS * 2.5,QString::number(int(x()/onePixelWidth))+","+QString::number(int(y()/onePixelHeight)));
+    if(isForBindPoseGenerator)
+    {
+    painter->drawText(-RADIUS,RADIUS * 2.5,QString::number(x()/onePixelWidth)+","+QString::number(y()/onePixelHeight));
+    }
 }
 
 void JointGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)

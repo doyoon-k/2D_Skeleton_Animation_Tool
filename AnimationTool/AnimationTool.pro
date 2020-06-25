@@ -26,6 +26,9 @@ CONFIG += c++17
 
 SOURCES += \
         AnimationSample.cpp \
+        animationclipeditor.cpp \
+        animationclipeditorgraphicsview.cpp \
+        animationsamplelistwidgetitem.cpp \
         animsampleeditorgraphicsview.cpp \
         BindPoseGenerator/jointtreewidgetitem.cpp \
         BindPoseGenerator/skeletonhierarchytreewidget.cpp \
@@ -49,6 +52,9 @@ SOURCES += \
 HEADERS += \
         AnimationClip.h \
         AnimationSample.h \
+        animationclipeditor.h \
+        animationclipeditorgraphicsview.h \
+        animationsamplelistwidgetitem.h \
         animsampleeditorgraphicsview.h \
         BindPoseGenerator/jointtreewidgetitem.h \
         BindPoseGenerator/skeletonhierarchytreewidget.h \

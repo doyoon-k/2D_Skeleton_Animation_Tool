@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>626</height>
+    <height>985</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -40,10 +40,16 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
+    <item row="3" column="0">
      <widget class="QTabWidget" name="animSampleClipBindposeTab">
+      <property name="minimumSize">
+       <size>
+        <width>800</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="BindPoseAnimSampleGenerator" name="bindPoseGeneratorWidget">
        <attribute name="title">
@@ -125,8 +131,14 @@
          <widget class="BindPoseAnimSampleGeneratorGraphicsView" name="bindposeGraphicsView">
           <property name="minimumSize">
            <size>
-            <width>600</width>
-            <height>400</height>
+            <width>800</width>
+            <height>800</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>800</width>
+            <height>800</height>
            </size>
           </property>
           <property name="mouseTracking">
@@ -273,17 +285,42 @@
         <string>AnimationSample Editor</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0" colspan="2">
-         <widget class="AnimSampleEditorGraphicsView" name="AnimSampleEditorGraphicView"/>
+        <item row="0" column="0" rowspan="2">
+         <widget class="AnimSampleEditorGraphicsView" name="AnimSampleEditorGraphicView">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>800</width>
+            <height>800</height>
+           </size>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+         </widget>
         </item>
-        <item row="1" column="0">
+        <item row="2" column="1">
          <widget class="QPushButton" name="LoadPushButton">
           <property name="text">
            <string>Load AnimSample</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
+        <item row="3" column="1">
          <widget class="QPushButton" name="SavePushButton">
           <property name="text">
            <string>Save AnimSample</string>
@@ -292,10 +329,176 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="animationClipEditorWidget">
+      <widget class="AnimationClipEditorWidget" name="animationClipEditorWidget">
        <attribute name="title">
         <string>AnimationClip Editor</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_4">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMaximumSize</enum>
+          </property>
+          <item row="3" column="1">
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QCheckBox" name="IsLoopingCheckBox">
+              <property name="text">
+               <string>Is Looping</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QLabel" name="RepetitionLabel">
+                <property name="text">
+                 <string>Repetition</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="RepetitionSpinbox">
+                <property name="value">
+                 <number>1</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QLabel" name="PlaytimeLabel">
+                <property name="text">
+                 <string>Play Time</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="PlaytimeDoubleSpinBox">
+                <property name="value">
+                 <double>5.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <widget class="QLabel" name="PlayRateLabel">
+                <property name="text">
+                 <string>PlayRate</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="PlayRateDoubleSpinBox">
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QSlider" name="AnimationPlaySlider">
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QPushButton" name="PlayPushButton">
+                <property name="text">
+                 <string>Play</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="StopPushButton">
+                <property name="text">
+                 <string>Stop</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="ResumePushButton">
+                <property name="text">
+                 <string>Resume</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="1">
+           <widget class="QListWidget" name="AnimationSampleListWidget"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="LoadAnimSamplePushButton">
+            <property name="text">
+             <string>LoadAnimSample</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="AnimationClipEditorGraphicsView" name="AnimationClipGraphicsView">
+            <property name="minimumSize">
+             <size>
+              <width>600</width>
+              <height>600</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>600</width>
+              <height>600</height>
+             </size>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="ResetAnimSampleListPushButton">
+            <property name="text">
+             <string>Reset List</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="SaveAnimationClipPushButton">
+          <property name="text">
+           <string>Save AnimationClip</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="LoadAnimationClipPushButton">
+          <property name="text">
+           <string>Load AnimationClip</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -352,6 +555,17 @@
    <class>AnimSampleEditorGraphicsView</class>
    <extends>QGraphicsView</extends>
    <header>animsampleeditorgraphicsview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>AnimationClipEditorWidget</class>
+   <extends>QWidget</extends>
+   <header>animationclipeditor.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AnimationClipEditorGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>animationclipeditorgraphicsview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

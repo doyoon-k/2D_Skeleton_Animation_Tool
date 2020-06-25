@@ -7,6 +7,7 @@
 	{
 		friend class SkeletonComponent;
         friend class SkeletonHierarchyTreeWidget;
+        friend class AnimSampleEditorGraphicsView;
         friend void LoadSkeleton(QTextStream& stream,Skeleton& skeleton);
         friend void SaveSkeleton(QTextStream& stream,Skeleton& skeleton);
 	public:

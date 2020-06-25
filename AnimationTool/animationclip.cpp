@@ -18,6 +18,7 @@ QTextStream& operator<<(QTextStream &stream, bool &b)
 
 void LoadAnimationClip(QTextStream& stream,AnimationClip& animClip)
 {
+    stream>>animClip.name;
     stream>>animClip.isLooping;
     stream>>animClip.nRepetition;
     stream>>animClip.playTime;
@@ -32,6 +33,7 @@ void LoadAnimationClip(QTextStream& stream,AnimationClip& animClip)
 
 void SaveAnimationClip(QTextStream& stream,AnimationClip& animClip)
 {
+     stream<<animClip.name<<endl;
      stream<<animClip.isLooping<<endl;
      stream<<animClip.nRepetition<<endl;
      stream<<animClip.playTime<<endl;

@@ -1,6 +1,8 @@
 #pragma once
 #include "Matrix3X3.h"
-
+#include <cmath>
+#include <cfloat>
+#include <QDebug>
 
 	namespace constants
 	{
@@ -47,26 +49,27 @@
 
     inline float GetRadBetweenTwoVectors(Vector3D v1, Vector3D v2)
 	{
-		_ASSERT(abs(v1.GetLengthSqr() - v2.GetLengthSqr()) < FLT_EPSILON);
-		float v1Length = v1.GetLength();
-		float v2Length = v2.GetLength();
-		float cosTheta = v1.DotProduct(v2) / (v1Length * v2Length);
+        v1.Normalize();
+        v2.Normalize();
+        float cosTheta = v1.DotProduct(v2);
+        cosTheta = clamp(cosTheta,-1.f,1.f);
 
         return acos(cosTheta);
-	}
+    }
 
     inline float GetRadOffset(Vector3D p1, Vector3D p2)//+ - > ccw
-	{
-		_ASSERT(abs(p1.GetLengthSqr() - p2.GetLengthSqr()) < FLT_EPSILON);
+    {
 		float rad = GetRadBetweenTwoVectors(p1, p2);
 		float rotatedDirection = (p1.CrossProduct(p2)[2] >= 0.f) ? 1.f : -1.f;
+
 		return rad * rotatedDirection;
 	}
 
     inline Vector3D slerp(Vector3D p1, Vector3D p2,float t)
 	{
-		_ASSERT(abs(p1.GetLengthSqr() - p2.GetLengthSqr()) < FLT_EPSILON);
+        _ASSERT(abs(p1.GetLengthSqr() - p2.GetLengthSqr()) < 0.5);
 		float radOffset = GetRadOffset(p1, p2);
-        const Matrix3X3& rotationMatrix = Matrix3X3::GetRotationMatrix(radOffset * t);
+        const Matrix3X3& rotationMatrix = Matrix3X3::GetRotationMatrix(-radOffset * t);
         return Vector3D(rotationMatrix * p1);
 	}
+
