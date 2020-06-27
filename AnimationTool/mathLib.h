@@ -57,10 +57,10 @@
         return acos(cosTheta);
     }
 
-    inline float GetRadOffset(Vector3D p1, Vector3D p2)//+ - > ccw
+    inline float GetRadOffset(Vector3D p1, Vector3D p2)//- -> ccw
     {
 		float rad = GetRadBetweenTwoVectors(p1, p2);
-		float rotatedDirection = (p1.CrossProduct(p2)[2] >= 0.f) ? 1.f : -1.f;
+        float rotatedDirection = (p1.CrossProduct(p2)[2] >= 0.f) ? -1.f : 1.f;
 
 		return rad * rotatedDirection;
 	}
@@ -69,7 +69,7 @@
 	{
         _ASSERT(abs(p1.GetLengthSqr() - p2.GetLengthSqr()) < 0.5);
 		float radOffset = GetRadOffset(p1, p2);
-        const Matrix3X3& rotationMatrix = Matrix3X3::GetRotationMatrix(-radOffset * t);
+        const Matrix3X3& rotationMatrix = Matrix3X3::GetRotationMatrix(radOffset * t);
         return Vector3D(rotationMatrix * p1);
 	}
 
